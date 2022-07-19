@@ -1,0 +1,15 @@
+{
+  "name": "phase_5_project",
+  "version": "1.0.0",
+  "description": "Build and Deployment Configuration for Rails/React Deployment",
+  "engines": {
+    "node": "16.13.2"
+  },
+  "scripts": {
+    "clean": "rm -rf public",
+    "build": "npm install --prefix client && npm run build --prefix client",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
+  },
+  "author": "JamesNg"
+}
