@@ -5,7 +5,7 @@ import Main from './components/Main.js'
 
 function App() {
   return (
-    <div>
+    <div style={{fontFamily: 'Love Ya Like A Sister'}}>
         <Main/> 
     </div>
   );

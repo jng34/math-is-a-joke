@@ -15,7 +15,7 @@ function Main() {
                 <div className="col">
                 </div>
                 <div style={{paddingTop:"20px", paddingBottom:"15px"}} className="col text-end">
-                    <button className="btn btn-secondary">Log In</button>
+                    <button className="btn btn-primary">Sign Up</button>
                     {/* {user.name ? <></> : <button className="btn btn-success" onClick={() => history.push("/signup")}>Sign Up</button>} &nbsp;
                     {user.name ? <div><button className="btn btn-warning btn-small" onClick={()=>history.push("/profile")}>My Profile</button> &nbsp; <button className="btn btn-secondary" onClick={handleLogout}>Log Out</button></div>
                     : <button className="btn btn-secondary" onClick={() => history.push("/login")}>Log In</button>}
