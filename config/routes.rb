@@ -1,11 +1,21 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :comments
-    resources :favorites
-    resources :friendrequests
-    resources :jokes, only: [:index, :show]
-    resources :notifications
-    resources :users, only: [:index, :show, :update, :destroy]
+    root 'users#index'
+    
+    resources :users, only: [:index, :show, :update, :destroy] do
+      resources :friends, only: [:create] do
+        collection do
+          get 'accept_friend'
+          get 'decline_friend'
+        end
+      end
+    end
+
+    resources :jokes, only: [:new, :index, :show, :create, :update, :destroy] do
+      resources :favorites, only: [:create]
+    end
+
+    resources :comments, only: [:new, :create, :destroy]
 
     post '/signup', to: 'users#create'
     get '/me', to: 'users#show'

@@ -1,6 +1,12 @@
 class Api::UsersController < ApplicationController
   skip_before_action :authenticate_user
   
+  def index
+    @users = User.all
+    @friends = current_user.friends
+    @pending_requests = current_user.pending_requests
+    @friend_requests = current_user.received_requests
+  end
   
   # post '/api/signup'
   def create
@@ -15,7 +21,7 @@ class Api::UsersController < ApplicationController
 
   # get '/api/me'
   def show
-    render json: @current_user
+      render json: @current_user
   end
 
   

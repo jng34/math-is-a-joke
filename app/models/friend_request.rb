@@ -1,2 +1,0 @@
-class FriendRequest < ApplicationRecord
-end

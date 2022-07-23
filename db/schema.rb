@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_22_184435) do
+ActiveRecord::Schema.define(version: 2022_07_23_195552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,18 +24,21 @@ ActiveRecord::Schema.define(version: 2022_07_22_184435) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.integer "joke_id"
+    t.integer "comment_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "friend_requests", force: :cascade do |t|
-    t.integer "sent_by_id"
-    t.integer "sent_to_id"
-    t.boolean "status"
+  create_table "friends", force: :cascade do |t|
+    t.bigint "sent_by_id", null: false
+    t.bigint "sent_to_id", null: false
+    t.boolean "status", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["sent_by_id"], name: "index_friends_on_sent_by_id"
+    t.index ["sent_to_id"], name: "index_friends_on_sent_to_id"
   end
 
   create_table "jokes", force: :cascade do |t|
@@ -60,9 +63,11 @@ ActiveRecord::Schema.define(version: 2022_07_22_184435) do
     t.string "profile_img"
     t.string "email"
     t.string "password_digest"
-    t.integer "score"
+    t.integer "score", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "friends", "users", column: "sent_by_id"
+  add_foreign_key "friends", "users", column: "sent_to_id"
 end

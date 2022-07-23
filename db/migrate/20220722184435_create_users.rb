@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :profile_img
       t.string :email
       t.string :password_digest
-      t.integer :score
+      t.integer :score, default: 0
 
       t.timestamps
     end
