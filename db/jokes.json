@@ -1,0 +1,977 @@
+{
+    "jokes": [
+        {
+            "id": 1,
+            "setup": "Did you know you should always take an extra pair of pants golfing?",
+            "punchline": "Just in case you get a hole in one.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 2,
+            "setup": "What is bread's favorite number?",
+            "punchline": "Leaven",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 3,
+            "setup": "What kind of tree fits in your hand?",
+            "punchline": "A palm tree!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 4,
+            "setup": "Did you hear about the chameleon who couldn't change color?",
+            "punchline": "They had a reptile dysfunction.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 5,
+            "setup": "I was thinking about moving to Moscow but...",
+            "punchline": "there is no point Russian into things.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 6,
+            "setup": "What did the shy pebble wish for?",
+            "punchline": "That she was a little boulder.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 7,
+            "setup": "They tried to make a diamond shaped like a duck.",
+            "punchline": "It quacked under the pressure.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 8,
+            "setup": "Did you hear about the bread factory burning down?",
+            "punchline": "They say the business is toast.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 9,
+            "setup": "Past, present, and future walked into a bar....",
+            "punchline": "It was tense.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 10,
+            "setup": "What did the left eye say to the right eye?",
+            "punchline": "Between us, something smells!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 11,
+            "setup": "What do you call a cow on a trampoline?",
+            "punchline": "A milk shake!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 12,
+            "setup": "Why are basketball players messy eaters?",
+            "punchline": "Because they are always dribbling.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 13,
+            "setup": "When does a joke become a dad joke?",
+            "punchline": "When it becomes apparent.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 14,
+            "setup": "What does a pirate pay for his corn?",
+            "punchline": "A buccaneer!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 15,
+            "setup": "Why did the policeman go to the Lebanese restaurant?",
+            "punchline": "He was following up reports of a possible hummus side.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 16,
+            "setup": "Some people eat light bulbs.",
+            "punchline": "They say it's a nice light snack.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 17,
+            "setup": "What do bees do after they are married?",
+            "punchline": "They go on a honeymoon.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 18,
+            "setup": "I went to the doctor today and he told me I had type A blood but...",
+            "punchline": "It was a type O.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 19,
+            "setup": "Why was ten scared of seven?",
+            "punchline": "Because seven eight nine.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 20,
+            "setup": "Why do bees have sticky hair?",
+            "punchline": "Because they use honey combs!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 21,
+            "setup": "What biscuit does a short person like?",
+            "punchline": "Shortbread.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 22,
+            "setup": "Why was the robot angry?",
+            "punchline": "Because someone kept pressing his buttons!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 23,
+            "setup": "Man, I really love my furniture...",
+            "punchline": "Me and my recliner go way back.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 24,
+            "setup": "What do you call a dog that can do magic tricks?",
+            "punchline": "A labracadabrador.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 25,
+            "setup": "Why was Pavlov's beard so soft?",
+            "punchline": "Because he conditioned it.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 26,
+            "setup": "Why did the A go to the bathroom and come out as an E?",
+            "punchline": "Because he had a vowel movement.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 27,
+            "setup": "Why didn't the skeleton cross the road?",
+            "punchline": "Because he had no guts.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 28,
+            "setup": "What did one wall say to the other wall?",
+            "punchline": "I'll meet you at the corner!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 29,
+            "setup": "Why are fish so smart?",
+            "punchline": " Because they live in schools!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 30,
+            "setup": "What is a vampire's favorite fruit?",
+            "punchline": "A blood orange.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 31,
+            "setup": "What kind of award did the dentist receive?",
+            "punchline": "A little plaque.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 32,
+            "setup": "Why do valley girls hang out in odd numbered groups?",
+            "punchline": "Because they can't even.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 33,
+            "setup": "Did you hear about the Mexican train killer?",
+            "punchline": "He had loco motives.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 34,
+            "setup": "Why did the half blind man fall in the well?",
+            "punchline": "Because he couldn't see that well!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 35,
+            "setup": "What's the worst thing about ancient history class?",
+            "punchline": "The teachers tend to Babylon.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 36,
+            "setup": "How does Darth Vader like his toast?",
+            "punchline": "On the dark side.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 37,
+            "setup": "Why do bananas have to put on sunscreen before they go to the beach?",
+            "punchline": "Because they might peel!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 38,
+            "setup": "What animal is always at a game of cricket?",
+            "punchline": "A bat.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 39,
+            "setup": "What did one plate say to the other plate?",
+            "punchline": "Dinner is on me!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 40,
+            "setup": "Why is it so windy inside an arena?",
+            "punchline": "All those fans.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 41,
+            "setup": "Do you know where you can get chicken broth in bulk?",
+            "punchline": "The stock market.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 42,
+            "setup": "I was going to learn how to juggle...",
+            "punchline": "but I didn't have the balls.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 43,
+            "setup": "To the guy who invented zero...",
+            "punchline": "thanks for nothing.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 44,
+            "setup": "What has ears but cannot hear?",
+            "punchline": "A field of corn.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 45,
+            "setup": "What do you call your friend who stands in a hole?",
+            "punchline": "Phil.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 46,
+            "setup": "What did the beaver say to the tree?",
+            "punchline": "It's been nice gnawing you.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 47,
+            "setup": "What is the best time on a clock?",
+            "punchline": "6:30-hands down.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 48,
+            "setup": "Did you hear about the cheese who saved the world?",
+            "punchline": "It was Legend-dairy!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 49,
+            "setup": "What do you do when your bunny gets wet?",
+            "punchline": "You get your hare dryer.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 50,
+            "setup": "Why don't you find hippopotamuses hiding in trees?",
+            "punchline": "They're really good at it.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 51,
+            "setup": "What's the difference between a seal and a sea lion?",
+            "punchline": "An ion!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 52,
+            "setup": "Why do fish live in salt water?",
+            "punchline": "Because pepper makes them sneeze!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 53,
+            "setup": "What did the judge say to the dentist?",
+            "punchline": "Do you swear to pull the tooth, the whole tooth and nothing but the tooth?",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 54,
+            "setup": "A steak pun is...",
+            "punchline": "a rare medium well done.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 55,
+            "setup": "Did you hear about the kidnapping at school?",
+            "punchline": "It's ok, he woke up.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 56,
+            "setup": "What do you call a cow with no legs?",
+            "punchline": "Ground beef.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 57,
+            "setup": "What did one nut say as he chased another nut?",
+            "punchline": "I'm a cashew!",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 58,
+            "setup": "Where did Captain Hook get his hook?",
+            "punchline": "From a second hand store.",
+            "likes": 0,
+            "user_id": 1 
+        },
+        {
+            "id": 59,
+            "setup": "What's the best thing about elevator jokes?",
+            "punchline": "They work on so many levels.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 60,
+            "setup": "Don't trust atoms.",
+            "punchline": "They make up everything.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 61,
+            "setup": "Did you hear about the runner who was criticized?",
+            "punchline": "He just took it in stride.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 62,
+            "setup": "What was a more important invention than the first telephone?",
+            "punchline": "The second one.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 63,
+            "setup": "What creature is smarter than a talking parrot?",
+            "punchline": "A spelling bee.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 64,
+            "setup": "How was the snow globe feeling after the storm?",
+            "punchline": "A little shaken.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 65,
+            "setup": "Two satellites decided to get married.",
+            "punchline": "The wedding wasn't much, but the reception was incredible.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 66,
+            "setup": "What do you call an alligator in a vest?",
+            "punchline": "An in-vest-igator!",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 67,
+            "setup": "How come the stadium got hot after the game?",
+            "punchline": "Because all of the fans left.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 68,
+            "setup": "What's the difference between a poorly dressed man on a tricycle and a well dressed man on a bicycle? Attire.",
+            "punchline": "Attire.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 69,
+            "setup": "What time did the man go to the dentist?",
+            "punchline": "Tooth hurt-y.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 70,
+            "setup": "How does the moon cut his hair?",
+            "punchline": "Eclipse it.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 71,
+            "setup": "Why do wizards clean their teeth three times a day?",
+            "punchline": "To prevent bat breath!",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 72,
+            "setup": "How are false teeth like stars?",
+            "punchline": "They come out at night!",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 73,
+            "setup": "Why does Norway have barcodes on their battleships?",
+            "punchline": "So when they get back to port, they can Scandinavian.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 74,
+            "setup": "What did the ocean say to the shore?",
+            "punchline": "Nothing, it just waved.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 75,
+            "setup": "How did Darth Vader know what Luke was getting for Christmas?",
+            "punchline": "He felt his presents.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 76,
+            "setup": "What did the Red light say to the Green light?",
+            "punchline": "Don't look at me I'm changing!",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 77,
+            "setup": "Why do bears have hairy coats?",
+            "punchline": "Fur protection.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 78,
+            "setup": "How does a scientist freshen their breath?",
+            "punchline": "With experi-mints!",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 79,
+            "setup": "Why did the worker get fired from the orange juice factory?",
+            "punchline": "Lack of concentration.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 80,
+            "setup": "Why can't eggs have love?",
+            "punchline": "They will break up too soon.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 81,
+            "setup": "Why are mummys scared of vacation?",
+            "punchline": "They are afraid to unwind.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 82,
+            "setup": "Did you hear the one about the giant pickle?",
+            "punchline": "He was kind of a big dill.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 83,
+            "setup": "What did the father tomato say to the baby tomato while on a family walk?",
+            "punchline": "Ketchup!",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 84,
+            "setup": "What do you call a duck that gets all A's?",
+            "punchline": "A wise quacker.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 85,
+            "setup": "What is the hardest part about sky diving?",
+            "punchline": "The ground.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 86,
+            "setup": "Why did the girl smear peanut butter on the road?",
+            "punchline": "To go with the traffic jam.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 87,
+            "setup": "What do you get when you cross a chicken with a skunk?",
+            "punchline": "A fowl smell.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 88,
+            "setup": "Did you know the first French fries weren't actually cooked in France?",
+            "punchline": "They were cooked in Greece.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 89,
+            "setup": "Why was Santa's little helper feeling depressed?",
+            "punchline": "Because she has low elf esteem.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 90,
+            "setup": "How do you steal a coat?",
+            "punchline": "You jacket.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 91,
+            "setup": "Where do hamburgers go to dance?", 
+            "punchline": "The meat-ball.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 92,
+            "setup": "How do you follow Will Smith in the snow?", 
+            "punchline": "You follow the fresh prints.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 93,
+            "setup": "What do you call a fish wearing a bowtie?", 
+            "punchline": "Sofishticated.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 94,
+            "setup": "What do you call a factory that makes okay products?", 
+            "punchline": "A satisfactory.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 95,
+            "setup": "Why do seagulls fly over the ocean?", 
+            "punchline": "Because if they flew over the bay, we'd call them bagels.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 96,
+            "setup": "What's the best thing about Switzerland?", 
+            "punchline": "I don't know, but the flag is a big plus.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 97,
+            "setup": "What do you call someone with no body and no nose? ", 
+            "punchline": "Nobody knows.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 98,
+            "setup": "Why can't a nose be 12 inches long?", 
+            "punchline": "Because then it would be a foot.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 99,
+            "setup": "How does a taco say grace?", 
+            "punchline": "Lettuce pray.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 100,
+            "setup": "How many tickles does it take to make an octopus laugh?", 
+            "punchline": "Ten tickles.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 101,
+            "setup": "What concert costs just 45 cents?", 
+            "punchline": "50 Cent featuring Nickelback!",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 102,
+            "setup": "What kind of shoes do ninjas wear?", 
+            "punchline": "Sneakers.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 103,
+            "setup": "How does a penguin build its house? ", 
+            "punchline": "Igloos it together.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 104,
+            "setup": "What do you call cheese that isn't yours?", 
+            "punchline": "Nacho cheese.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 105,
+            "setup": "What do you call a fake noodle?", 
+            "punchline": "An impasta.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 106,
+            "setup": "What do you call two monkeys that share an Amazon account?", 
+            "punchline": "Prime mates.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 107,
+            "setup": "Where do math teachers go on vacation?", 
+            "punchline": "Times Square.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 108,
+            "setup": "What does garlic do when it gets hot?", 
+            "punchline": "It takes its cloves off.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 109,
+            "setup": "How much does it cost Santa to park his sleigh?", 
+            "punchline": "Nothing, it's on the house.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 110,
+            "setup": "Mountains aren't just funny...", 
+            "punchline": "They're hill areas.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 111,
+            "setup": "Why are piggy banks so wise?", 
+            "punchline": "They're filled with common cents.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 112,
+            "setup": "Did you hear about the circus fire?", 
+            "punchline": "It was in tents.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 114,
+            "setup": "What's the best way to watch a fly fishing tournament?", 
+            "punchline": "Live stream.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 115,
+            "setup": "What did the fish say when he hit the wall?", 
+            "punchline": "Dam.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 116,
+            "setup": "If you see a crime happen at the Apple store, what does it make you?", 
+            "punchline": "An iWitness.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 117,
+            "setup": "What is the tallest building in the world?", 
+            "punchline": "The library-it's got the most stories!",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 118,
+            "setup": "What kind of tree fits in your hand?", 
+            "punchline": "A palm tree.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 119,
+            "setup": "What did the beaver say to the tree?", 
+            "punchline": "It's been nice gnawing you.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 120,
+            "setup": "Why do choirs keep buckets handy?", 
+            "punchline": "So they can carry their tune.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 121,
+            "setup": "Why does Waldo only wear stripes?", 
+            "punchline": "Because he doesn't want to be spotted.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 122,
+            "setup": "What kind of bagel can fly?", 
+            "punchline": "A plain bagel.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 123,
+            "setup": "Where did Captain Hook get his hook?", 
+            "punchline": "From a second hand store.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 124,
+            "setup": "What kind of bagel can fly?", 
+            "punchline": "A plain bagel.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 125,
+            "setup": "I thought about going on an all-almond diet.", 
+            "punchline": "But that's just nuts.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 126,
+            "setup": "Why did the cookie cry?", 
+            "punchline": "It was feeling crumby.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 127,
+            "setup": "Why are fish easy to weigh?", 
+            "punchline": "Because they have their own scales.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 128,
+            "setup": "Why did the belt go to prison?", 
+            "punchline": "It held up a pair of pants!",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 129,
+            "setup": "How much does a hipster weigh?", 
+            "punchline": "An Instagram.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 130,
+            "setup": "Why did the opera singer go sailing?", 
+            "punchline": "They wanted to hit the high Cs.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 131,
+            "setup": "Why are skeletons so calm?", 
+            "punchline": "Because nothing gets under their skin.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 132,
+            "setup": "What did the grape do when he got stepped on?", 
+            "punchline": "He let out a little wine.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 133,
+            "setup": "What kind of magic do cows believe in?", 
+            "punchline": "MOODOO.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 134,
+            "setup": "Where do programmers like to hang out?", 
+            "punchline": "The Foo Bar.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 135,
+            "setup": "Where do bees stay while on vacation?", 
+            "punchline": "Air Bee and Bee.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 136,
+            "setup": "Why did Pluto have such a terrible vacation?", 
+            "punchline": "Because he didn't planet well.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 137,
+            "setup": "Why are leopards so bad at hiding?", 
+            "punchline": "No matter where they hide, they're always spotted",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 138,
+            "setup": "Never talk to a girl about pregnancy, periods or 'women problems'", 
+            "punchline": "She'll ovary act.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 139,
+            "setup": "What sort of scientists does Soda Stream employ?", 
+            "punchline": "Fizzyscists.",
+            "likes": 0,
+            "user_id": 1
+        },
+        {
+            "id": 140,
+            "setup": "", 
+            "punchline": "",
+            "likes": 0,
+            "user_id": 1
+        }
+    ]
+}

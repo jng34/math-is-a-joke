@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
 function SignUpForm({ onSignUp }) {
-    const [name, setName] = useState("")
+    const [username, setUserName] = useState("")
     const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
     const [profileImg, setProfileImg] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errors, setErrors] = useState([])
@@ -22,7 +23,8 @@ function SignUpForm({ onSignUp }) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                name,
+                username,
+                email,
                 profile_img: profileImg,
                 password,
                 password_confirmation: passwordConfirmation
@@ -36,7 +38,7 @@ function SignUpForm({ onSignUp }) {
                 setProfileImg("")
                 setPassword("")
                 setPasswordConfirmation("")
-                history.push("/profile")
+                history.push("/main")
             } else {
                 res.json().then((err) => setErrors(err.errors));
             }

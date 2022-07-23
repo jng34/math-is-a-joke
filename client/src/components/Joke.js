@@ -1,24 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import jokes from '../jokes.json';
+import { useState, useEffect } from 'react';
 
 
 function Joke() {
-    //might need to set joke state
+    const [joke, setJoke] = useState({});
     const [problem, setProblem] = useState("");
     const [answer, setAnswer] = useState(0);
-    const [toggleAnswer, setToggleAnswer] = useState(false);
+    const [inputAns, setInputAns] = useState('');
+    const [ansMsg, setAnsMsg] = useState(null);
+    const [togglePL, setTogglePL] = useState(false);
 
-    //Generates random joke
-    const randomNum = Math.floor(Math.random() * jokes.jokes.length + 1);
-    const randomJokeObj = jokes.jokes[randomNum];
-    const jokeSetUp = randomJokeObj.setup;
-    const jokePunchLine = randomJokeObj.punchline;
-    
     //Generate math problem - basic operations
-    const num1 = Math.floor(Math.random()*100 + 1)
-    const num2 = Math.floor(Math.random()*100 + 1)
+    const num1 = Math.floor(Math.random()*50 + 1)
+    const num2 = Math.floor(Math.random()*50 + 1)
     
 
+    //Create array of divisors for division with integer quotients
     function createDivisors(n) {
         let divisors = [];
         for (let i=1; i<=num1; i++) {
@@ -40,18 +36,38 @@ function Joke() {
             setProblem(divProb);
             setAnswer(num1 / divisors[divIndex]);
         } else if (mathOper === '*') { 
-            let multiplier = Math.floor(Math.random()*num1 + 1);
+            let multiplier = Math.floor(Math.random()*num1/2 + 1);
             let multProb = `${num1} × ${multiplier}`;
             setProblem(multProb);
             setAnswer(num1 * multiplier);
         } else {
-            let randomProb = num1 + mathOper + num2;
+            let randomProb = `${num1} ${mathOper} ${num2}`;
             setProblem(randomProb);
             setAnswer(eval(randomProb));
         }
     }
 
-    useEffect(() => generateMathProb(), [])
+    useEffect(() => {
+        generateMathProb();
+        fetch("/api/jokes")
+        .then(res => res.json())
+        .then((allJokes) => {
+            //sets random joke
+            const randomNum = Math.floor(Math.random() * allJokes.length);
+            const randomJokeObj = allJokes[randomNum];
+            setJoke(randomJokeObj)
+        })
+    }, [])
+
+
+    function handleSubmitAns(e) {
+        e.preventDefault();
+        setAnsMsg('fire')
+        if (inputAns == answer) {
+            setTogglePL(!togglePL)
+            setInputAns(0)
+        }
+    }
 
     //create logic to adjust timer for problem difficulty
     //Easy - 1min, Medium = 30s, Hard = 15s
@@ -60,15 +76,26 @@ function Joke() {
         <div className="container text-center">
             <div className='row'>
                 <br/><br/>
-                <h3>{jokeSetUp}</h3> 
+                <h2>{joke.setup}</h2> 
             </div>
-            <div className='row align-items-center' style={{width: '700px', height: '400px', border: 'dashed', margin: 'auto'}}>
-                <h1>{problem}</h1>
+            {/* make this div a chalkboard */}
+            <div className='row mt-3 mb-3 align-items-center' style={{width: '700px', height: '250px', border: 'dashed', margin: 'auto'}}>
+                {/* make problem responsive CSS */}
+                {/* <p style={{fontSize: "75px"}}>{problem} =</p> */}
                 {/* set toggle state to reveal answer upon answering */}
-                <h1>{answer}</h1>
+                {/* <h4>hello</h4> */}
+                <form onSubmit={handleSubmitAns}>
+                    <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} =</label><br/>
+                    <input style={{width: '75px'}} type="number" name="answer" value={inputAns} onChange={(e) => setInputAns(e.target.value)}/>&nbsp;
+                    <button type="submit" className='button bg-warning'>Answer</button>
+                </form>
+                {ansMsg ? 
+                    (togglePL ? <h4 style={{color: 'green'}}>{answer} - Correct!</h4>
+                    : <h4 style={{color: 'red'}}>Incorrect.</h4>)
+                 : <></>}
             </div>
             <div className='row'>
-                <h3>Punchline: {jokePunchLine}</h3>  
+                <h3>Punchline: {togglePL ? <b>{joke.punchline}</b> : '???'}</h3>  
             </div>
         </div>
         
