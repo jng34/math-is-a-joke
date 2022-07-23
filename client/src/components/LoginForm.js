@@ -15,7 +15,7 @@ function LoginForm({ onLogin }) {
         e.preventDefault();
         setErrors([])
         setIsLoading(true);
-        fetch("/login", {
+        fetch("/api/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -39,27 +39,27 @@ function LoginForm({ onLogin }) {
   
     return (
       <div>
-        <h1 className="text-center mt-3" style={{fontSize: '44px', cursor: 'pointer'}} onClick={() => history.push("/")}>Math is a Joke!</h1>
-        <div className="card text-start border border-dark mt-5" style={{width: "25rem", margin: "auto"}}>
-            <form className="px-4 py-3" onSubmit={handleLoginSubmit}>
+        <h1 className="text-center mt-3" style={{fontSize: '44px', cursor: 'pointer'}} onClick={() => history.push("/")}>MATH is a Joke!</h1>
+        <div className="card text-start border border-dark border-2 mt-4" style={{width: "25rem", margin: "auto"}}>
+            <form className="px-5 py-3" onSubmit={handleLoginSubmit}>
                 <div className="mb-3">
-                  <label htmlFor="name" className="form-label">Name</label>
+                  <label htmlFor="name" className="form-label fw-bold">UserName</label>
                   <input 
                       type="text"
                       className="form-control" 
                       autoComplete="off"
                       value={name}
-                      placeholder="name" 
+                      placeholder="Enter username..." 
                       onChange={(e) => setName(e.target.value)}
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Password</label>
+                  <label htmlFor="password" className="form-label fw-bold">Password</label>
                     <input 
                       type="password" 
                       className="form-control" 
                       autoComplete="current-password"
-                      placeholder="password" 
+                      placeholder="Enter password..." 
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     />

@@ -68,7 +68,7 @@ function Joke() {
     function handleSubmitAns(e) {
         e.preventDefault();
         setAnsMsg('fire')
-        if (inputAns == answer) {
+        if (inputAns === answer) {
             setTogglePL(!togglePL)
             setInputAns("")
         } else {

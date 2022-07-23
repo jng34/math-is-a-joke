@@ -1,5 +1,5 @@
 class Api::SessionsController < ApplicationController
-  skip_before_action :authenticate_user
+  skip_before_action :authenticate_user, only: :create
 
   # post '/login'
   def create
@@ -14,7 +14,8 @@ class Api::SessionsController < ApplicationController
 
   # delete '/logout'
   def destroy
-    session.delete(:user_id)
+    session.delete :user_id
+    head :no_content
   end
 
 end

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import mathvid from '../mathvid.mp4'
+// import mathvid from '../mathvid.mp4'
 import Joke from './Joke.js'
 
 
@@ -14,7 +14,7 @@ function Main() {
             </video> */}
             <div className="row">
                 <div className="col">
-                    <h1 style={{fontSize: '44px', cursor: 'pointer'}} onClick={() => history.push("/")}>Math is a Joke!</h1>
+                    <h1 style={{fontSize: '44px', cursor: 'pointer'}} onClick={() => history.push("/")}>MATH is a Joke!</h1>
                 </div>
                 <div className="col">
                 </div>
