@@ -1,25 +1,28 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Main from './components/Main.js'
+import Main from './components/Main.js';
+import LoginForm from './components/LoginForm.js';
+import SignUpForm from './components/SignUpForm.js';
 
 
 function App() {
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then(data => setUser(data))
+      }
+    });
+  }, [])
+
   return (
     <div style={{fontFamily: 'Love Ya Like A Sister'}}>
-        <Main/> 
-        {/* <Switch>
+        {/* <Main/>  */}
+        <Switch>
           <Route exact path="/">
             <Main user={user}/>
-          </Route>
-          <Route exact path="/battle">
-            <BattleField user={user} setUser={setUser}/>
-          </Route>
-          <Route exact path="/users">
-            <AllUsers />
-          </Route>
-          <Route exact path="/profile">
-            <UserProfile user={user}/>
           </Route>
           <Route exact path="/login">
             <LoginForm user={user} onLogin={setUser} /> 
@@ -27,7 +30,7 @@ function App() {
           <Route exact path="/signup">
             <SignUpForm onSignUp={setUser} />
           </Route>
-        </Switch> */}
+        </Switch>
     </div>
   );
 }

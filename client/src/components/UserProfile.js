@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function UserProfile() {
+function UserProfile({ user }) {
     return (
         <div>User Profile</div>
     )

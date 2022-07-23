@@ -39,7 +39,8 @@ function LoginForm({ onLogin }) {
   
     return (
       <div>
-        <div className="card text-start border border-success" style={{width: "25rem", margin: "auto"}}>
+        <h1 className="text-center mt-3" style={{fontSize: '44px', cursor: 'pointer'}} onClick={() => history.push("/")}>Math is a Joke!</h1>
+        <div className="card text-start border border-dark mt-5" style={{width: "25rem", margin: "auto"}}>
             <form className="px-4 py-3" onSubmit={handleLoginSubmit}>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">Name</label>

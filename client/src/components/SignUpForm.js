@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
 function SignUpForm({ onSignUp }) {
@@ -11,7 +11,7 @@ function SignUpForm({ onSignUp }) {
     const [isLoading, setIsLoading] = useState(false)
 
     
-    const history = useHistory();
+    let history = useHistory();
 
     function handleSubmitSignUp(e) {
         e.preventDefault();
@@ -24,8 +24,8 @@ function SignUpForm({ onSignUp }) {
             },
             body: JSON.stringify({
                 username,
-                email,
                 profile_img: profileImg,
+                email,
                 password,
                 password_confirmation: passwordConfirmation
             })
@@ -34,11 +34,12 @@ function SignUpForm({ onSignUp }) {
             setIsLoading(false);
             if (res.ok) {
                 res.json().then((user) => onSignUp(user));
-                setName("")
+                setUserName("")
                 setProfileImg("")
+                setEmail("")
                 setPassword("")
                 setPasswordConfirmation("")
-                history.push("/main")
+                history.push("/")
             } else {
                 res.json().then((err) => setErrors(err.errors));
             }
@@ -48,7 +49,8 @@ function SignUpForm({ onSignUp }) {
 
   return (
     <div>
-        <div className="card text-start border border-success" style={{width: "25rem", margin: "auto"}}>
+        <h1 className="text-center mt-3" style={{fontSize: '44px', cursor: 'pointer'}} onClick={() => history.push("/")}>Math is a Joke!</h1>
+        <div className="card text-start border border-dark mt-5" style={{width: "25rem", margin: "auto"}}>
             <form className="px-4 py-3" onSubmit={handleSubmitSignUp}>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">Name</label>
@@ -56,13 +58,13 @@ function SignUpForm({ onSignUp }) {
                       type="text"
                       className="form-control" 
                       autoComplete="off"
-                      value={name}
+                      value={username}
                       placeholder="name" 
-                      onChange={(e) => setName(e.target.value)}
+                      onChange={(e) => setUserName(e.target.value)}
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Profile Pic</label>
+                  <label htmlFor="password" className="form-label">Profile Img</label>
                     <input 
                       type="text" 
                       className="form-control" 

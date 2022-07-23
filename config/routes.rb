@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :comments
     resources :favorites
     resources :friendrequests
-    resources :jokes, only: [:index]
+    resources :jokes, only: [:index, :show]
     resources :notifications
     resources :users, only: [:index, :show, :update, :destroy]
 

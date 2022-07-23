@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 function Joke() {
     const [joke, setJoke] = useState({});
     const [problem, setProblem] = useState("");
-    const [answer, setAnswer] = useState(0);
+    const [answer, setAnswer] = useState("");
     const [inputAns, setInputAns] = useState('');
     const [ansMsg, setAnsMsg] = useState(null);
     const [togglePL, setTogglePL] = useState(false);
@@ -36,7 +36,7 @@ function Joke() {
             setProblem(divProb);
             setAnswer(num1 / divisors[divIndex]);
         } else if (mathOper === '*') { 
-            let multiplier = Math.floor(Math.random()*num1/2 + 1);
+            let multiplier = Math.floor(Math.random()*(num1/2) + 1);
             let multProb = `${num1} × ${multiplier}`;
             setProblem(multProb);
             setAnswer(num1 * multiplier);
@@ -59,13 +59,20 @@ function Joke() {
         })
     }, [])
 
+    //Reloads page from server
+    function refreshPage() {
+        window.parent.location = window.parent.location.href; 
+    }
+
 
     function handleSubmitAns(e) {
         e.preventDefault();
         setAnsMsg('fire')
         if (inputAns == answer) {
             setTogglePL(!togglePL)
-            setInputAns(0)
+            setInputAns("")
+        } else {
+            setInputAns("")
         }
     }
 
@@ -79,20 +86,33 @@ function Joke() {
                 <h2>{joke.setup}</h2> 
             </div>
             {/* make this div a chalkboard */}
-            <div className='row mt-3 mb-3 align-items-center' style={{width: '700px', height: '250px', border: 'dashed', margin: 'auto'}}>
+            <div className='row mt-2 mb-2 align-items-center' style={{width: '600px', height: '300px', border: 'double', margin: 'auto'}}>
                 {/* make problem responsive CSS */}
                 {/* <p style={{fontSize: "75px"}}>{problem} =</p> */}
                 {/* set toggle state to reveal answer upon answering */}
                 {/* <h4>hello</h4> */}
+
+                {ansMsg ? 
+                    (togglePL ? 
+                    <div>
+                        <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} =</label>
+                        <h4 style={{color: 'green'}}>Correct!</h4><br/>
+                        <button className='button bg-success' onClick={() => refreshPage()}>Next Joke</button>
+                    </div>
+                    : 
+                    <div>
+                        <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} =</label>
+                        <h4 style={{color: 'red'}}>Incorrect.</h4><br/>
+                        <h4>Correct Answer: {answer}</h4><br/>
+                        <button className='button bg-danger' onClick={() => refreshPage()}>Next Joke</button>
+                    </div>)
+                : 
                 <form onSubmit={handleSubmitAns}>
+                    <label htmlFor="ansewr" style={{fontSize: "20px"}}>Solve:</label><br/>
                     <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} =</label><br/>
                     <input style={{width: '75px'}} type="number" name="answer" value={inputAns} onChange={(e) => setInputAns(e.target.value)}/>&nbsp;
-                    <button type="submit" className='button bg-warning'>Answer</button>
-                </form>
-                {ansMsg ? 
-                    (togglePL ? <h4 style={{color: 'green'}}>{answer} - Correct!</h4>
-                    : <h4 style={{color: 'red'}}>Incorrect.</h4>)
-                 : <></>}
+                    <button type="submit" className='button bg-warning'>Submit</button>
+                </form>}
             </div>
             <div className='row'>
                 <h3>Punchline: {togglePL ? <b>{joke.punchline}</b> : '???'}</h3>  
