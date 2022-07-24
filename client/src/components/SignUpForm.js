@@ -109,7 +109,6 @@ function SignUpForm({ onSignUp }) {
                 <div className="d-grid gap-2">
                   <button type="submit" className="btn btn-primary">SIGN UP</button>
                 </div>
-
                 {errors.map((err) => (
                   <p key={err} style={{color: "red"}}>{err}</p>
                  ))}
@@ -120,7 +119,6 @@ function SignUpForm({ onSignUp }) {
                 </p> 
             </form>
         </div>   
-        <br />
     </div>
   )
 }

@@ -11,18 +11,14 @@ class Api::UsersController < ApplicationController
   
   # post '/api/signup'
   def create
-    user = User.create(user_params)
-    if user.valid?
-      session[:user_id] = user.id
-      render json: user, status: :ok
-    else
-      render json: { error: user.errors }, status: :unprocessable_entity
-    end
+    user = User.create!(user_params)
+    session[:user_id] = user.id
+    render json: user, status: :created
   end
 
   # get '/api/me'
   def show
-      render json: @current_user
+    render json: @current_user
   end
 
   
@@ -42,7 +38,7 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:username, :profile_img, :email, :password, :password_confirmation)
+    params.permit(:username, :profile_img, :email, :score, :password, :password_confirmation)
   end
 
 end

@@ -9,6 +9,7 @@ import Header from './components/Header.js';
 import JokeList from './components/JokeList.js';
 import Friends from './components/Friends.js';
 import Joke from './components/Joke.js';
+import CreateJoke from './components/CreateJoke.js';
 // import mathvid from '../mathvid.mp4'
 
 
@@ -16,7 +17,7 @@ function App() {
   const [user, setUser] = useState({})
 
   useEffect(() => {
-    fetch("/me").then((r) => {
+    fetch("/api/me").then((r) => {
       if (r.ok) {
         r.json().then(data => setUser(data))
       }
@@ -52,7 +53,10 @@ function App() {
           <Friends user={user} />
         </Route>
         <Route exact path="/joke">
-          <Joke user={user} />
+          <Joke user={user} setUser={setUser} />
+        </Route>
+        <Route exact path="/createjoke">
+          <CreateJoke user={user} />
         </Route>
       </Switch>
     </div>

@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import CreateJoke from './CreateJoke';
 
 
-function Joke({ user }) {
+function Joke({ user, setUser }) {
     const [joke, setJoke] = useState({});
     const [problem, setProblem] = useState("");
     const [answer, setAnswer] = useState("");
     const [inputAns, setInputAns] = useState('');
     const [ansMsg, setAnsMsg] = useState(null);
     const [togglePL, setTogglePL] = useState(false);
+    const [correctCount, setCorrectCount] = useState(0);
     const history = useHistory();
 
     //Generate math problem - basic operations
@@ -19,7 +21,7 @@ function Joke({ user }) {
     //Create array of divisors for division with integer quotients
     function createDivisors(n) {
         let divisors = [];
-        for (let i=1; i<num1; i++) {
+        for (let i=1; i<=num1; i++) {
             if (num1 % i === 0) {
                 divisors.push(i);
             }
@@ -74,6 +76,18 @@ function Joke({ user }) {
         })
     }, [])
 
+    function handleUpdateScore(score) {
+        fetch(`/api/users/${user.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ score })
+        })
+        .then(r => r.json())
+        .then(update => {
+            console.log(update)
+            setUser(update)
+        })
+    }
     
     function handleSubmitAns(e) {
         e.preventDefault();
@@ -81,19 +95,28 @@ function Joke({ user }) {
         if (inputAns == answer) {
             setTogglePL(!togglePL)
             setInputAns("")
+            if (user.username) {
+                setCorrectCount(correctCount+1);
+                handleUpdateScore(correctCount+1);
+            }
         } else {
             setInputAns("")
         }
     }
-    
-    //Reloads page from server
-    // function refreshPage() {
-    //     window.parent.location = window.parent.location.href; 
-    // }
+    console.log(answer)
 
+
+    //Reloads page from server
+    function refreshPage() {
+        window.parent.location = window.parent.location.href; 
+    }
 
     function handleNextClick() {
-        user.username ? window.parent.location = window.parent.location.href : history.push("/login")
+        user.username ? refreshPage() : history.push("/login")
+    }
+
+    function handleCreateJoke() {
+        history.push("/createjoke")
     }
 
     //create logic to adjust timer for problem difficulty
@@ -118,6 +141,9 @@ function Joke({ user }) {
                         <div>
                             <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} =</label>
                             <h4 style={{color: 'green'}}>Correct!</h4><br/>
+                            {user.username && correctCount % 5 == 0 ? 
+                            <button className='button bg-primary' onClick={handleCreateJoke}>Create Joke</button>
+                            : <></>}&nbsp;
                             <button className='button bg-success' onClick={handleNextClick}>Next Joke</button>
                         </div>
                         : 

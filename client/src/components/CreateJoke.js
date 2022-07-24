@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function CreateJoke() {
+function CreateJoke({ user }) {
     return (
         <div>Create Joke</div>
     )

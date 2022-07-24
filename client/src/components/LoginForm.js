@@ -5,14 +5,14 @@ import { useHistory, Link } from 'react-router-dom';
 function LoginForm({ onLogin }) {
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState([]);
+    const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    let history = useHistory();
+    const history = useHistory();
 
 
     function handleLoginSubmit(e) {
         e.preventDefault();
-        setErrors([])
+        setError("")
         setIsLoading(true);
         fetch("/api/login", {
           method: "POST",
@@ -31,7 +31,7 @@ function LoginForm({ onLogin }) {
             setUserName("")
             setPassword("")
           } else {
-            r.json().then((err) => setErrors(err.errors));
+            r.json().then((err) => setError(err.error));
           }
         });
     }
@@ -65,10 +65,7 @@ function LoginForm({ onLogin }) {
                 <div className="d-grid gap-2">
                   <button type="submit" className="btn btn-primary">SIGN IN</button>
                 </div>
-                {errors.map((err) => (
-                  <p key={err} style={{color: "red"}}>{err}</p>
-                 ))}
-                <br /> 
+                <p style={{color: 'red'}}>{error}</p> 
                 <p className='text-center'>
                     Don't have an account? &nbsp;
                     <Link to='/signup'>Sign Up</Link>
