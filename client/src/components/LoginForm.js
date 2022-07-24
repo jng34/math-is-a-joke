@@ -3,12 +3,11 @@ import { useHistory, Link } from 'react-router-dom';
 
 
 function LoginForm({ onLogin }) {
-    const [name, setName] = useState("");
+    const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    //routing
-    const history = useHistory();
+    let history = useHistory();
 
 
     function handleLoginSubmit(e) {
@@ -20,16 +19,16 @@ function LoginForm({ onLogin }) {
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ name, password }),
+          body: JSON.stringify({ username, password }),
         })
         .then((r) => {
           setIsLoading(false);
           if (r.ok) {
             r.json().then((user) => {
               onLogin(user)
-              history.push("/battle")
+              history.push("/profile")
             });
-            setName("")
+            setUserName("")
             setPassword("")
           } else {
             r.json().then((err) => setErrors(err.errors));
@@ -39,18 +38,17 @@ function LoginForm({ onLogin }) {
   
     return (
       <div>
-        <h1 className="text-center mt-3" style={{fontSize: '44px', cursor: 'pointer'}} onClick={() => history.push("/")}>MATH is a Joke!</h1>
         <div className="card text-start border border-dark border-2 mt-4" style={{width: "25rem", margin: "auto"}}>
-            <form className="px-5 py-3" onSubmit={handleLoginSubmit}>
+            <form className="px-4 py-3" onSubmit={handleLoginSubmit}>
                 <div className="mb-3">
-                  <label htmlFor="name" className="form-label fw-bold">UserName</label>
+                  <label htmlFor="username" className="form-label fw-bold">UserName</label>
                   <input 
                       type="text"
                       className="form-control" 
                       autoComplete="off"
-                      value={name}
+                      value={username}
                       placeholder="Enter username..." 
-                      onChange={(e) => setName(e.target.value)}
+                      onChange={(e) => setUserName(e.target.value)}
                   />
                 </div>
                 <div className="mb-3">

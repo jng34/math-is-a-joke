@@ -49,10 +49,9 @@ function SignUpForm({ onSignUp }) {
 
   return (
     <div>
-        <h1 className="text-center mt-2" style={{fontSize: '44px', cursor: 'pointer'}} onClick={() => history.push("/")}>MATH is a Joke!</h1>
         <div className="card text-start border border-dark border-2 mt-4" style={{width: "25rem", margin: "auto"}}>
-            <form className="px-5 py-3" onSubmit={handleSubmitSignUp}>
-                <div className="mb-3">
+            <form className="px-4 py-3" onSubmit={handleSubmitSignUp}>
+                <div className="mb-2">
                   <label htmlFor="username" className="form-label fw-bold">UserName</label>
                   <input 
                       type="text"
@@ -63,7 +62,7 @@ function SignUpForm({ onSignUp }) {
                       onChange={(e) => setUserName(e.target.value)}
                   />
                 </div>
-                <div className="mb-3">
+                <div className="mb-2">
                   <label htmlFor="email" className="form-label fw-bold">Email</label>
                   <input 
                       type="text"
@@ -74,7 +73,7 @@ function SignUpForm({ onSignUp }) {
                       onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
-                <div className="mb-3">
+                <div className="mb-2">
                   <label htmlFor="profile-img" className="form-label fw-bold">Profile Picture</label>
                     <input 
                       type="text" 
@@ -85,7 +84,7 @@ function SignUpForm({ onSignUp }) {
                       onChange={(e) => setProfileImg(e.target.value)}
                     />
                 </div>
-                <div className="mb-3">
+                <div className="mb-2">
                   <label htmlFor="password" className="form-label fw-bold">Password</label>
                     <input 
                       type="password" 
@@ -96,7 +95,7 @@ function SignUpForm({ onSignUp }) {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <div className="mb-3">
+                <div className="mb-2">
                   <label htmlFor="password" className="form-label fw-bold">Password Confirmation</label>
                     <input 
                       type="password" 
