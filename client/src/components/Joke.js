@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 
 function Joke({ user }) {
@@ -8,16 +9,17 @@ function Joke({ user }) {
     const [inputAns, setInputAns] = useState('');
     const [ansMsg, setAnsMsg] = useState(null);
     const [togglePL, setTogglePL] = useState(false);
+    const history = useHistory();
 
     //Generate math problem - basic operations
-    const num1 = Math.floor(Math.random()*50 + 1)
+    const num1 = Math.floor(Math.random()*100 + 1)
     const num2 = Math.floor(Math.random()*50 + 1)
     
 
     //Create array of divisors for division with integer quotients
     function createDivisors(n) {
         let divisors = [];
-        for (let i=1; i<=num1; i++) {
+        for (let i=1; i<num1; i++) {
             if (num1 % i === 0) {
                 divisors.push(i);
             }
@@ -25,11 +27,13 @@ function Joke({ user }) {
         return divisors;
     }
 
+    
     function generateMathProb() {
         const operations = ['+', '-', '*', '/'];  
         let index = Math.floor(Math.random()*3 + 1);
         let mathOper = operations[index];
         if (mathOper === '/') {
+            //Division - whole integer quotients
             const divisors = createDivisors(num1);
             let divIndex = Math.floor(Math.random() * divisors.length);
             let divProb = `${num1} ÷ ${divisors[divIndex]}`;
@@ -40,6 +44,17 @@ function Joke({ user }) {
             let multProb = `${num1} × ${multiplier}`;
             setProblem(multProb);
             setAnswer(num1 * multiplier);
+        } else if (mathOper === '-') { 
+            //Subtraction - no negative answers
+            if (num1 > num2) {
+                let subtraction1 = `${num1} ${mathOper} ${num2}`;
+                setProblem(subtraction1);
+                setAnswer(eval(subtraction1));
+            } else if (num2 > num1) {
+                let subtraction2 = `${num2} ${mathOper} ${num1}`;
+                setProblem(subtraction2);
+                setAnswer(eval(subtraction2));
+            }
         } else {
             let randomProb = `${num1} ${mathOper} ${num2}`;
             setProblem(randomProb);
@@ -59,25 +74,30 @@ function Joke({ user }) {
         })
     }, [])
 
-    //Reloads page from server
-    function refreshPage() {
-        window.parent.location = window.parent.location.href; 
-    }
-
-
+    
     function handleSubmitAns(e) {
         e.preventDefault();
         setAnsMsg('fire')
-        if (inputAns === answer) {
+        if (inputAns == answer) {
             setTogglePL(!togglePL)
             setInputAns("")
         } else {
             setInputAns("")
         }
     }
+    
+    //Reloads page from server
+    // function refreshPage() {
+    //     window.parent.location = window.parent.location.href; 
+    // }
+
+
+    function handleNextClick() {
+        user.username ? window.parent.location = window.parent.location.href : history.push("/login")
+    }
 
     //create logic to adjust timer for problem difficulty
-    //Easy - 1min, Medium = 30s, Hard = 15s
+    //Easy - 45s, Medium = 30s, Hard = 15s
     
     return (
         <div className='align-self-center mt-5'>
@@ -98,18 +118,18 @@ function Joke({ user }) {
                         <div>
                             <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} =</label>
                             <h4 style={{color: 'green'}}>Correct!</h4><br/>
-                            <button className='button bg-success' onClick={() => refreshPage()}>Next Joke</button>
+                            <button className='button bg-success' onClick={handleNextClick}>Next Joke</button>
                         </div>
                         : 
                         <div>
                             <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} =</label>
                             <h4 style={{color: 'red'}}>Incorrect.</h4><br/>
                             <h4>Correct Answer: {answer}</h4><br/>
-                            <button className='button bg-danger' onClick={() => refreshPage()}>Next Joke</button>
+                            <button className='button bg-danger' onClick={handleNextClick}>Next Joke</button>
                         </div>)
                     : 
                     <form onSubmit={handleSubmitAns}>
-                        <label htmlFor="ansewr" style={{fontSize: "20px"}}>Solve:</label><br/>
+                        <label htmlFor="answer" style={{fontSize: "20px"}}>Solve:</label><br/>
                         <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} =</label><br/>
                         <input style={{width: '75px'}} type="number" name="answer" value={inputAns} onChange={(e) => setInputAns(e.target.value)}/>&nbsp;
                         <button type="submit" className='button bg-warning'>Submit</button>

@@ -23,13 +23,15 @@ function App() {
     });
   }, [])
 
-  {/* <video autoPlay muted loop id="myVideo">
+  // if (!user) return <LoginForm onLogin={setUser}/>;
+
+  /* <video autoPlay muted loop id="myVideo">
       <source src={mathvid} type="video/mp4" />
-  </video> */}
+  </video> */
   
   return (
     <div style={{fontFamily: 'Love Ya Like A Sister'}}>
-      <Header user={user}/>
+      <Header user={user} setUser={setUser}/>
       <Switch>
         <Route exact path="/">
           <Main user={user}/>

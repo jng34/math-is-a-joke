@@ -2,11 +2,11 @@ import React from 'react';
 import Joke from './Joke.js'
 
 
-function Main() {
+function Main({ user }) {
     //border border-3 border-dark
     return (
         <div className='mt-5'>
-            <Joke/>
+            <Joke user={user}/>
         </div>
     )
 }

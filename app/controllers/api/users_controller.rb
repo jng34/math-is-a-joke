@@ -1,11 +1,12 @@
 class Api::UsersController < ApplicationController
-  skip_before_action :authenticate_user
+  skip_before_action :authenticate_user, only: [:create, :index]
   
   def index
     @users = User.all
     @friends = current_user.friends
     @pending_requests = current_user.pending_requests
     @friend_requests = current_user.received_requests
+    render json: @users
   end
   
   # post '/api/signup'

@@ -2,17 +2,18 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 function Header({ user, setUser }) {
-    let history = useHistory();
+    const history = useHistory();
 
     function handleLogout() {
-    fetch("/logout", { method: "DELETE" })
-    .then((r) => {
-        if (r.ok) {
-            setUser({});
-            history.push("/")
-        }
-    });
+        fetch("/api/logout", { method: "DELETE" })
+        .then((r) => {
+            if (r.ok) {
+                setUser({});
+                history.push("/")
+            }
+        });
     }
+
     //border border-3 border-dark
     
     return (
@@ -24,8 +25,6 @@ function Header({ user, setUser }) {
                 <div className="col">
                 </div>
                 <div className="col text-end ">
-                    {/* <button className="btn btn-secondary" onClick={() => history.push("/login")}>Log In</button> &nbsp;
-                    <button className="btn btn-primary" onClick={() => history.push("/signup")}>Sign Up</button> */}
                     {user.username ? <></> : <button className="btn btn-secondary" onClick={() => history.push("/login")}>Log In</button>} &nbsp;
                     {user.username ? <div><button className="btn btn-warning btn-small" onClick={()=>history.push("/profile")}>My Profile</button> &nbsp; <button className="btn btn-secondary" onClick={handleLogout}>Log Out</button></div>
                     : <button className="btn btn-primary" onClick={() => history.push("/signup")}>Sign Up</button>}
