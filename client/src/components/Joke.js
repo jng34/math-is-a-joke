@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import CreateJoke from './CreateJoke';
+// import CreateJoke from './CreateJoke';
 
 
 function Joke({ user, setUser }) {
     const [joke, setJoke] = useState({});
+    const [likes, setLikes] = useState(joke.likes);
     const [problem, setProblem] = useState("");
     const [answer, setAnswer] = useState("");
     const [inputAns, setInputAns] = useState('');
@@ -105,6 +106,17 @@ function Joke({ user, setUser }) {
     }
     console.log(answer)
 
+    function handleUpdateLikes() {
+        setLikes(likes+1)
+        fetch(`/api/jokes/${joke.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify({ likes: likes }),
+        })
+        .then(r => r.json())
+        .then(update => console.log(update))
+    }
+
 
     //Reloads page from server
     function refreshPage() {
@@ -121,6 +133,7 @@ function Joke({ user, setUser }) {
 
     //create logic to adjust timer for problem difficulty
     //Easy - 45s, Medium = 30s, Hard = 15s
+    //🤣😒😂
     
     return (
         <div className='align-self-center mt-5'>
@@ -133,25 +146,25 @@ function Joke({ user, setUser }) {
                 <div className='row mt-2 mb-2 align-items-center' style={{width: '600px', height: '300px', border: 'double', margin: 'auto'}}>
                     {/* make problem responsive CSS */}
                     {/* <p style={{fontSize: "75px"}}>{problem} =</p> */}
-                    {/* set toggle state to reveal answer upon answering */}
-                    {/* <h4>hello</h4> */}
 
                     {ansMsg ? 
                         (togglePL ? 
-                        <div>
+                        <div className='col'>
                             <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} =</label>
                             <h4 style={{color: 'green'}}>Correct!</h4><br/>
+                            <button type='button' className='border border-2 border-dark rounded' onClick={handleUpdateLikes}>Funny 😂</button>&nbsp;&nbsp;
+                            <button type='button' className='border border-2 border-dark rounded' onClick={() => refreshPage()}>Not Funny 😒</button><br/><br/>
                             {user.username && correctCount % 5 == 0 ? 
                             <button className='button bg-primary' onClick={handleCreateJoke}>Create Joke</button>
                             : <></>}&nbsp;
-                            <button className='button bg-success' onClick={handleNextClick}>Next Joke</button>
+                            <button className='button bg-success text-light' onClick={handleNextClick}>Next Joke</button>
                         </div>
                         : 
                         <div>
                             <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} =</label>
                             <h4 style={{color: 'red'}}>Incorrect.</h4><br/>
                             <h4>Correct Answer: {answer}</h4><br/>
-                            <button className='button bg-danger' onClick={handleNextClick}>Next Joke</button>
+                            <button className='button bg-danger text-light' onClick={handleNextClick}>Next Joke</button>
                         </div>)
                     : 
                     <form onSubmit={handleSubmitAns}>

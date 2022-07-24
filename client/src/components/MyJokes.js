@@ -1,9 +1,11 @@
 import React from 'react';
 
 
-function MyJokes() {
+function MyJokes({ user }) {
     return (
-        <div>My Jokes</div>
+        <div>My Jokes
+
+        </div>
     )
 }
 

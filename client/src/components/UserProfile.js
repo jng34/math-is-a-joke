@@ -24,15 +24,14 @@ function UserProfile({ user }) {
                 <div className='row align-items-center border border-1 border-dark mt-3'>
                     <div className='col text-end me-5'>
                         <h5>Score: {score}</h5>
-                        <h5><Link to='/jokeslist'>My Jokes</Link></h5>
+                        <h5><Link to='/myjokes'>My Jokes</Link></h5>
                         <h5><Link to='/friends'>My Friends</Link></h5>
-                        <h5></h5>
                         <h5>Notifications</h5>
                         <h5>Change Profile Pic</h5>
                         <button type="button" className="btn btn-danger border border-2 border-dark fs-6 text-dark" onClick={handleDeleteUser}>Delete Account</button>
                     </div>
                     <div className='col text-start ms-5'>
-                        <img src={profile_img} style={{width: '175px', borderRadius: '50%'}}/>
+                        <img src={profile_img} alt="profile-img" style={{width: '175px', borderRadius: '50%'}}/>
                     </div>
                 </div>
                 <div className='row'>

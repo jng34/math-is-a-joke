@@ -10,6 +10,7 @@ import JokeList from './components/JokeList.js';
 import Friends from './components/Friends.js';
 import Joke from './components/Joke.js';
 import CreateJoke from './components/CreateJoke.js';
+import MyJokes from './components/MyJokes.js';
 // import mathvid from '../mathvid.mp4'
 
 
@@ -57,6 +58,9 @@ function App() {
         </Route>
         <Route exact path="/createjoke">
           <CreateJoke user={user} />
+        </Route>
+        <Route exact path="/myjokes">
+          <MyJokes user={user} />
         </Route>
       </Switch>
     </div>
