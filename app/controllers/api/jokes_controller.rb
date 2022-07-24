@@ -15,18 +15,19 @@ class Api::JokesController < ApplicationController
     end
 
     def create
-        @joke = current_user.jokes.build(joke_params)
-        if @joke.save
-            redirect_to @joke
-        else
-            render 'new'
-        end
+        @joke = current_user.jokes.create!(joke_params)
+        render json: @joke, status: :created
+        # if @joke.save
+        #     redirect_to @joke
+        # else
+        #     render 'new'
+        # end
     end
     
     def update
-        joke = Joke.find_by(params[:id])
-        joke.update!(joke_params)
-        render json: joke, status: :accepted
+        # joke = Joke.find_by(params[:id])
+        @joke.update!(joke_params)
+        render json: @joke, status: :accepted
     end
 
     def destroy
@@ -37,6 +38,6 @@ class Api::JokesController < ApplicationController
     private
 
     def joke_params
-        params.permit(:setup, :punchline, :likes)
+        params.permit(:setup, :punchline, :user_id, :likes)
     end
 end

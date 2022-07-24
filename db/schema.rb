@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2022_07_23_195552) do
   create_table "jokes", force: :cascade do |t|
     t.string "setup"
     t.string "punchline"
-    t.integer "likes"
+    t.integer "likes", default: 0
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
