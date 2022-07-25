@@ -11,6 +11,7 @@ import Friends from './components/Friends.js';
 import Joke from './components/Joke.js';
 import CreateJoke from './components/CreateJoke.js';
 import MyJokes from './components/MyJokes.js';
+import LeaderBoard from './components/LeaderBoard.js';
 // import mathvid from '../mathvid.mp4'
 
 
@@ -25,7 +26,7 @@ function App() {
     });
   }, [])
 
-  // if (!user) return <LoginForm onLogin={setUser}/>;
+  if (!user) return <div>Loading</div>;
 
   /* <video autoPlay muted loop id="myVideo">
       <source src={mathvid} type="video/mp4" />
@@ -36,7 +37,7 @@ function App() {
       <Header user={user} setUser={setUser}/>
       <Switch>
         <Route exact path="/">
-          <Main user={user}/>
+          <Main user={user} setUser={setUser}/>
         </Route>
         <Route exact path="/login">
           <LoginForm user={user} onLogin={setUser} /> 
@@ -61,6 +62,9 @@ function App() {
         </Route>
         <Route exact path="/myjokes">
           <MyJokes user={user} />
+        </Route>
+        <Route exact path="/leaderboard">
+          <LeaderBoard user={user} />
         </Route>
       </Switch>
     </div>

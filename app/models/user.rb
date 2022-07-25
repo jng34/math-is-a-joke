@@ -14,6 +14,10 @@ class User < ApplicationRecord
     has_many :pending_requests, -> { merge(Friend.not_friends) }, through: :friend_sent, source: :sent_to
     has_many :received_requests, -> { merge(Friend.not_friends) }, through: :friend_request, source: :sent_by
 
+    
+    def self.ranking
+        User.order(score: :desc)
+    end
     #Password validations
     # validate :password_lower_case
     # validate :password_uppercase

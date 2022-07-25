@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:new, :create, :destroy]
       resources :favorites, only: [:show, :create, :destroy]
 
+      get '/users/rankings', to: 'users#rankings_index'
       post '/signup', to: 'users#create'
       get '/me', to: 'users#show'
 

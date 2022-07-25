@@ -10,8 +10,7 @@ function SignUpForm({ onSignUp }) {
     const [errors, setErrors] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
-    
-    let history = useHistory();
+    const history = useHistory();
 
     function handleSubmitSignUp(e) {
         e.preventDefault();
@@ -39,7 +38,7 @@ function SignUpForm({ onSignUp }) {
                 setEmail("")
                 setPassword("")
                 setPasswordConfirmation("")
-                history.push("/")
+                history.push("/profile")
             } else {
                 res.json().then((err) => setErrors(err.errors));
             }

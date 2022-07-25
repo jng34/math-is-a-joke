@@ -25,9 +25,9 @@ class Api::JokesController < ApplicationController
     end
     
     def update
-        # joke = Joke.find_by(params[:id])
-        @joke.update!(joke_params)
-        render json: @joke, status: :accepted
+        joke = Joke.find_by(id: params[:id])
+        joke.update!(joke_params)
+        render json: joke, status: :accepted
     end
 
     def destroy

@@ -3,4 +3,5 @@ class UserSerializer < ActiveModel::Serializer
   has_many :jokes
   has_many :favorites
   # has_many :friends
+
 end

@@ -28,7 +28,7 @@ function MyJokes({ user }) {
 
     return (
         <div className='mt-4'>
-            <p className='text-center' style={{fontSize: '40px'}}>My Jokes</p>
+            <p className='text-center fs-1'>My Jokes</p>
             <div className='container'>
                 <div className='row mb-3'>
                     <div className='col'>

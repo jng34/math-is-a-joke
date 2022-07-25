@@ -13,13 +13,13 @@ function UserProfile({ user }) {
     }
 
     //border border-3 border-dark
-    if (!username) return (<div><Main/></div>)
+    if (!username) { history.push("/") }
 
     return (
-        <div className='align-self-center mt-4'>
-            <div className='container ms-5 me-5 px-5'>
+        <div className='align-self-center text-center mt-4'>
+            <div className='container mx-auto px-5'>
                 <div className='row'>
-                    <p className='fw-bold text-center' style={{fontSize: '40px'}}>{username}</p>
+                    <p className='fs-1'>{username}</p>
                 </div>
                 <div className='row align-items-center mt-3'>
                     <div className='col text-end me-5'>

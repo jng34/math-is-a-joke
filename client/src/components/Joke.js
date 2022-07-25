@@ -10,8 +10,10 @@ function Joke({ user, setUser }) {
     const [inputAns, setInputAns] = useState('');
     const [ansMsg, setAnsMsg] = useState(null);
     const [togglePL, setTogglePL] = useState(false);
-    const [correctCount, setCorrectCount] = useState(4);
+    // const [correctCount, setCorrectCount] = useState(0);
+    const [toggleFetch, setToggleFetch] = useState(false);
     const history = useHistory();
+
 
     //Generate math problem - basic operations
     const num1 = Math.floor(Math.random()*100 + 1)
@@ -31,7 +33,7 @@ function Joke({ user, setUser }) {
 
     function generateMathProb() {
         const operations = ['+', '-', '*', '/'];  
-        let index = Math.floor(Math.random()*3 + 1);
+        let index = Math.floor(Math.random()*4);
         let mathOper = operations[index];
         if (mathOper === '/') {
             //Division - whole integer quotients
@@ -50,16 +52,16 @@ function Joke({ user, setUser }) {
             if (num1 > num2) {
                 let subtraction1 = `${num1} ${mathOper} ${num2}`;
                 setProblem(subtraction1);
-                setAnswer(eval(subtraction1));
+                setAnswer(num1 - num2);
             } else if (num2 > num1) {
                 let subtraction2 = `${num2} ${mathOper} ${num1}`;
                 setProblem(subtraction2);
-                setAnswer(eval(subtraction2));
+                setAnswer(num2 - num1);
             }
         } else {
             let randomProb = `${num1} ${mathOper} ${num2}`;
             setProblem(randomProb);
-            setAnswer(eval(randomProb));
+            setAnswer(num1 + num2);
         }
     }
 
@@ -73,14 +75,14 @@ function Joke({ user, setUser }) {
             const randomJokeObj = allJokes[randomNum];
             setJoke(randomJokeObj)
         })
-    }, [])
+    }, [toggleFetch])
+    
 
-    //Fix update issue
     function handleUpdateScore(score) {
         fetch(`/api/users/${user.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ score })
+            body: JSON.stringify({ score: score })
         })
         .then(r => r.json())
         .then(update => {
@@ -88,25 +90,26 @@ function Joke({ user, setUser }) {
             setUser(update)
         })
     }
+
     
     function handleSubmitAns(e) {
         e.preventDefault();
-        setAnsMsg('fire')
+        setAnsMsg('activated')
         if (inputAns == answer) {
-            setTogglePL(!togglePL)
-            setInputAns("")
-            if (user.username) {
-                setCorrectCount(correctCount+1);
-                handleUpdateScore(correctCount+1);
+            setTogglePL(true)
+            if (user && user.username) {
+                handleUpdateScore(user.score+1);
             }
         } else {
-            setInputAns("")
+            setTogglePL(false)
         }
+        setInputAns("")
     }
-    console.log(answer)
+    console.log(`Answer: ${answer}`)
 
     function handleLikeAndFavorite() {
-        setLikes(likes+1)
+        setLikes(likes + 1)
+        console.log(likes)
         fetch(`/api/jokes/${joke.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json"},
@@ -130,12 +133,17 @@ function Joke({ user, setUser }) {
     }
 
     //Reloads page from server
-    function refreshPage() {
-        window.parent.location = window.parent.location.href; 
-    }
+    // function refreshPage() {
+    //     window.parent.location = window.parent.location.href; 
+    // }
 
     function handleNextClick() {
-        user.username ? refreshPage() : history.push("/login")
+        if (user.username) {
+            setToggleFetch(!toggleFetch);
+            setAnsMsg(null);
+        } else {
+            history.push("/login")
+        }
     }
 
     function handleCreateJoke() {
@@ -160,19 +168,25 @@ function Joke({ user, setUser }) {
                         (togglePL ? 
                         <div className='col'>
                             <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} = {answer}</label>
-                            <h4 style={{color: 'green'}}>Correct!</h4><br/>
-                            <button type='button' className='border border-2 border-dark rounded' onClick={handleLikeAndFavorite}>Funny 😂</button>&nbsp;&nbsp;
-                            <button type='button' className='border border-2 border-dark rounded' onClick={() => refreshPage()}>Not Funny 😒</button><br/><br/>
-                            {user.username && correctCount % 5 == 0 ? 
-                            <button className='button bg-primary' onClick={handleCreateJoke}>Create Joke</button>
-                            : <></>}&nbsp;
+                            <h4 style={{color: 'green'}}>Correct!</h4>
+                                <br/>
+                            <button type='button' className='border border-2 border-dark rounded' onClick={handleLikeAndFavorite}>Funny 😂</button>
+                                &nbsp;&nbsp;
+                            <button type='button' className='border border-2 border-dark rounded' onClick={() => console.log('not funny')}>Not Funny 😒</button>
+                                <br/><br/>
+                            {user.username && user.score % 5 == 0 ? 
+                                <button className='button bg-primary' onClick={handleCreateJoke}>Create Joke</button>
+                            : <></>}
+                                &nbsp;
                             <button className='button bg-success text-light' onClick={handleNextClick}>Next Joke</button>
                         </div>
                         : 
                         <div>
                             <label htmlFor="answer" style={{fontSize: "75px"}}>{problem}</label>
-                            <h4 style={{color: 'red'}}>Incorrect.</h4><br/>
-                            <h4>Correct Answer: {answer}</h4><br/>
+                            <h4 style={{color: 'red'}}>Incorrect.</h4>
+                                <br/>
+                            <h4>Correct Answer: {answer}</h4>
+                                <br/>
                             <button className='button bg-danger text-light' onClick={handleNextClick}>Next Joke</button>
                         </div>)
                     : 

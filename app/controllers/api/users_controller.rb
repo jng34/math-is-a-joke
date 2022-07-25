@@ -1,5 +1,9 @@
 class Api::UsersController < ApplicationController
   skip_before_action :authenticate_user, only: [:create, :index]
+
+  def rankings_index
+    render json: User.order(score: :desc)
+  end
   
   def index
     @users = User.all
