@@ -5,6 +5,7 @@ class User < ApplicationRecord
     validates :password, presence: true, on: :create
 
     has_many :jokes
+    has_many :favorites
     has_many :comments, dependent: :destroy
     has_many :notifications, dependent: :destroy
     has_many :friend_sent, class_name: 'Friend', foreign_key: 'sent_by_id', inverse_of: 'sent_by', dependent: :destroy

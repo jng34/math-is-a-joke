@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       end
 
       resources :comments, only: [:new, :create, :destroy]
+      resources :favorites, only: [:show, :create, :destroy]
 
       post '/signup', to: 'users#create'
       get '/me', to: 'users#show'

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-// import CreateJoke from './CreateJoke';
 
 
 function Joke({ user, setUser }) {
@@ -11,7 +10,7 @@ function Joke({ user, setUser }) {
     const [inputAns, setInputAns] = useState('');
     const [ansMsg, setAnsMsg] = useState(null);
     const [togglePL, setTogglePL] = useState(false);
-    const [correctCount, setCorrectCount] = useState(0);
+    const [correctCount, setCorrectCount] = useState(4);
     const history = useHistory();
 
     //Generate math problem - basic operations
@@ -30,7 +29,6 @@ function Joke({ user, setUser }) {
         return divisors;
     }
 
-    
     function generateMathProb() {
         const operations = ['+', '-', '*', '/'];  
         let index = Math.floor(Math.random()*3 + 1);
@@ -77,6 +75,7 @@ function Joke({ user, setUser }) {
         })
     }, [])
 
+    //Fix update issue
     function handleUpdateScore(score) {
         fetch(`/api/users/${user.id}`, {
             method: "PATCH",
@@ -106,7 +105,7 @@ function Joke({ user, setUser }) {
     }
     console.log(answer)
 
-    function handleUpdateLikes() {
+    function handleLikeAndFavorite() {
         setLikes(likes+1)
         fetch(`/api/jokes/${joke.id}`, {
             method: "PATCH",
@@ -115,8 +114,20 @@ function Joke({ user, setUser }) {
         })
         .then(r => r.json())
         .then(update => console.log(update))
+        //fix update issue
+        
+        //create favorite
+        fetch("/api/favorites", {
+            method: "POST",
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify({ 
+                user_id: user.id,
+                joke_id: joke.id 
+            }),
+        })
+        .then(r => r.json())
+        .then(fav => console.log(fav))
     }
-
 
     //Reloads page from server
     function refreshPage() {
@@ -145,14 +156,12 @@ function Joke({ user, setUser }) {
                 {/* make this div a chalkboard */}
                 <div className='row mt-2 mb-2 align-items-center' style={{width: '600px', height: '300px', border: 'double', margin: 'auto'}}>
                     {/* make problem responsive CSS */}
-                    {/* <p style={{fontSize: "75px"}}>{problem} =</p> */}
-
                     {ansMsg ? 
                         (togglePL ? 
                         <div className='col'>
-                            <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} =</label>
+                            <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} = {answer}</label>
                             <h4 style={{color: 'green'}}>Correct!</h4><br/>
-                            <button type='button' className='border border-2 border-dark rounded' onClick={handleUpdateLikes}>Funny 😂</button>&nbsp;&nbsp;
+                            <button type='button' className='border border-2 border-dark rounded' onClick={handleLikeAndFavorite}>Funny 😂</button>&nbsp;&nbsp;
                             <button type='button' className='border border-2 border-dark rounded' onClick={() => refreshPage()}>Not Funny 😒</button><br/><br/>
                             {user.username && correctCount % 5 == 0 ? 
                             <button className='button bg-primary' onClick={handleCreateJoke}>Create Joke</button>
@@ -161,7 +170,7 @@ function Joke({ user, setUser }) {
                         </div>
                         : 
                         <div>
-                            <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} =</label>
+                            <label htmlFor="answer" style={{fontSize: "75px"}}>{problem}</label>
                             <h4 style={{color: 'red'}}>Incorrect.</h4><br/>
                             <h4>Correct Answer: {answer}</h4><br/>
                             <button className='button bg-danger text-light' onClick={handleNextClick}>Next Joke</button>
@@ -169,7 +178,7 @@ function Joke({ user, setUser }) {
                     : 
                     <form onSubmit={handleSubmitAns}>
                         <label htmlFor="answer" style={{fontSize: "20px"}}>Solve:</label><br/>
-                        <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} =</label><br/>
+                        <label htmlFor="answer" style={{fontSize: "75px"}}>{problem}</label><br/>
                         <input style={{width: '75px'}} type="number" name="answer" value={inputAns} onChange={(e) => setInputAns(e.target.value)}/>&nbsp;
                         <button type="submit" className='button bg-warning'>Submit</button>
                     </form>}

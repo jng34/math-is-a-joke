@@ -20,7 +20,7 @@ function Header({ user, setUser }) {
         <div className="container" style={{paddingTop:"20px"}}>
             <div className="row align-items-center">
                 <div className="col">
-                    <h1 style={{fontSize: '50px', cursor: 'pointer', fontWeight: 'bold'}} onClick={() => history.push("/")}>MATH is a Joke!</h1>
+                    <h1 style={{fontSize: '55px', cursor: 'pointer'}} onClick={() => history.push("/")}>Math is a J😂ke!</h1>
                 </div>
                 <div className="col">
                 </div>

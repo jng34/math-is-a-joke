@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+// import Main from './Main';
 
 
 function CreateJoke({ user }) {
     const [newSetUp, setNewSetUp] = useState("");
     const [newPunchLine, setNewPunchLine] = useState("");
+    const history = useHistory();
 
     function handleCreateJoke(e) {
         e.preventDefault();
@@ -12,13 +15,18 @@ function CreateJoke({ user }) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 setup: newSetUp,
-                punchline: newPunchLine
+                punchline: newPunchLine,
+                likes: 0
             })
         })
         .then(r => r.json())
         .then(data => console.log(data))
     }
     
+    //redirect for unauthorized user
+    if (!user.username) {
+        history.push("/")
+    }
     //configure error handling
 
     return (
