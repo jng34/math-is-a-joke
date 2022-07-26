@@ -3,7 +3,7 @@ Rails.application.routes.draw do
       root 'users#index'
 
       resources :users, only: [:index, :update, :destroy]
-      resources :friends, only: [:create, :destroy]
+      resources :friends, only: [:index, :create, :destroy]
       
       get '/friends/not_friends', to: 'friends#render_not_friends'
       get '/friends/made_friends', to: 'friends#render_made_friends'
