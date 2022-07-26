@@ -13,19 +13,28 @@ function LeaderBoard({ user }) {
         .then(users => setAllUsers((users)))
     }, [])
 
-    function handleFriendRequest() {
-        alert('request sent')
+    function handleFriendRequest(reqFriendId) {
+        fetch("/api/friends", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                sent_by_id: user.id,
+                sent_to_id: reqFriendId
+            })
+        })
+        .then(r => r.json())
+        .then(data => console.log(data))
     }
 
 
-    const renderAllUsers = allUsers.map((user, index) => (
+    const renderAllUsers = allUsers.map((person, index) => (
         <tr key={uuid()}>
             <td>{index+1}</td>
-            <td>{user.score}</td>
-            <td>{user.username}</td>
-            <td>{user.jokes.length}</td>
+            <td>{person.username}</td>
+            <td>{person.score}</td>
+            <td>{person.jokes.length}</td>
             <td>
-                <button type='button' className='btn btn-primary' onClick={handleFriendRequest}>Send Friend Request</button>                
+                <button type='button' className='btn btn-primary' onClick={(id) => handleFriendRequest(person.id)}>Send Friend Request</button>                
             </td>
         </tr>
     ))
@@ -39,11 +48,11 @@ function LeaderBoard({ user }) {
             <table className='table table-bordered table-hover mt-4'>
                 <tbody>
                     <tr>
-                        <th className='fs-4'>Ranking #</th>
-                        <th className='fs-4'>Score</th>
-                        <th className='fs-4'>UserName</th>
-                        <th className='fs-4'># Created Jokes</th>
-                        <th className='fs-4'>Send Friend Request</th>
+                        <th className='fs-4 fw-light'>Ranking #</th>
+                        <th className='fs-4 fw-light'>UserName</th>
+                        <th className='fs-4 fw-light'>Score</th>
+                        <th className='fs-4 fw-light'>Created Jokes</th>
+                        <th className='fs-4 fw-light'>Send Friend Request</th>
                     </tr>
                     {renderAllUsers}
                 </tbody>

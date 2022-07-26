@@ -1,5 +1,5 @@
 class Api::FavoritesController < ApplicationController
-    skip_before_action :authenticate_user
+    # skip_before_action :authenticate_user
 
     def create
         favorite = Favorite.create!(favorite_params)

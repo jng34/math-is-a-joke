@@ -20,7 +20,9 @@ function CreateJoke({ user }) {
             })
         })
         .then(r => r.json())
-        .then(data => console.log(data))
+        .then(data => console.log(data))  
+        alert('Created joke!')
+        history.push("/joke")
     }
     
     //redirect for unauthorized user

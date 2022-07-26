@@ -26,7 +26,7 @@ function App() {
     });
   }, [])
 
-  if (!user) return <div>Loading</div>;
+  if (!user) return <div></div>;
 
   /* <video autoPlay muted loop id="myVideo">
       <source src={mathvid} type="video/mp4" />

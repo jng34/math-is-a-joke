@@ -10,8 +10,8 @@ function Joke({ user, setUser }) {
     const [inputAns, setInputAns] = useState('');
     const [ansMsg, setAnsMsg] = useState(null);
     const [togglePL, setTogglePL] = useState(false);
-    // const [correctCount, setCorrectCount] = useState(0);
     const [toggleFetch, setToggleFetch] = useState(false);
+    const [count, setCount] = useState(45);
     const history = useHistory();
 
 
@@ -73,8 +73,9 @@ function Joke({ user, setUser }) {
             //sets random joke
             const randomNum = Math.floor(Math.random() * allJokes.length);
             const randomJokeObj = allJokes[randomNum];
-            setJoke(randomJokeObj)
+            setJoke(randomJokeObj)  
         })
+        setTogglePL(false);
     }, [toggleFetch])
     
 
@@ -109,7 +110,6 @@ function Joke({ user, setUser }) {
 
     function handleLikeAndFavorite() {
         setLikes(likes + 1)
-        console.log(likes)
         fetch(`/api/jokes/${joke.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json"},
@@ -153,6 +153,26 @@ function Joke({ user, setUser }) {
     //create logic to adjust timer for problem difficulty
     //Easy - 45s, Medium = 30s, Hard = 15s
     //🤣😒😂
+
+    // function timer() {
+    //     const difficulty = {
+    //         easy: 45000,
+    //         medium: 30000,
+    //         hard: 15000 
+    //     }
+    //     let randomMode = Math.floor(Math.random()*3)
+    //     setTimeout(() => {}, {mode})
+    // }
+    // const timer = setTimeout(() => {
+    // setCount((count) => count-1);
+    // }, 1000);
+
+    //  useEffect(() => {
+    //     timer 
+    // }, [count]);
+
+    // handleSubmitAns
+    // clearTimeout()
     
     return (
         <div className='align-self-center mt-5'>
@@ -170,15 +190,15 @@ function Joke({ user, setUser }) {
                             <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} = {answer}</label>
                             <h4 style={{color: 'green'}}>Correct!</h4>
                                 <br/>
-                            <button type='button' className='border border-2 border-dark rounded' onClick={handleLikeAndFavorite}>Funny 😂</button>
+                            <button type='button' className='border border-2 rounded-pill btn btn-info' onClick={handleLikeAndFavorite}>Funny 😂</button>
                                 &nbsp;&nbsp;
-                            <button type='button' className='border border-2 border-dark rounded' onClick={() => console.log('not funny')}>Not Funny 😒</button>
+                            <button type='button' className='border border-2 rounded-pill btn btn-info' onClick={() => console.log('not funny')}>Not Funny 😒</button>
                                 <br/><br/>
                             {user.username && user.score % 5 == 0 ? 
-                                <button className='button bg-primary' onClick={handleCreateJoke}>Create Joke</button>
+                                <button className='btn bg-primary text-light' onClick={handleCreateJoke}>Create Joke</button>
                             : <></>}
                                 &nbsp;
-                            <button className='button bg-success text-light' onClick={handleNextClick}>Next Joke</button>
+                            <button className='btn fs-5 bg-success text-light' onClick={handleNextClick}>Next Joke</button>
                         </div>
                         : 
                         <div>
@@ -187,7 +207,7 @@ function Joke({ user, setUser }) {
                                 <br/>
                             <h4>Correct Answer: {answer}</h4>
                                 <br/>
-                            <button className='button bg-danger text-light' onClick={handleNextClick}>Next Joke</button>
+                            <button className='btn fs-5 bg-danger text-light' onClick={handleNextClick}>Next Joke</button>
                         </div>)
                     : 
                     <form onSubmit={handleSubmitAns}>

@@ -6,11 +6,11 @@ class Api::UsersController < ApplicationController
   end
   
   def index
-    @users = User.all
-    @friends = current_user.friends
-    @pending_requests = current_user.pending_requests
-    @friend_requests = current_user.received_requests
-    render json: @users
+    # @users = User.all
+    # @friends = current_user.friends
+    # @pending_requests = current_user.pending_requests
+    # @friend_requests = current_user.received_requests
+    render json: User.all
   end
   
   # post '/api/signup'
