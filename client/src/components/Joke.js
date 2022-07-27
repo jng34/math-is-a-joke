@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import Timer from './Timer';
 
 
 function Joke({ user, setUser }) {
@@ -10,9 +11,16 @@ function Joke({ user, setUser }) {
     const [inputAns, setInputAns] = useState('');
     const [ansMsg, setAnsMsg] = useState(null);
     const [togglePL, setTogglePL] = useState(false);
+    const [count, setCount] = useState(5);
     const [toggleFetch, setToggleFetch] = useState(false);
-    const [count, setCount] = useState(45);
     const history = useHistory();
+
+
+    function diffLevel() {
+        const difficulty=  [10,15,20]
+        let i = Math.floor(Math.random()*3)
+        setCount(difficulty[i])
+    }
 
 
     //Generate math problem - basic operations
@@ -76,6 +84,7 @@ function Joke({ user, setUser }) {
             setJoke(randomJokeObj)  
         })
         setTogglePL(false);
+
     }, [toggleFetch])
     
 
@@ -86,10 +95,7 @@ function Joke({ user, setUser }) {
             body: JSON.stringify({ score: score })
         })
         .then(r => r.json())
-        .then(update => {
-            console.log(update)
-            setUser(update)
-        })
+        .then(update => setUser(update))
     }
 
     
@@ -105,8 +111,10 @@ function Joke({ user, setUser }) {
             setTogglePL(false)
         }
         setInputAns("")
+        //clearTimeout(timer)
     }
-    console.log(`Answer: ${answer}`)
+
+
 
     function handleLikeAndFavorite() {
         setLikes(likes + 1)
@@ -132,15 +140,12 @@ function Joke({ user, setUser }) {
         .then(fav => console.log(fav))
     }
 
-    //Reloads page from server
-    // function refreshPage() {
-    //     window.parent.location = window.parent.location.href; 
-    // }
 
     function handleNextClick() {
         if (user.username) {
             setToggleFetch(!toggleFetch);
             setAnsMsg(null);
+            diffLevel()
         } else {
             history.push("/login")
         }
@@ -152,27 +157,7 @@ function Joke({ user, setUser }) {
 
     //create logic to adjust timer for problem difficulty
     //Easy - 45s, Medium = 30s, Hard = 15s
-    //🤣😒😂
 
-    // function timer() {
-    //     const difficulty = {
-    //         easy: 45000,
-    //         medium: 30000,
-    //         hard: 15000 
-    //     }
-    //     let randomMode = Math.floor(Math.random()*3)
-    //     setTimeout(() => {}, {mode})
-    // }
-    // const timer = setTimeout(() => {
-    // setCount((count) => count-1);
-    // }, 1000);
-
-    //  useEffect(() => {
-    //     timer 
-    // }, [count]);
-
-    // handleSubmitAns
-    // clearTimeout()
     
     return (
         <div className='align-self-center mt-5'>
@@ -211,6 +196,8 @@ function Joke({ user, setUser }) {
                         </div>)
                     : 
                     <form onSubmit={handleSubmitAns}>
+                        <Timer count={count} setCount={setCount} setTogglePL={setTogglePL} setAnsMsg={setAnsMsg} />
+                        <br/>
                         <label htmlFor="answer" style={{fontSize: "20px"}}>Solve:</label><br/>
                         <label htmlFor="answer" style={{fontSize: "75px"}}>{problem}</label><br/>
                         <input style={{width: '75px'}} type="number" name="answer" value={inputAns} onChange={(e) => setInputAns(e.target.value)}/>&nbsp;

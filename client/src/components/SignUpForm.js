@@ -44,6 +44,7 @@ function SignUpForm({ onSignUp }) {
             }
             
         });
+        history.push('/profile')
     }
 
   return (

@@ -22,7 +22,7 @@ class Api::UsersController < ApplicationController
 
   # get '/api/me'
   def show
-    render json: @current_user
+     render json: @current_user
   end
 
   

@@ -3,11 +3,23 @@ import uuid from 'react-uuid';
 
 
 function MyJokes({ user }) {
+    
+    console.log(user.favorites)
     const [toggleButtons, setToggleButtons] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [favJokesArr, setFavJokesArr] = useState(user.favorites);
+    const [favJokesArr, setFavJokesArr] = useState([user.favorites]);
     console.log(favJokesArr)
+    
 
+    // solution?
+    // useEffect(() => {
+    //     fetch("/api/me").then((r) => {
+    //     if (r.ok) {
+    //         r.json().then(data => setFavJokesArr(data.favorites))
+    //     }});
+    // }, [])
+    // console.log(favJokesArr)
+    
     function handleDeleteMyJoke(id) {
         fetch(`/api/jokes/${id}`, { method: "DELETE" })
         .then(r => console.log(r))
@@ -37,7 +49,7 @@ function MyJokes({ user }) {
                 &nbsp;&nbsp;
                 <button type='button' className='btn border border-2 rounded btn-warning'>Edit</button>
                 &nbsp;&nbsp;
-                <button type='button' className='btn border border-2 rounded btn-danger'>Delete</button>
+                <button type='button' className='btn border border-2 rounded btn-danger' onClick={(id) => handleDeleteMyJoke(joke.id)}>Delete</button>
             </div>
         </div>
     )) : <></>
@@ -71,7 +83,7 @@ function MyJokes({ user }) {
                     <div className='col text-start ms-5'>
                         {!toggleButtons ? 
                         <button type='button' className='btn btn-large btn-success fs-5 fw-light border border-2 disabled' aria-disabled="true">Show Created Jokes</button> 
-                        : <button type='button' className='btn btn-large btn-success fs-5 fw-light  border border-2' onClick={() => setToggleButtons(!toggleButtons)}>Show Created Jokes</button>}
+                        : <button type='button' className='btn btn-large btn-success fs-5 fw-light border border-2' onClick={() => setToggleButtons(!toggleButtons)}>Show Created Jokes</button>}
                         &nbsp;&nbsp;
                         {!toggleButtons ? 
                         <button type='button' className='btn btn-large btn-info fs-5 fw-light border border-2 text-light' onClick={() => setToggleButtons(!toggleButtons)}>Show Favorites</button>
@@ -79,7 +91,6 @@ function MyJokes({ user }) {
                     </div>
                 </div>
                 {!toggleButtons ? <div className='col'>{userJokes}</div> : <div className='col'>{userFavorites}</div> }
-
             </div>
         </div>
     )
