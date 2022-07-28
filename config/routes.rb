@@ -2,11 +2,21 @@ Rails.application.routes.draw do
   namespace :api do
       root 'users#index'
 
-      resources :users, only: [:index, :update, :destroy]
       resources :friends, only: [:index, :create, :destroy]
-      
       get '/friends/not_friends', to: 'friends#render_not_friends'
       get '/friends/made_friends', to: 'friends#render_made_friends'
+      
+      resources :jokes
+      resources :comments, only: [:new, :create, :destroy]
+      resources :favorites, only: [:show, :create, :destroy]
+      
+      resources :users, only: [:index, :update, :destroy]
+      get '/users/rankings', to: 'users#rankings_index'
+      post '/signup', to: 'users#create'
+      get '/me', to: 'users#show'
+
+      post '/login', to: 'sessions#create'
+      delete '/logout', to: 'sessions#destroy'
       # resources :users, only: [:index, :update, :destroy] do
       #   resources :friends, only: [:create] do
       #     collection do
@@ -16,19 +26,10 @@ Rails.application.routes.draw do
       #   end
       # end
 
-      resources :jokes, only: [:new, :index, :show, :create, :update, :destroy] do
-        resources :favorites, only: [:create]
-      end
-
-      resources :comments, only: [:new, :create, :destroy]
-      resources :favorites, only: [:show, :create, :destroy]
-
-      get '/users/rankings', to: 'users#rankings_index'
-      post '/signup', to: 'users#create'
-      get '/me', to: 'users#show'
-
-      post '/login', to: 'sessions#create'
-      delete '/logout', to: 'sessions#destroy'
+      # resources :jokes, only: [:new, :index, :show, :create, :update, :destroy] do
+      #   resources :favorites, only: [:create]
+      # end
+      
   end
   
   # Routing logic: fallback requests for React Router.

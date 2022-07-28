@@ -6,17 +6,17 @@ class Api::JokesController < ApplicationController
     end
 
     def show
-        @joke = Joke.find(params[:id])
-        render json: @joke
+        joke = Joke.find(params[:id])
+        render json: joke
     end
 
-    def new
-        @joke = Joke.new
-    end
+    # def new
+    #     @joke = Joke.new
+    # end
 
     def create
-        @joke = current_user.jokes.create!(joke_params)
-        render json: @joke, status: :created
+        joke = current_user.jokes.create!(joke_params)
+        render json: joke, status: :created
         # if @joke.save
         #     redirect_to @joke
         # else
@@ -31,7 +31,7 @@ class Api::JokesController < ApplicationController
     end
 
     def destroy
-        @joke.destroy
+        Joke.find(params[:id]).destroy
         head :no_content
     end
 
