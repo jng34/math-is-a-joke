@@ -1,25 +1,40 @@
-import React from 'react';
-import Main from './Main';
+import React, { useState } from 'react';
+import { Modal, Button, Form } from 'react-bootstrap';
 import { useHistory, Link } from 'react-router-dom';
 
 
-function UserProfile({ user }) {
+function UserProfile({ user, setUser }) {
+    const [newPic, setNewPic] = useState(user.profile_img);
+    const [show, setShow] = useState(false);
+    const [showPicURL, setShowPicURL] = useState(false);
     const { id, username, profile_img, score } = user;
-    // const [newPic, setNewPic] = useState("");
     const history = useHistory();
+
+
+    function handleUpdatePic() {
+        fetch(`/api/users/${id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ profile_img: newPic })
+        })
+        .then(r => r.json())
+        .then(update => {
+            console.log(update)
+            setUser(update)
+            setShowPicURL(false);
+        });
+    };
 
     function handleDeleteUser() {
         fetch(`/api/users/${id}`, { method: "DELETE" })
-        history.push("/")
-    }
-
-    // function handleUpdatePic(id) {
-    //     fetch(`/api/users/${id}`, {
-    //         method: "PATCH",
-    //         headers: {"Content-Type": "application/json"},
-    //         body: JSON.stringify({ profile_img:  })
-    //     })
-    // }
+        fetch("/api/logout", { method: "DELETE" })
+        .then((r) => {
+            if (r.ok) {
+                setUser({});
+                history.push("/")
+            }
+        });
+    };
 
     //border border-3 border-dark
     if (!username) { history.push("/") }
@@ -39,9 +54,46 @@ function UserProfile({ user }) {
                         <p className='fs-4'><Link to='/myjokes'>My Jokes</Link></p>
                         <p className='fs-4'><Link to='/friends'>My Friends</Link></p>
                         <p className='fs-4'>Notifications</p>
-                        {/* <button type='button' onClick={((id) => handleUpdatePic(user.id))}>Change Picture</button> */}
-                        <p className='fs-4'>Change Profile Pic</p>
-                        <button type="button" className="btn btn-danger border border-2 border-dark fs-6 text-dark" onClick={handleDeleteUser}>Delete Account</button>
+
+                        <Button variant="secondary" onClick={() => setShowPicURL(true)} className="rounded-pill" size='sm'>
+                            Edit Picture
+                        </Button>
+
+                        <Modal show={showPicURL} onHide={() => setShowPicURL(false)} centered>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Profile Picture</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form.Control type="text" placeholder={user.profile_img} onChange={(e) => setNewPic(e.target.value)}/>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={() => setShowPicURL(false)}>
+                                Close
+                                </Button>
+                                <Button variant="primary" onClick={handleUpdatePic}>
+                                Change
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
+                        &nbsp;
+                        <Button variant="danger" onClick={() => setShow(true)} className="rounded-pill" size='sm'>
+                            Delete Account
+                        </Button>
+
+                        <Modal show={show} onHide={() => setShow(false)} centered>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Confirmation</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>Are you sure you want to delete your account?</Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={() => setShow(false)}>
+                                Close
+                                </Button>
+                                <Button variant="danger" onClick={handleDeleteUser}>
+                                Delete
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
                     </div>
                 </div>
                 <div className='row'>

@@ -5,7 +5,7 @@ import Timer from './Timer';
 
 function Joke({ user, setUser }) {
     const [joke, setJoke] = useState({});
-    const [likes, setLikes] = useState(joke.likes);
+    const [likesCount, setLikesCount] = useState(0);
     const [problem, setProblem] = useState("");
     const [answer, setAnswer] = useState("");
     const [inputAns, setInputAns] = useState('');
@@ -14,20 +14,22 @@ function Joke({ user, setUser }) {
     const [count, setCount] = useState(20);
     const [toggleFetch, setToggleFetch] = useState(false);
     const history = useHistory();
+    console.log(joke)
+    console.log(likesCount)
 
 
+    //create logic to adjust timer for problem difficulty
+    //Easy - 45s, Medium = 30s, Hard = 15s
     function diffLevel() {
         const difficulty=  [10,15,20]
         let i = Math.floor(Math.random()*3)
         setCount(difficulty[i])
     }
 
-
     //Generate math problem - basic operations
     const num1 = Math.floor(Math.random()*100 + 1)
     const num2 = Math.floor(Math.random()*50 + 1)
     
-
     //Create array of divisors for division with integer quotients
     function createDivisors(n) {
         let divisors = [];
@@ -79,9 +81,10 @@ function Joke({ user, setUser }) {
         .then(res => res.json())
         .then((allJokes) => {
             //sets random joke
-            const randomNum = Math.floor(Math.random() * allJokes.length);
+            const randomNum = Math.floor(Math.random()*allJokes.length);
             const randomJokeObj = allJokes[randomNum];
             setJoke(randomJokeObj)  
+            setLikesCount(randomJokeObj.likes)
         })
         setTogglePL(false);
 
@@ -111,20 +114,20 @@ function Joke({ user, setUser }) {
             setTogglePL(false)
         }
         setInputAns("")
-        //clearTimeout(timer)
     }
 
 
-
     function handleLikeAndFavorite() {
-        setLikes(likes + 1)
+        // setLikesCount(likesCount + 1)
         fetch(`/api/jokes/${joke.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json"},
-            body: JSON.stringify({ likes: likes }),
+            body: JSON.stringify({ likes: likesCount }),
         })
         .then(r => r.json())
-        .then(update => console.log(update))
+        .then((update) => {
+            console.log(update)
+        });
         //fix update issue
         
         //create favorite
@@ -137,9 +140,10 @@ function Joke({ user, setUser }) {
             }),
         })
         .then(r => r.json())
-        .then(fav => console.log(fav))
+        .then((fav) => {
+            console.log(fav)
+        });
     }
-
 
     function handleNextClick() {
         if (user.username) {
@@ -155,10 +159,6 @@ function Joke({ user, setUser }) {
         history.push("/createjoke")
     }
 
-    //create logic to adjust timer for problem difficulty
-    //Easy - 45s, Medium = 30s, Hard = 15s
-
-    
     return (
         <div className='align-self-center mt-5'>
             <div className="container text-center">
@@ -175,7 +175,7 @@ function Joke({ user, setUser }) {
                             <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} = {answer}</label>
                             <h4 style={{color: 'green'}}>Correct!</h4>
                                 <br/>
-                            <button type='button' className='border border-2 rounded-pill btn btn-info' onClick={handleLikeAndFavorite}>Funny 😂</button>
+                            <button type='button' className='border border-2 rounded-pill btn btn-info' onClick={() => {setLikesCount(likesCount+1); handleLikeAndFavorite()}}>Funny 😂</button>
                                 &nbsp;&nbsp;
                             <button type='button' className='border border-2 rounded-pill btn btn-info' onClick={() => console.log('not funny')}>Not Funny 😒</button>
                                 <br/><br/>

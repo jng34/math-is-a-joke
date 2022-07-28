@@ -11,8 +11,5 @@
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
   },
-  "author": "JamesNg",
-  "dependencies": {
-    "react-uuid": "^1.0.2"
-  }
+  "author": "JamesNg"
 }

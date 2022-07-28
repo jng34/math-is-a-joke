@@ -46,7 +46,7 @@ function App() {
           <SignUpForm onSignUp={setUser} />
         </Route>
         <Route exact path="/profile">
-          <UserProfile user={user} />
+          <UserProfile user={user} setUser={setUser} />
         </Route>
         <Route exact path="/jokelist">
           <JokeList user={user} />

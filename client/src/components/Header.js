@@ -33,7 +33,7 @@ function Header({ user, setUser }) {
                 </div>
                 <div className="col text-end ">
                     {user.username ? <></> 
-                    : <button className="btn btn-secondary border border-2 border-dark" onClick={() => history.push("/login")}>Log In</button>} 
+                    : <button className="btn btn-secondary rounded-pill border border-2 border-dark" onClick={() => history.push("/login")}>Log In</button>} 
                     &nbsp;&nbsp;
                     {user.username ? 
                     <div>
@@ -41,11 +41,11 @@ function Header({ user, setUser }) {
                         data-bs-toggle="tooltip" data-bs-placement="right" title="LeaderBoard"
                         onClick={handleLeaderBoard}/>
                         &nbsp;&nbsp;
-                        <button className="btn btn-warning btn-small border border-2 border-dark" onClick={()=>history.push("/profile")}>My Profile</button> 
+                        <button className="btn btn-warning rounded-pill btn-small border border-2 border-dark" onClick={()=>history.push("/profile")}>My Profile</button> 
                         &nbsp;&nbsp;
-                        <button className="btn btn-secondary border border-2 border-dark" onClick={handleLogout}>Log Out</button>
+                        <button className="btn btn-secondary rounded-pill border border-2 border-dark" onClick={handleLogout}>Log Out</button>
                     </div>
-                    : <button className="btn btn-primary border border-2 border-dark" onClick={() => history.push("/signup")}>Sign Up</button>}
+                    : <button className="btn btn-primary rounded-pill border border-2 border-dark" onClick={() => history.push("/signup")}>Sign Up</button>}
 
                     {user.username ? <p className='fs-5'>Welcome, {user.username}! <br/></p> : <></>}
                 </div>
