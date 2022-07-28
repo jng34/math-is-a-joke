@@ -14,7 +14,7 @@ function Timer({ setTogglePL, setAnsMsg, count, setCount }) {
     }, [count])
 
     return (
-        <div className='text-center'>Time remaining: <b>{count} s</b></div>
+        <div className='text-center fs-5'>Time remaining: <b>{count} s</b></div>
     )
 }
 

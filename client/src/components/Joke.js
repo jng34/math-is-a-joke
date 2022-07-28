@@ -11,7 +11,7 @@ function Joke({ user, setUser }) {
     const [inputAns, setInputAns] = useState('');
     const [ansMsg, setAnsMsg] = useState(null);
     const [togglePL, setTogglePL] = useState(false);
-    const [count, setCount] = useState(5);
+    const [count, setCount] = useState(20);
     const [toggleFetch, setToggleFetch] = useState(false);
     const history = useHistory();
 
@@ -180,7 +180,7 @@ function Joke({ user, setUser }) {
                             <button type='button' className='border border-2 rounded-pill btn btn-info' onClick={() => console.log('not funny')}>Not Funny 😒</button>
                                 <br/><br/>
                             {user.username && user.score % 5 == 0 ? 
-                                <button className='btn bg-primary text-light' onClick={handleCreateJoke}>Create Joke</button>
+                                <button className='btn fs-5 bg-primary text-light' onClick={handleCreateJoke}>Create Joke</button>
                             : <></>}
                                 &nbsp;
                             <button className='btn fs-5 bg-success text-light' onClick={handleNextClick}>Next Joke</button>
@@ -196,7 +196,7 @@ function Joke({ user, setUser }) {
                         </div>)
                     : 
                     <form onSubmit={handleSubmitAns}>
-                        <Timer count={count} setCount={setCount} setTogglePL={setTogglePL} setAnsMsg={setAnsMsg} />
+                        {user && user.username ? <Timer count={count} setCount={setCount} setTogglePL={setTogglePL} setAnsMsg={setAnsMsg} /> : <></>}
                         <br/>
                         <label htmlFor="answer" style={{fontSize: "20px"}}>Solve:</label><br/>
                         <label htmlFor="answer" style={{fontSize: "75px"}}>{problem}</label><br/>
@@ -205,7 +205,7 @@ function Joke({ user, setUser }) {
                     </form>}
                 </div>
                 <div className='row'>
-                    <h3>Punchline: {togglePL ? <b>{joke.punchline}</b> : '???'}</h3>  
+                    <h1>{togglePL ? <b>{joke.punchline}</b> : null}</h1>  
                 </div>
             </div>
         </div>

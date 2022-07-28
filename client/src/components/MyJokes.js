@@ -17,6 +17,7 @@ function MyJokes({ user }) {
         }});
     }, [])
     
+    console.log(favJokesArr)
     function handleDeleteMyJoke(id) {
         fetch(`/api/jokes/${id}`, { method: "DELETE" })
         .then(r => console.log(r))

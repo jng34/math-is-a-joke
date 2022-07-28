@@ -5,12 +5,21 @@ import { useHistory, Link } from 'react-router-dom';
 
 function UserProfile({ user }) {
     const { id, username, profile_img, score } = user;
+    // const [newPic, setNewPic] = useState("");
     const history = useHistory();
 
     function handleDeleteUser() {
         fetch(`/api/users/${id}`, { method: "DELETE" })
         history.push("/")
     }
+
+    // function handleUpdatePic(id) {
+    //     fetch(`/api/users/${id}`, {
+    //         method: "PATCH",
+    //         headers: {"Content-Type": "application/json"},
+    //         body: JSON.stringify({ profile_img:  })
+    //     })
+    // }
 
     //border border-3 border-dark
     if (!username) { history.push("/") }
@@ -23,13 +32,14 @@ function UserProfile({ user }) {
                 </div>
                 <div className='row align-items-center mt-3'>
                     <div className='col text-end me-5'>
-                        <img src={profile_img} alt="profile-img" style={{width: '175px', borderRadius: '50%'}}/>
+                        <img src={profile_img} alt="profile-img" style={{width: '250px', borderRadius: '50%'}}/>
                     </div>
                     <div className='col text-start ms-5'>
                         <p className='fs-4'>Score: {score}</p>
                         <p className='fs-4'><Link to='/myjokes'>My Jokes</Link></p>
                         <p className='fs-4'><Link to='/friends'>My Friends</Link></p>
                         <p className='fs-4'>Notifications</p>
+                        {/* <button type='button' onClick={((id) => handleUpdatePic(user.id))}>Change Picture</button> */}
                         <p className='fs-4'>Change Profile Pic</p>
                         <button type="button" className="btn btn-danger border border-2 border-dark fs-6 text-dark" onClick={handleDeleteUser}>Delete Account</button>
                     </div>

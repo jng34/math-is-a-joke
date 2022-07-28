@@ -19,7 +19,9 @@ function Header({ user, setUser }) {
         history.push("/leaderboard")
     }
 
-    //border border-3 border-dark
+    // function refreshPage() {
+    //     window.parent.location = window.parent.location.href; 
+    // }
     
     return (
         <div className="container" style={{paddingTop:"20px"}}>
