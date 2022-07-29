@@ -7,7 +7,7 @@ function UserProfile({ user, setUser }) {
     const [newPic, setNewPic] = useState(user.profile_img);
     const [show, setShow] = useState(false);
     const [showPicURL, setShowPicURL] = useState(false);
-    const { id, username, profile_img, score } = user;
+    const { id, username, email, profile_img, score } = user;
     const history = useHistory();
 
 
@@ -53,6 +53,7 @@ function UserProfile({ user, setUser }) {
                         <p className='fs-4'>Score: {score}</p>
                         <p className='fs-4'><Link to='/myjokes'>My Jokes</Link></p>
                         <p className='fs-4'><Link to='/friends'>My Friends</Link></p>
+                        <p className='fs-4'>Email: {email}</p>
                         <p className='fs-4'>Notifications</p>
 
                         <Button variant="secondary" onClick={() => setShowPicURL(true)} className="rounded-pill" size='sm'>

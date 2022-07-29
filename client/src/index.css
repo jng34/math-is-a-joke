@@ -33,3 +33,11 @@ code {
   width: 100%;
   /* background-color: rgba(0, 0, 0, 0.5) */
 }
+
+#lbtable8{
+  width: 800px;
+  /* display: flex; */
+  justify-content: center;
+  margin-left: 200px;
+  margin-right: 200px;
+}

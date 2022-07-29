@@ -1,6 +1,6 @@
 class Api::FriendsController < ApplicationController
     # include ApplicationHelper
-    skip_before_action :authenticate_user, only: [:made_friends, :render_not_friends, :create, :index]
+    skip_before_action :authenticate_user, only: [:render_made_friends, :render_not_friends, :create, :index, :update]
 
     def render_not_friends
         not_friends = Friend.not_friends
@@ -17,7 +17,7 @@ class Api::FriendsController < ApplicationController
     end
 
     def create 
-        hasFriend = Friend.find_by(sent_to_id: params[:sent_by_id], sent_by_id: params[:sent_to_id]);
+        hasFriend = Friend.find_by(sent_to_id: params[:sent_by_id], sent_by_id: params[:sent_to_id], status: false);
         if hasFriend
             render json: { errors: "There is a pending friend request already." }
         else 
@@ -25,6 +25,17 @@ class Api::FriendsController < ApplicationController
             render json: friendship, status: :created
         end
     end 
+
+    def update
+        friendship = Friend.find_by(friends_params);
+        # friendship = Friend.find(params[:id])
+        if friendship
+            friendship.update!(status: params[:status])
+            render json: friendship, status: :ok
+        else
+            render json: { errors:  "Friendship cannot be made." }
+        end
+    end
 
     # remove friend
     def destroy

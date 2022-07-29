@@ -32,13 +32,14 @@ function SignUpForm({ onSignUp }) {
         .then((res) => {
             setIsLoading(false);
             if (res.ok) {
-                res.json().then((user) => onSignUp(user));
+              res.json().then((user) => onSignUp(user));
+                setIsLoading(!isLoading);
+                history.push("/profile")
                 setUserName("")
                 setProfileImg("")
                 setEmail("")
                 setPassword("")
                 setPasswordConfirmation("")
-                history.push("/profile")
             } else {
                 res.json().then((err) => setErrors(err.errors));
             }

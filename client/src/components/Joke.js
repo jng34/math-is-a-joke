@@ -5,7 +5,7 @@ import Timer from './Timer';
 
 function Joke({ user, setUser }) {
     const [joke, setJoke] = useState({});
-    const [likesCount, setLikesCount] = useState(0);
+    const [likesCount, setLikesCount] = useState();
     const [problem, setProblem] = useState("");
     const [answer, setAnswer] = useState("");
     const [inputAns, setInputAns] = useState('');
@@ -14,7 +14,7 @@ function Joke({ user, setUser }) {
     const [count, setCount] = useState(20);
     const [toggleFetch, setToggleFetch] = useState(false);
     const history = useHistory();
-    console.log(joke)
+
     console.log(likesCount)
 
 
@@ -118,11 +118,11 @@ function Joke({ user, setUser }) {
 
 
     function handleLikeAndFavorite() {
-        // setLikesCount(likesCount + 1)
+        setLikesCount(likesCount + 1)
         fetch(`/api/jokes/${joke.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json"},
-            body: JSON.stringify({ likes: likesCount }),
+            body: JSON.stringify({ likes: likesCount + 1 }),
         })
         .then(r => r.json())
         .then((update) => {
@@ -175,7 +175,7 @@ function Joke({ user, setUser }) {
                             <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} = {answer}</label>
                             <h4 style={{color: 'green'}}>Correct!</h4>
                                 <br/>
-                            <button type='button' className='border border-2 rounded-pill btn btn-info' onClick={() => {setLikesCount(likesCount+1); handleLikeAndFavorite()}}>Funny 😂</button>
+                            <button type='button' className='border border-2 rounded-pill btn btn-info' onClick={() => handleLikeAndFavorite()}>Funny 😂</button>
                                 &nbsp;&nbsp;
                             <button type='button' className='border border-2 rounded-pill btn btn-info' onClick={() => console.log('not funny')}>Not Funny 😒</button>
                                 <br/><br/>
