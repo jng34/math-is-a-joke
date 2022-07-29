@@ -12,6 +12,8 @@ class User < ApplicationRecord
     has_many :friendee_friends, foreign_key: 'sent_by_id', class_name: 'Friend'
     # has_many :friendees, through: :friendee_friends, source: :sent_to
     has_many :made_friends, -> { merge(Friend.made_friends) }, through: :friendee_friends, source: :sent_to
+
+    # has_many :made_friends, -> { merge(Friend.made_friends) }, through: :friendee_friends, source: :sent_by
     
     has_many :friender_friends, foreign_key: 'sent_to_id', class_name: 'Friend'
     # has_many :frienders, through: :friender_friends, source: :sent_by

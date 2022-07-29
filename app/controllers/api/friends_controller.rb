@@ -1,6 +1,6 @@
 class Api::FriendsController < ApplicationController
     # include ApplicationHelper
-    skip_before_action :authenticate_user, only: [:render_made_friends, :render_not_friends, :create, :index, :update]
+    skip_before_action :authenticate_user, only: [:render_made_friends, :render_not_friends, :create, :index, :update_friend_req]
 
     def render_not_friends
         not_friends = Friend.not_friends
@@ -17,24 +17,44 @@ class Api::FriendsController < ApplicationController
     end
 
     def create 
-        hasFriend = Friend.find_by(sent_to_id: params[:sent_by_id], sent_by_id: params[:sent_to_id], status: false);
-        if hasFriend
-            render json: { errors: "There is a pending friend request already." }
-        else 
-            friendship = Friend.create!(friends_params)
-            render json: friendship, status: :created
-        end
+        request_1 = Friend.create!(sent_to_id: params[:sent_by_id], sent_by_id: params[:sent_to_id], status: false);
+        request_2 = Friend.create!(sent_to_id: params[:sent_to_id], sent_by_id: params[:sent_by_id], status: false);
+        render json: Friend.all, status: :created
+        
+        # hasFriend = Friend.find_by(sent_to_id: params[:sent_by_id], sent_by_id: params[:sent_to_id], status: false);
+        # if hasFriend
+        #     render json: { errors: "There is a pending friend request already." }
+        # else 
+        #     friendship = Friend.create!(friends_params)
+        #     render json: friendship, status: :created
+        # end
     end 
 
-    def update
-        friendship = Friend.find_by(friends_params);
-        # friendship = Friend.find(params[:id])
-        if friendship
-            friendship.update!(status: params[:status])
-            render json: friendship, status: :ok
-        else
-            render json: { errors:  "Friendship cannot be made." }
-        end
+    # def update
+    #     friendship = Friend.find_by(friends_params);
+    #     # friendship = Friend.find(params[:id])
+    #     if friendship
+    #         friendship.update!(status: params[:status])
+    #         render json: friendship, status: :ok
+    #     else
+    #         render json: { errors:  "Friendship cannot be made." }
+    #     end
+    # end
+
+    def update_friend_req
+        friendship1 = Friend.find_by(sent_to_id: params[:sent_by_id], sent_by_id: params[:sent_to_id], status: false);
+        friendship1.update!(status: params[:status])
+        friendship2 = Friend.find_by(sent_to_id: params[:sent_to_id], sent_by_id: params[:sent_by_id], status: false);
+        friendship2.update!(status: params[:status])
+        
+        render json: Friend.all, status: :ok
+        # friendship = Friend.find_by(sent_to_id: params[:sent_to_id], sent_by_id: params[:sent_by_id], status: false);
+        # if friendship
+        #     friendship.update!(status: params[:status])
+        #     render json: friendship, status: :ok
+        # else
+        #     render json: { errors:  "Friendship cannot be made." }
+        # end
     end
 
     # remove friend

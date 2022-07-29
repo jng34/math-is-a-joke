@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  skip_before_action :authenticate_user, only: [:create, :index]
+  skip_before_action :authenticate_user, only: [:create, :index, :show_user]
 
   def rankings_index
     render json: User.order(score: :desc)
@@ -19,6 +19,10 @@ class Api::UsersController < ApplicationController
   # get '/api/me'
   def show
      render json: @current_user
+  end
+
+  def show_user
+    render json: User.find(params[:id])
   end
 
   

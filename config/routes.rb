@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   namespace :api do
       root 'users#index'
 
-      resources :friends, only: [:index, :create, :destroy, :update]
+      resources :friends, only: [:index, :create, :destroy]
       get '/friends/not_friends', to: 'friends#render_not_friends'
       get '/friends/made_friends', to: 'friends#render_made_friends'
+      patch 'friends/accept_friend', to: 'friends#update_friend_req'
       delete '/friends/decline_friend', to: 'friends#decline_friend'
 
       resources :jokes
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
       get '/users/rankings', to: 'users#rankings_index'
       post '/signup', to: 'users#create'
       get '/me', to: 'users#show'
+      get '/users/:id', to: 'users#show_user'
 
       post '/login', to: 'sessions#create'
       delete '/logout', to: 'sessions#destroy'
