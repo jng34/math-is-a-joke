@@ -10,6 +10,7 @@ function Friends({ user }) {
     const [friendsList, setFriendsList] = useState([]);
     const [friendReqList, setFriendReqList] = useState([]);
     const [toggle, setToggle] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
@@ -20,12 +21,10 @@ function Friends({ user }) {
                 setFriendReqList(data.not_friends);
             })
         }});
-    }, [])
+    }, [isLoading])
     
 
     function handleDeleteFriend(id) {
-        console.log(id)
-        console.log(user.id)
         fetch("/api/friends/delete_friend", {
             method: "DELETE",
             headers: {"Content-Type": "application/json"},
@@ -35,7 +34,10 @@ function Friends({ user }) {
                 status: true
             }),
         })
-        .then((r) => console.log(r));    
+        .then((r) => {
+            console.log(r);
+            setIsLoading(!isLoading);
+        });    
 
     }
 
@@ -53,12 +55,11 @@ function Friends({ user }) {
         .then((r) => r.json())
         .then((update) => {
             console.log(update);
+            setIsLoading(!isLoading);
         });    
     }
     
     function handleDeleteRequest(id) {
-        console.log(id)
-        console.log(user.id)
         fetch("/api/friends/decline_friend_req", {
             method: "DELETE",
             headers: {"Content-Type": "application/json"},
@@ -68,7 +69,10 @@ function Friends({ user }) {
                 status: false
             }),
         })
-        .then((r) => console.log(r));    
+        .then((r) => {
+            console.log(r);
+            setIsLoading(!isLoading);
+        });     
     }
 
 
