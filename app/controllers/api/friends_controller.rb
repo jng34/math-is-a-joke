@@ -1,6 +1,7 @@
 class Api::FriendsController < ApplicationController
     # include ApplicationHelper
-    skip_before_action :authenticate_user, only: [:render_made_friends, :render_not_friends, :create, :index, :update_friend_req]
+    skip_before_action :authenticate_user, only: [:render_made_friends, :render_not_friends, :create, :index, :update_friend_req,
+    :delete_friend, :decline_friend_req]
 
     def render_not_friends
         not_friends = Friend.not_friends
@@ -58,16 +59,20 @@ class Api::FriendsController < ApplicationController
     end
 
     # remove friend
-    def destroy
-        friend = Friend.find_by(sent_to_id: params[:user_id], sent_by_id: current_user.id, status: true)
-        friend.destroy
+    def delete_friend
+        friend1 = Friend.find_by(sent_to_id: params[:sent_to_id], sent_by_id: params[:sent_by_id], status: true)
+        friend1.destroy
+        friend2 = Friend.find_by(sent_to_id: params[:sent_by_id], sent_by_id: params[:sent_to_id], status: true)
+        friend2.destroy
         head :no_content
     end
 
     # decline friend requets
-    def decline_friend
-        friend = Friend.find_by(sent_to_id: params[:user_id], sent_by_id: current_user.id, status: false)
-        friend.destroy
+    def decline_friend_req
+        request1 = Friend.find_by(sent_to_id: params[:sent_to_id], sent_by_id: params[:sent_by_id], status: false)
+        request1.destroy
+        request2 = Friend.find_by(sent_to_id: params[:sent_by_id], sent_by_id: params[:sent_to_id], status: false)
+        request2.destroy
         head :no_content
     end
 

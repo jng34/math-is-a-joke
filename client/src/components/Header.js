@@ -31,7 +31,7 @@ function Header({ user, setUser }) {
                 </div>
                 <div className="col">
                 </div>
-                <div className="col text-end ">
+                <div className="col text-end">
                     {user.username ? <></> 
                     : <button className="btn btn-secondary rounded-pill border border-2 border-dark" onClick={() => history.push("/login")}>Log In</button>} 
                     &nbsp;&nbsp;

@@ -26,7 +26,7 @@ function UserProfile({ user, setUser }) {
     };
 
     function handleDeleteUser() {
-        fetch(`/api/users/${id}`, { method: "DELETE" })
+        fetch(`/api/users/${id}`, { method: "DELETE" });
         fetch("/api/logout", { method: "DELETE" })
         .then((r) => {
             if (r.ok) {
@@ -36,8 +36,6 @@ function UserProfile({ user, setUser }) {
         });
     };
 
-    //border border-3 border-dark
-    if (!username) { history.push("/") }
 
     return (
         <div className='align-self-center text-center mt-4'>

@@ -15,8 +15,6 @@ function Joke({ user, setUser }) {
     const [toggleFetch, setToggleFetch] = useState(false);
     const history = useHistory();
 
-    console.log(likesCount)
-
 
     //create logic to adjust timer for problem difficulty
     //Easy - 45s, Medium = 30s, Hard = 15s
