@@ -34,10 +34,7 @@ function Friends({ user }) {
                 status: true
             }),
         })
-        .then((r) => {
-            console.log(r);
-            setIsLoading(!isLoading);
-        });    
+        .then(() => setIsLoading(!isLoading));    
 
     }
 
@@ -69,10 +66,7 @@ function Friends({ user }) {
                 status: false
             }),
         })
-        .then((r) => {
-            console.log(r);
-            setIsLoading(!isLoading);
-        });     
+        .then(() => setIsLoading(!isLoading));     
     }
 
 

@@ -6,14 +6,32 @@ import uuid from 'react-uuid';
 
 function LeaderBoard({ user }) {
     const [allUsers, setAllUsers] = useState([]);  
-    const [friendReqs, setFriendReqs] = useState([]);  
+    const [friendReqs, setFriendReqs] = useState([{}]);  
+    // const [toggleButton, setToggleButton] = useState(false);
+    // const [alreadyFriends, setAlreadyFriends] = useState([]);
+    // const [alreadyRequested, setAlreadyRequested] = useState([]);
     const history = useHistory();
     
     useEffect(() => {
         fetch("/api/users/rankings")
         .then(r => r.json())
         .then(users => setAllUsers(users))
+
+         fetch("/api/friends")
+        .then((r) => r.json())
+        .then((data) => setFriendReqs(data));
     }, [])
+
+    // useEffect(() => {
+    //     fetch("/api/me").then((r) => {
+    //     if (r.ok) {
+    //         r.json().then((data) => {
+    //             setAlreadyFriends(data.made_friends)
+    //             setAlreadyRequested(data.not_friends)
+    //         })
+    //     }
+    //     });
+    // }, [])
 
 
     function handleFriendRequest(reqFriendId) {
@@ -25,33 +43,44 @@ function LeaderBoard({ user }) {
                 sent_to_id: reqFriendId
             })
         })
-        .then(r => r.json())
-        .then(data => {
-            console.log(data);
-        });
+        .then((r) => r.json())
+        .then((data) => setFriendReqs(data));
         
-        
-        fetch("/api/friends")
-        .then(r => r.json())
-        .then(data => setFriendReqs(data));
+        // fetch("/api/friends")
+        // .then((r) => r.json())
+        // .then((data) => setFriendReqs(data));
     }
 
 
-    const renderAllUsers = allUsers.map((person, index) => (
-        <UserRank key={uuid()} user={user} person={person} index={index} onSendRequest={handleFriendRequest} friendReqs={friendReqs} />
-        // <tr key={uuid()}>
-        //     <td>{index+1}</td>
-        //     <td>{person.username}</td>
-        //     <td>{person.score}</td>
-        //     <td>{person.jokes.length}</td>
-        //     <td>
-        //         { !toggleButton ? 
-        //         <button type='button' className='btn btn-primary' onClick={(id) => handleFriendRequest(person.id)}>Send Friend Request</button>    
-        //         : <button type='button' className='btn btn-secondary disabled' aria-disabled="true">Sent!</button> }               
 
-        //     </td>
-        // </tr>
+    // const renderButtons = friendReqs.map((friendship) => {
+    //     if (friendship.sent_by_id === user.id && friendship.status === true) {
+    //         return (
+    //             <td key={uuid()}>
+    //                 <button type='button' className='btn btn-secondary disabled' aria-disabled="true">Already Friends</button><br/>
+    //             </td>
+    //         )
+    //     } else if (friendship.sent_by_id === user.id && friendship.status === false) {
+    //         return (
+    //             <td key={uuid()}>
+    //                 <button type='button' className='btn btn-secondary disabled' aria-disabled="true">Sent!</button><br/>
+    //             </td>    
+    //         )
+    //     } else {
+    //         return (
+    //             <td key={uuid()}>
+    //                 <button type='button' className='btn btn-primary' onClick={handleClick} >Send Friend Request</button><br/>
+    //             </td>    
+    //         )
+    //     }
+    // })
+
+    const renderAllUsers = allUsers.map((person, index) => (
+
+        <UserRank key={uuid()} user={user} person={person} index={index} onSendRequest={handleFriendRequest} friendReqs={friendReqs} />
     ))
+
+
 
     if (!user) { history.push("/") }
 
@@ -70,6 +99,7 @@ function LeaderBoard({ user }) {
                     {renderAllUsers}
                 </tbody>
             </table>
+                    {/* {renderButtons} */}
         </div>
     )
 }

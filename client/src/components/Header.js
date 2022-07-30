@@ -19,10 +19,6 @@ function Header({ user, setUser }) {
         history.push("/leaderboard")
     }
 
-    // function refreshPage() {
-    //     window.parent.location = window.parent.location.href; 
-    // }
-    
     return (
         <div className="container" style={{paddingTop:"20px"}}>
             <div className="row align-items-center">
@@ -46,7 +42,6 @@ function Header({ user, setUser }) {
                         <button className="btn btn-secondary rounded-pill border border-2 border-dark" onClick={handleLogout}>Log Out</button>
                     </div>
                     : <button className="btn btn-primary rounded-pill border border-2 border-dark" onClick={() => history.push("/signup")}>Sign Up</button>}
-
                     {user.username ? <p className='fs-5'>Welcome, {user.username}! <br/></p> : <></>}
                 </div>
             </div>

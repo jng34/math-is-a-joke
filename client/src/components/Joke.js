@@ -13,13 +13,15 @@ function Joke({ user, setUser }) {
     const [togglePL, setTogglePL] = useState(false);
     const [count, setCount] = useState(20);
     const [toggleFetch, setToggleFetch] = useState(false);
+    const [toggleMathProb, setToggleMathProb] = useState(false);
     const history = useHistory();
+
 
 
     //create logic to adjust timer for problem difficulty
     //Easy - 45s, Medium = 30s, Hard = 15s
     function diffLevel() {
-        const difficulty=  [10,15,20]
+        const difficulty= [10,15,20]
         let i = Math.floor(Math.random()*3)
         setCount(difficulty[i])
     }
@@ -111,7 +113,6 @@ function Joke({ user, setUser }) {
         } else {
             setTogglePL(false)
         }
-        setInputAns("")
     }
 
 
@@ -145,7 +146,9 @@ function Joke({ user, setUser }) {
 
     function handleNextClick() {
         if (user.username) {
+            setInputAns("");
             setToggleFetch(!toggleFetch);
+            setToggleMathProb(!toggleMathProb);
             setAnsMsg(null);
             diffLevel()
         } else {
@@ -162,48 +165,61 @@ function Joke({ user, setUser }) {
             <div className="container text-center">
                 <div className='row'>
                     <br/><br/>
-                    <h2>{joke.setup}</h2> 
+                    {/* {toggleMathProb ? <h2>{joke.setup}</h2> : <></>} */}
                 </div>
                 {/* make this div a chalkboard */}
-                <div className='row mt-2 mb-2 align-items-center' style={{width: '600px', height: '300px', border: 'double', margin: 'auto'}}>
-                    {/* make problem responsive CSS */}
-                    {ansMsg ? 
-                        (togglePL ? 
-                        <div className='col'>
-                            <label htmlFor="answer" style={{fontSize: "75px"}}>{problem} = {answer}</label>
-                            <h4 style={{color: 'green'}}>Correct!</h4>
-                                <br/>
-                            <button type='button' className='border border-2 rounded-pill btn btn-info' onClick={() => handleLikeAndFavorite()}>Funny 😂</button>
-                                &nbsp;&nbsp;
-                            <button type='button' className='border border-2 rounded-pill btn btn-info' onClick={() => console.log('not funny')}>Not Funny 😒</button>
-                                <br/><br/>
-                            {user.username && user.score % 5 == 0 ? 
-                                <button className='btn fs-5 bg-primary text-light' onClick={handleCreateJoke}>Create Joke</button>
-                            : <></>}
-                                &nbsp;
-                            <button className='btn fs-5 bg-success text-light' onClick={handleNextClick}>Next Joke</button>
-                        </div>
-                        : 
+                <div className='row mt-2 mb-2 align-items-center' style={{width: '750px', height: '500px', border: 'double', margin: 'auto'}}>
+                 
+                    { !toggleMathProb ? 
                         <div>
-                            <label htmlFor="answer" style={{fontSize: "75px"}}>{problem}</label>
-                            <h4 style={{color: 'red'}}>Incorrect.</h4>
+                            <h1>{joke.setup}</h1><br/><br/>
+                            <button type='button' className='border rounded-pill btn btn-lg btn-warning' onClick={() => setToggleMathProb(!toggleMathProb)}> Get Answer!</button>
+                        </div> :  
+                    
+                    <>
+                        {ansMsg ? 
+                            (togglePL ? 
+                            <div className='col'>
+                                <h3>{joke.setup}</h3>
+                                <h1><b>{joke.punchline}</b></h1>  
+                                {/* <label htmlFor="answer" style={{fontSize: "45px"}}>{problem} = {answer}</label> */}
                                 <br/>
-                            <h4>Correct Answer: {answer}</h4>
-                                <br/>
-                            <button className='btn fs-5 bg-danger text-light' onClick={handleNextClick}>Next Joke</button>
-                        </div>)
-                    : 
-                    <form onSubmit={handleSubmitAns}>
-                        {user && user.username ? <Timer count={count} setCount={setCount} setTogglePL={setTogglePL} setAnsMsg={setAnsMsg} /> : <></>}
-                        <br/>
-                        <label htmlFor="answer" style={{fontSize: "20px"}}>Solve:</label><br/>
-                        <label htmlFor="answer" style={{fontSize: "75px"}}>{problem}</label><br/>
-                        <input style={{width: '75px'}} type="number" name="answer" value={inputAns} onChange={(e) => setInputAns(e.target.value)}/>&nbsp;
-                        <button type="submit" className='button bg-warning'>Submit</button>
-                    </form>}
-                </div>
-                <div className='row'>
-                    <h1>{togglePL ? <b>{joke.punchline}</b> : null}</h1>  
+                                <p style={{fontSize: "45px"}}>{problem} = {answer}</p>
+                                <h4 style={{color: 'green'}}>Correct!</h4>
+                                    <br/>
+                                <button type='button' className='border border-2 rounded-pill btn btn-info fs-3' onClick={() => handleLikeAndFavorite()}>Funny 😂</button>
+                                    &nbsp;&nbsp;
+                                <button type='button' className='border border-2 rounded-pill btn btn-info fs-3' onClick={() => console.log('not funny')}>Not Funny 😒</button>
+                                    <br/><br/>
+                                {user.username && user.score % 5 == 0 ? 
+                                    <>
+                                        <p className='text-primary'>Create a joke for +3 pts!</p>
+                                        <button className='btn fs-5 bg-primary text-light' onClick={handleCreateJoke}>Create Joke</button>
+                                    </>
+                                : <></>} 
+                                    &nbsp;
+                                <button className='btn fs-5 bg-secondary text-light' onClick={handleNextClick}>Next Joke</button>
+                            </div>
+                            : 
+                            <div>
+                                <p style={{fontSize: "75px"}}>{problem}</p>
+                                <h4 style={{color: 'red'}}>Incorrect.</h4><br/>
+                                <h4>Your Answer: {inputAns}</h4>
+                                <h4>Correct Answer: {answer}</h4>
+                                    <br/>
+                                <button className='btn fs-5 bg-secondary text-light' onClick={handleNextClick}>Next Joke</button>
+                            </div>)
+                        : 
+                        <form onSubmit={handleSubmitAns}>
+                            {user && user.username ? <Timer count={count} setCount={setCount} setTogglePL={setTogglePL} setAnsMsg={setAnsMsg} /> : <></>}
+                            <br/>
+                            <label htmlFor="answer" style={{fontSize: "20px"}}>Solve:</label><br/>
+                            <label htmlFor="answer" style={{fontSize: "75px"}}>{problem}</label><br/>
+                            <input style={{width: '100px', height: '35px'}} type="number" name="answer" value={inputAns} onChange={(e) => setInputAns(e.target.value)}/>&nbsp;
+                            <button type="submit" className='btn btn-large border border-dark border-1 bg-warning'>Submit</button>
+                        </form>}
+                    </>
+                    }
                 </div>
             </div>
         </div>

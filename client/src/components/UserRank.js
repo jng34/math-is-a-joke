@@ -1,35 +1,60 @@
 import React, { useState, useEffect } from 'react';
+import uuid from 'react-uuid';
 
 
-function UserRank({ user, person, index, onSendRequest }) {
-    const [friendReqs, setFriendReqs] = useState([]);
+function UserRank({ user, person, index, onSendRequest, friendReqs }) {
+    const { id, username, score, jokes, made_friends, not_friends } = person;
+    // const [alreadyFriends, setAlreadyFriends] = useState([]);
+    // const [alreadyRequested, setAlreadyRequested] = useState([]);
     const [toggleButton, setToggleButton] = useState(false);
+    // console.log(not_friends)
 
-    // useEffect(() => {
-    //     fetch("/api/friends")
-    //     .then(r => r.json())
-    //     .then((friends) => setFriends(friends))
-    // })
+    const renderButtons = not_friends.find((friend) => friend.id === user.id)
+    console.log(renderButtons)
+
+
+    // const renderButtons = user.username ? friendReqs.map((friendship) => {
+    //     if (friendship.sent_by_id === user.id && friendship.status === true) {
+    //         return (
+    //             <td key={uuid()}>
+    //                 <button type='button' className='btn btn-secondary disabled' aria-disabled="true">Already Friends</button>
+    //             </td>
+    //         )
+    //     } else if (friendship.sent_by_id === user.id && friendship.status === false) {
+    //         return (
+    //             <td key={uuid()}>
+    //                 <button type='button' className='btn btn-secondary disabled' aria-disabled="true">Request Sent</button>
+    //             </td>    
+    //         )
+    //     } else {
+    //         return (
+    //             <td key={uuid()}>
+    //                 <button type='button' className='btn btn-primary' onClick={handleClick}>Send Friend Request</button>  
+    //             </td>    
+    //         )
+    //     }
+    // }) : <></>
+
 
     function handleClick() {
         setToggleButton(true);
-        onSendRequest(person.id);
+        onSendRequest(id);
     }
     
     return (
-        <tr className={person.username !== user.username ? 'fs-5' : 'fw-bold fs-4'}>
+        <tr className={username !== user.username ? 'fs-5' : 'fw-bold fs-4'}>
             <td>{index+1}</td>
-            <td>{person.username}</td>
-            <td>{person.score}</td>
-            <td>{person.jokes.length}</td>
+            <td>{username}</td>
+            <td>{score}</td>
+            <td>{jokes.length}</td>
             <td>
-                { person.username !== user.username ? 
-                ( !toggleButton ? 
+                { friendReqs[0] && id === friendReqs[0].sent_to_id ? 
+                ( !toggleButton  ? 
                 <button type='button' className='btn btn-primary' onClick={handleClick} >Send Friend Request</button>    
                 : <button type='button' className='btn btn-secondary disabled' aria-disabled="true">Sent!</button> ) 
-                :
-                <p>---</p>}              
+                : <button type='button' className='btn btn-primary' onClick={handleClick} >Send Friend Request</button> }              
             </td>
+            {/* {renderButtons} */}
         </tr>
     )
 }

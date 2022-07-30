@@ -20,7 +20,7 @@ class Api::FriendsController < ApplicationController
     def create 
         request_1 = Friend.create!(sent_to_id: params[:sent_by_id], sent_by_id: params[:sent_to_id], status: false);
         request_2 = Friend.create!(sent_to_id: params[:sent_to_id], sent_by_id: params[:sent_by_id], status: false);
-        render json: Friend.all, status: :created
+        render json: [request_2, request_1], status: :created
         
         # hasFriend = Friend.find_by(sent_to_id: params[:sent_by_id], sent_by_id: params[:sent_to_id], status: false);
         # if hasFriend
