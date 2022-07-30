@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import CreatedJokeCard from './CreatedJokeCard';
+import FavJokeCard from './FavJokeCard';
 import uuid from 'react-uuid';
 
 function MyJokes({ user }) {
     const [toggleButtons, setToggleButtons] = useState(false);
     const [favJokesArr, setFavJokesArr] = useState([]);
     const [createdJokes, setCreatedJokes] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     
     // solution?
     useEffect(() => {
@@ -15,9 +18,9 @@ function MyJokes({ user }) {
                 setCreatedJokes(data.jokes)
             })
         }});
-    }, [])
+    }, [isLoading])
+
     
-    console.log(favJokesArr)
     function handleDeleteMyJoke(id) {
         fetch(`/api/jokes/${id}`, { method: "DELETE" })
         .then(r => console.log(r))
@@ -32,43 +35,12 @@ function MyJokes({ user }) {
     }
     //Maps user created jokes
     const userJokes = user && user.username ? createdJokes.map((joke, index) => (
-        <div key={uuid()} className="card border border-dark mt-3 mb-3 ms-5 me-5">
-            <div className="card-header fs-5 fw-bold" style={{backgroundColor: 'lightblue'}}>
-                # {index+1}
-            </div>
-            <div className="card-body">
-                <h4 className="card-title fs-4"><b>Setup:</b> {joke.setup}</h4>
-                <h5 className="card-text fs-4"><b>Punchline:</b> {joke.punchline}</h5>
-                
-            </div>
-            <div className="card-footer text-end">
-                <span className="badge rounded-pill text-bg-info fs-5">😂 {joke.likes}</span>
-                &nbsp;&nbsp;
-                <button type='button' className='btn border border-2 rounded btn-warning'>Edit</button>
-                &nbsp;&nbsp;
-                <button type='button' className='btn border border-2 rounded btn-danger' onClick={(id) => handleDeleteMyJoke(joke.id)}>Delete</button>
-            </div>
-        </div>
+        <CreatedJokeCard key={uuid()} index={index} joke={joke} isLoading={isLoading} setIsLoading={setIsLoading} onDeleteMyJoke={handleDeleteMyJoke}/>
     )) : <></>
     
     //Maps user favorited jokes
     const userFavorites = user && user.username ? favJokesArr.map((fav, index) => (
-        <div key={uuid()} className="card border border-dark mt-3 mb-3 ms-5 me-5">
-            <div className="card-header fs-5 fw-bold" style={{backgroundColor: 'lightgreen'}}>
-                # {index+1}
-            </div>
-            <div className="card-body">
-                <h4 className="card-title fs-4"><b>Setup:</b> {fav.joke.setup}</h4>
-                <h5 className="card-text fs-4"><b>Punchline:</b> {fav.joke.punchline}</h5>
-                
-            </div>
-            <div className="card-footer text-end">
-                <span className="badge rounded-pill text-bg-info fs-6">😂 {fav.joke.likes}</span>
-                &nbsp;&nbsp;
-                <button type='button' className='btn border border-2 rounded btn-secondary'
-                onClick={(id) => handleRemoveFavJoke(fav.id)}>Remove</button>
-            </div>
-        </div>
+        <FavJokeCard key={uuid()} index={index} fav={fav} onRemoveFavJoke={handleRemoveFavJoke}/>
     )) : <></>
     
 

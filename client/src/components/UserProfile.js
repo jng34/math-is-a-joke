@@ -19,8 +19,8 @@ function UserProfile({ user, setUser }) {
         })
         .then(r => r.json())
         .then(update => {
-            console.log(update)
-            setUser(update)
+            console.log(update);
+            setUser(update);
             setShowPicURL(false);
         });
     };
@@ -44,8 +44,11 @@ function UserProfile({ user, setUser }) {
                     <p className='fs-1'>{username}</p>
                 </div>
                 <div className='row align-items-center mt-3'>
-                    <div className='col text-end me-5'>
-                        <img src={profile_img} alt="profile-img" style={{width: '250px', borderRadius: '50%'}}/>
+                    <div className='col me-5'>
+                        <img src={profile_img} alt="profile-img" style={{width: '250px', borderRadius: '50%'}}/><br/><br/>
+                        <Button variant="secondary" onClick={() => setShowPicURL(true)} className="rounded" size='sm'>
+                            Edit Picture
+                        </Button>
                     </div>
                     <div className='col text-start ms-5'>
                         <p className='fs-4'>Score: {score}</p>
@@ -54,9 +57,7 @@ function UserProfile({ user, setUser }) {
                         <p className='fs-4'>Email: {email}</p>
                         <p className='fs-4'>Notifications</p>
 
-                        <Button variant="secondary" onClick={() => setShowPicURL(true)} className="rounded-pill" size='sm'>
-                            Edit Picture
-                        </Button>
+  
 
                         <Modal show={showPicURL} onHide={() => setShowPicURL(false)} centered>
                             <Modal.Header closeButton>

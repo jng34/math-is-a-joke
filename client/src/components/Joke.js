@@ -16,8 +16,6 @@ function Joke({ user, setUser }) {
     const [toggleMathProb, setToggleMathProb] = useState(false);
     const history = useHistory();
 
-
-
     //create logic to adjust timer for problem difficulty
     //Easy - 45s, Medium = 30s, Hard = 15s
     function diffLevel() {
@@ -26,7 +24,7 @@ function Joke({ user, setUser }) {
         setCount(difficulty[i])
     }
 
-    //Generate math problem - basic operations
+    //Generate numbers for math problem
     const num1 = Math.floor(Math.random()*100 + 1)
     const num2 = Math.floor(Math.random()*50 + 1)
     
@@ -41,6 +39,7 @@ function Joke({ user, setUser }) {
         return divisors;
     }
 
+    //Generate math problem - basic operations
     function generateMathProb() {
         const operations = ['+', '-', '*', '/'];  
         let index = Math.floor(Math.random()*4);
@@ -85,7 +84,7 @@ function Joke({ user, setUser }) {
             const randomJokeObj = allJokes[randomNum];
             setJoke(randomJokeObj)  
             setLikesCount(randomJokeObj.likes)
-        })
+        });
         setTogglePL(false);
 
     }, [toggleFetch])
@@ -97,8 +96,8 @@ function Joke({ user, setUser }) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ score: score })
         })
-        .then(r => r.json())
-        .then(update => setUser(update))
+        .then((r) => r.json())
+        .then((update) => setUser(update));
     }
 
     
@@ -156,16 +155,15 @@ function Joke({ user, setUser }) {
         }
     }
 
-    function handleCreateJoke() {
-        history.push("/createjoke")
-    }
+    // function handleCreateJoke() {
+    //     history.push("/createjoke")
+    // }
 
     return (
         <div className='align-self-center mt-5'>
             <div className="container text-center">
                 <div className='row'>
                     <br/><br/>
-                    {/* {toggleMathProb ? <h2>{joke.setup}</h2> : <></>} */}
                 </div>
                 {/* make this div a chalkboard */}
                 <div className='row mt-2 mb-2 align-items-center' style={{width: '750px', height: '500px', border: 'double', margin: 'auto'}}>
@@ -182,7 +180,6 @@ function Joke({ user, setUser }) {
                             <div className='col'>
                                 <h3>{joke.setup}</h3>
                                 <h1><b>{joke.punchline}</b></h1>  
-                                {/* <label htmlFor="answer" style={{fontSize: "45px"}}>{problem} = {answer}</label> */}
                                 <br/>
                                 <p style={{fontSize: "45px"}}>{problem} = {answer}</p>
                                 <h4 style={{color: 'green'}}>Correct!</h4>
@@ -194,7 +191,7 @@ function Joke({ user, setUser }) {
                                 {user.username && user.score % 5 == 0 ? 
                                     <>
                                         <p className='text-primary'>Create a joke for +3 pts!</p>
-                                        <button className='btn fs-5 bg-primary text-light' onClick={handleCreateJoke}>Create Joke</button>
+                                        <button className='btn fs-5 bg-primary text-light' onClick={() => history.push("/createjoke")}>Create Joke</button>
                                     </>
                                 : <></>} 
                                     &nbsp;
