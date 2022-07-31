@@ -6,18 +6,22 @@ class User < ApplicationRecord
 
     has_many :jokes
     has_many :favorites
-    has_many :comments, dependent: :destroy
-    has_many :notifications, dependent: :destroy
+    # has_many :comments, dependent: :destroy
+    # has_many :notifications, dependent: :destroy
 
     has_many :friendee_friends, foreign_key: 'sent_by_id', class_name: 'Friend'
-    # has_many :friendees, through: :friendee_friends, source: :sent_to
     has_many :made_friends, -> { merge(Friend.made_friends) }, through: :friendee_friends, source: :sent_to
 
-    # has_many :made_friends, -> { merge(Friend.made_friends) }, through: :friendee_friends, source: :sent_by
-    
     has_many :friender_friends, foreign_key: 'sent_to_id', class_name: 'Friend'
-    # has_many :frienders, through: :friender_friends, source: :sent_by
-    has_many :friend_requests, -> { merge(Friend.not_friends) }, through: :friender_friends, source: :sent_by
+    has_many :pending_friends, -> { merge(Friend.not_friends) }, through: :friender_friends, source: :sent_by
+    
+    
+    #new
+    has_many :senders, foreign_key: 'sent_by_id', class_name: 'Friend'
+    has_many :sent_reqs, -> { merge(Friend.sent_reqs) }, through: :senders, source: :sent_to
+    
+    has_many :receivers, foreign_key: 'sent_to_id', class_name: 'Friend'
+    has_many :received_reqs, -> { merge(Friend.received_reqs) }, through: :receivers, source: :sent_by
 
 
     #Password validations

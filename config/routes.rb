@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       resources :friends, only: [:index, :create]
       get '/friends/not_friends', to: 'friends#render_not_friends'
       get '/friends/made_friends', to: 'friends#render_made_friends'
+      get '/friends/sent_requests/:id', to: 'friends#sent_requests'
+      get '/friends/received_requests/:id', to: 'friends#received_requests'
       patch 'friends/accept_friend', to: 'friends#update_friend_req'
       delete '/friends/delete_friend', to: 'friends#delete_friend'
       delete '/friends/decline_friend_req', to: 'friends#decline_friend_req'

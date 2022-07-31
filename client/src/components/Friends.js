@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
 import { useHistory } from 'react-router-dom';
 import FriendCard from './FriendCard';
-import NotFriendCard from './NotFriendCard';
-
-
+import ReceivedReqCard from './ReceivedReqCard';
+import SentReqCard from './SentReqCard';
 
 
 function Friends({ user }) {
     const [friendsList, setFriendsList] = useState([]);
-    const [friendReqList, setFriendReqList] = useState([]);
+    const [sentReqs, setSentReqs] = useState([]);
+    const [receivedReqs, setReceivedReqs] = useState([]);
     const [toggle, setToggle] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
@@ -19,10 +19,34 @@ function Friends({ user }) {
         if (r.ok) {
             r.json().then((data) => {
                 setFriendsList(data.made_friends);
-                setFriendReqList(data.not_friends);
+                // setFriendReqList(data.pending_friends);
             })
         }});
+
     }, [isLoading])
+
+
+    useEffect(() => {
+        fetch(`/api/friends/sent_requests/${user.id}`)
+        .then(r => r.json())
+        .then((receivedReqs) => {
+            console.log(receivedReqs);
+            setSentReqs(receivedReqs);
+        })
+    }, [isLoading])
+
+    useEffect(() => {
+        fetch(`/api/friends/received_requests/${user.id}`)
+        .then(r => r.json())
+        .then((receivedReqs) => {
+            console.log(receivedReqs);
+            setReceivedReqs(receivedReqs);
+        })
+    }, [isLoading])
+
+    // console.log(friendReqList)
+    console.log(sentReqs)
+    console.log(receivedReqs)
     
 
     function handleDeleteFriend(id) {
@@ -36,7 +60,6 @@ function Friends({ user }) {
             }),
         })
         .then(() => setIsLoading(!isLoading));    
-
     }
 
 
@@ -75,10 +98,20 @@ function Friends({ user }) {
         <FriendCard key={uuid()} user={user} friendID={friend.id} username={friend.username} email={friend.email} profileImg={friend.profile_img} score={friend.score} jokes={friend.jokes} handleDeleteFriend={handleDeleteFriend}/>
     )) : <></>
 
-
-    const renderRequests = user && user.username ? friendReqList.map((friend) => (
-        <NotFriendCard key={uuid()} reqID={friend.id} username={friend.username} profileImg={friend.profile_img} handleAcceptRequest={handleAcceptRequest} handleDeleteRequest={handleDeleteRequest}/>
-    )) : <></>
+    //render sent requests
+    const renderSentReqs = user && user.username ? 
+    ( sentReqs[0] ? 
+        sentReqs.map((friend) => (
+        <SentReqCard key={uuid()} username={friend.sent_to.username} profileImg={friend.sent_to.profile_img}/>
+    )) : <></> ) 
+    : <></>
+        
+    
+    const renderRecReqs = user && user.username ? 
+    ( receivedReqs[0] ? receivedReqs.map((friend) => (
+        <ReceivedReqCard key={uuid()} reqID={friend.sent_by.id} username={friend.sent_by.username} profileImg={friend.sent_by.profile_img} handleAcceptRequest={handleAcceptRequest} handleDeleteRequest={handleDeleteRequest}/>
+    )) : <></> ) 
+    : <></>
 
 
     if (!user) { history.push("/") }
@@ -99,10 +132,20 @@ function Friends({ user }) {
                     <button type='button' className='btn btn-large btn-info fs-5 fw-light  border border-2 text-light disabled' aria-disabled="true">Friend Requests</button>}
                 </div>
                 <br/>
-                <div className='col'>
-                    {!toggle ? renderFriends : renderRequests}
-                </div>
-                {/* {!toggle ? <div className='col'>{renderFriends}</div> : <div className='col'>{renderRequests}</div> } */}
+                {/* <div className='col'>
+                    {!toggle ? renderFriends : renderRecReqs}
+                </div> */}
+                {!toggle ? <div className='col'>{renderFriends}</div> :
+                <div className='row'>
+                    <div className='col'>
+                        <h3>Sent Requests</h3>               
+                        {renderSentReqs}
+                    </div>
+                    <div className='col'>
+                        <h3>Pending Requests</h3>               
+                        {renderRecReqs}
+                    </div>
+                </div>}
             </div>
         </div>
     )

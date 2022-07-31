@@ -1,7 +1,7 @@
 class Api::FriendsController < ApplicationController
     # include ApplicationHelper
     skip_before_action :authenticate_user, only: [:render_made_friends, :render_not_friends, :create, :index, :update_friend_req,
-    :delete_friend, :decline_friend_req]
+    :delete_friend, :decline_friend_req, :sent_requests, :received_requests]
 
     def render_not_friends
         not_friends = Friend.not_friends
@@ -17,10 +17,22 @@ class Api::FriendsController < ApplicationController
         render json: Friend.all
     end
 
+    def sent_requests
+        reqs = Friend.where(sent_by_id: params[:id], status: false, request_sender: true)
+        render json: reqs, status: :ok
+    end
+
+    def received_requests
+        reqs = Friend.where(sent_to_id: params[:id], status: false, request_sender: true)
+        render json: reqs, status: :ok
+    end
+
+    #create for accepted and pending friends
+
     def create 
-        request_1 = Friend.create!(sent_to_id: params[:sent_by_id], sent_by_id: params[:sent_to_id], status: false);
-        request_2 = Friend.create!(sent_to_id: params[:sent_to_id], sent_by_id: params[:sent_by_id], status: false);
-        render json: [request_2, request_1], status: :created
+        request_1 = Friend.create!(sent_to_id: params[:sent_to_id], sent_by_id: params[:sent_by_id], status: false, request_sender: true);
+        request_2 = Friend.create!(sent_to_id: params[:sent_by_id], sent_by_id: params[:sent_to_id], status: false, request_sender: false);
+        render json: [request_1, request_2], status: :created
         
         # hasFriend = Friend.find_by(sent_to_id: params[:sent_by_id], sent_by_id: params[:sent_to_id], status: false);
         # if hasFriend
@@ -80,7 +92,7 @@ class Api::FriendsController < ApplicationController
     private 
 
     def friends_params
-        params.permit(:sent_by_id, :sent_to_id, :status)
+        params.permit(:sent_by_id, :sent_to_id, :status, :request_sender)
     end 
     
 

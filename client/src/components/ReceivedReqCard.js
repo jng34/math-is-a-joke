@@ -1,8 +1,7 @@
 import React from 'react';
 
 
-function NotFriendCard({ username, reqID, profileImg, handleAcceptRequest, handleDeleteRequest }) {
-    // const [toggleButton, setToggleButton] = React.useState(false);
+function ReceivedReqCard({ username, reqID, profileImg, handleAcceptRequest, handleDeleteRequest }) {
 
     return (
         <div className='card border border-dark'>
@@ -14,7 +13,7 @@ function NotFriendCard({ username, reqID, profileImg, handleAcceptRequest, handl
                     <div className='col align-self-center text-start ms-5'>
                         <h3>{username}</h3><br/>
                         <button type='button' className='btn btn-primary fs-5 rounded-pill' onClick={(id) => handleAcceptRequest(reqID)}>Accept Request</button>
-                        &nbsp;
+                        
                         <button type='button' className='btn btn-secondary fs-5 rounded-pill' onClick={(id) => handleDeleteRequest(reqID)}>Decline Request</button>
                     </div>
                 </div>
@@ -23,4 +22,4 @@ function NotFriendCard({ username, reqID, profileImg, handleAcceptRequest, handl
     )
 }
 
-export default NotFriendCard;
+export default ReceivedReqCard;

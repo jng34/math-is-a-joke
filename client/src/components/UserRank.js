@@ -3,14 +3,14 @@ import uuid from 'react-uuid';
 
 
 function UserRank({ user, person, index, onSendRequest, friendReqs }) {
-    const { id, username, score, jokes, made_friends, not_friends } = person;
+    const { id, username, score, jokes, made_friends, pending_friends } = person;
     // const [alreadyFriends, setAlreadyFriends] = useState([]);
     // const [alreadyRequested, setAlreadyRequested] = useState([]);
     const [toggleButton, setToggleButton] = useState(false);
     // console.log(not_friends)
 
-    const renderButtons = not_friends.find((friend) => friend.id === user.id)
-    console.log(renderButtons)
+    const renderButtons = pending_friends.find((friend) => friend.id === user.id)
+    // console.log(renderButtons)
 
 
     // const renderButtons = user.username ? friendReqs.map((friendship) => {
