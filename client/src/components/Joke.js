@@ -95,11 +95,14 @@ function Joke({ user, setUser }) {
     }, [toggleFetch])
     
 
-    function handleUpdateScore(score) {
+    function handleUpdateScore(score, numSolved) {
         fetch(`/api/users/${user.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ score: score })
+            body: JSON.stringify({ 
+                score: score,
+                problems_solved: numSolved
+            })
         })
         .then((r) => r.json())
         .then((update) => {
@@ -113,14 +116,14 @@ function Joke({ user, setUser }) {
         e.preventDefault();
         setAnsMsg('activated')
         if (inputAns == answer) {
-            setTogglePL(true)
+            setTogglePL(true);
             if (user && user.username) {
                 if (level == 20) {
-                    handleUpdateScore(user.score+1);
+                    handleUpdateScore(user.score+1, user.problems_solved+1);
                 } else if (level == 15) {
-                    handleUpdateScore(user.score+2);
+                    handleUpdateScore(user.score+2, user.problems_solved+1);
                 } else {
-                    handleUpdateScore(user.score+3);
+                    handleUpdateScore(user.score+3, user.problems_solved+1);
                 }
             }
         } else {
@@ -147,9 +150,7 @@ function Joke({ user, setUser }) {
         .then(r => r.json())
         .then((update) => {
             console.log(update)
-        });
-        //fix update issue
-        
+        });   
         //create favorite
         fetch("/api/favorites", {
             method: "POST",
@@ -257,7 +258,7 @@ function Joke({ user, setUser }) {
                                 <button type='button' className='border border-2 rounded-pill btn btn-info fs-3 disabled' aria-disabled="true">Not Funny 😒</button>
                                 }
                                     <br/><br/>
-                                {user.username && user.score % 5 == 0 ? 
+                                {user.username && user.problems_solved % 5 == 0 && user.problems_solved != 0 ? 
                                     <>
                                         <p className='text-primary'>Create a joke for +5 pts!</p>
                                         <button className='btn fs-5 bg-primary text-light' onClick={() => history.push("/createjoke")}>Create Joke</button>
