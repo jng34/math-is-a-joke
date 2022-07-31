@@ -52,11 +52,15 @@ function MyJokes({ user }) {
                     <div className='col text-start ms-5'>
                         {!toggleButtons ? 
                         <button type='button' className='btn btn-large btn-info fs-5 fw-light border border-2 disabled' aria-disabled="true">Show Created Jokes</button> 
-                        : <button type='button' className='btn btn-large btn-info fs-5 fw-light border border-2' onClick={() => setToggleButtons(!toggleButtons)}>Show Created Jokes</button>}
+                        : 
+                        <button type='button' className='btn btn-large btn-info fs-5 fw-light border border-2' onClick={() => setToggleButtons(!toggleButtons)}>Show Created Jokes</button>}
+
                         &nbsp;&nbsp;
+
                         {!toggleButtons ? 
                         <button type='button' className='btn btn-large btn-success fs-5 fw-light border border-2 text-light' onClick={() => setToggleButtons(!toggleButtons)}>Show Favorites</button>
-                        : <button type='button' className='btn btn-large btn-success fs-5 fw-light  border border-2 text-light disabled' aria-disabled="true">Show Favorites</button>}
+                        : 
+                        <button type='button' className='btn btn-large btn-success fs-5 fw-light  border border-2 text-light disabled' aria-disabled="true">Show Favorites</button>}
                     </div>
                 </div>
                 {!toggleButtons ? <div className='col'>{userJokes}</div> : <div className='col'>{userFavorites}</div> }

@@ -60,7 +60,7 @@ function CreatedJokeCard({ index, joke, onDeleteMyJoke, setIsLoading, isLoading 
                     Close
                     </Button>
                     <Button variant="primary" type="submit" onClick={(jokeID)=> handleEditJoke(id)}>
-                    Submit
+                    Save Changes
                     </Button>
                 </Modal.Footer>
             </Modal>

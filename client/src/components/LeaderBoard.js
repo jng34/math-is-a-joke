@@ -76,11 +76,8 @@ function LeaderBoard({ user }) {
     // })
 
     const renderAllUsers = allUsers.map((person, index) => (
-
         <UserRank key={uuid()} user={user} person={person} index={index} onSendRequest={handleFriendRequest} friendReqs={friendReqs} />
     ))
-
-
 
     if (!user) { history.push("/") }
 

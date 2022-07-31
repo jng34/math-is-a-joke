@@ -5,7 +5,7 @@ function PointSystem({ user }) {
     return (
         <div className="text-center mx-auto mt-4" style={{width: '700px'}}>
             <p className='fs-1'>Points</p><br/>
-            <p className='fs-4 text-success'>Get a joke. Solve a math problem. Laugh!</p>
+            <p className='fs-4 text-success'>Get a joke. Solve a math problem. Bump up your score. Laugh!</p>
             <table className='table fs-4 border border-2'>
                 <thead>
                     <tr>
@@ -36,7 +36,7 @@ function PointSystem({ user }) {
                     </tr>
                 </tbody>
             </table>
-            <p style={{fontSize: "18px", fontWeight: 'bold'}}>A "Create Joke" button will appear after every 5 problems you answer correctly.</p>
+            <div style={{fontSize: "18px", fontWeight: 'bold'}}>A <button className='btn btn-sm bg-primary text-light'>Create Joke</button> will appear after every 5 problems you answer correctly.</div>
             <p style={{fontStyle: 'italic', fontSize: "25px", color: 'blue'}}>Create a Joke: +5 !</p>
         </div>
     )

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 // import Main from './Main';
 
 
-function CreateJoke({ user }) {
+function CreateJoke({ user, setUser }) {
     const [newSetUp, setNewSetUp] = useState("");
     const [newPunchLine, setNewPunchLine] = useState("");
     const history = useHistory();
@@ -21,6 +21,18 @@ function CreateJoke({ user }) {
         })
         .then(r => r.json())
         .then(data => console.log(data))  
+
+        //Add +3 pts to score for creating a joke
+        fetch(`/api/users/${user.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ score: user.score + 5 })
+        })
+        .then((r) => r.json())
+        .then((update) => {
+            console.log(update);
+            setUser(update);
+        });
         alert('Created joke!')
         history.push("/joke")
     }

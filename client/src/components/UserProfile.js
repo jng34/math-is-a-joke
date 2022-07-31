@@ -72,7 +72,7 @@ function UserProfile({ user, setUser }) {
                                 Close
                                 </Button>
                                 <Button variant="primary" onClick={handleUpdatePic}>
-                                Change
+                                Update
                                 </Button>
                             </Modal.Footer>
                         </Modal>
@@ -97,8 +97,8 @@ function UserProfile({ user, setUser }) {
                         </Modal>
                     </div>
                     <div className="col">
-                        <Link to="/pointsystem">How To Play</Link><br/>
-                        <button type="button" className='btn btn-large btn-success fw-bold border border-2 border-dark mt-4 mx-auto' style={{width: '150px', height: '120px'}} onClick={() => history.push("/joke")}>Play Now!</button>
+                        <Link to="/pointsystem"><p className='fs-5'>How To Play</p></Link>
+                        <button type="button" className='btn btn-large btn-success fs-3 fw-bold border border-2 border-dark mt-4 mx-auto' style={{width: '200px', height: '100px'}} onClick={() => history.push("/joke")}>Play Now!</button>
                     </div>
                 </div>
                 {/* <div className='row'>

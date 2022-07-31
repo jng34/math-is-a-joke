@@ -59,7 +59,7 @@ function App() {
           <Joke user={user} setUser={setUser} />
         </Route>
         <Route exact path="/createjoke">
-          <CreateJoke user={user} />
+          <CreateJoke user={user} setUser={setUser} />
         </Route>
         <Route exact path="/myjokes">
           <MyJokes user={user} />

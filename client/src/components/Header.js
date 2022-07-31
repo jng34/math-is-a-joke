@@ -42,7 +42,13 @@ function Header({ user, setUser }) {
                         <button className="btn btn-secondary rounded-pill border border-2 border-dark" onClick={handleLogout}>Log Out</button>
                     </div>
                     : <button className="btn btn-primary rounded-pill border border-2 border-dark" onClick={() => history.push("/signup")}>Sign Up</button>}
-                    {user.username ? <p className='fs-5'>Welcome, {user.username}! <br/></p> : <></>}
+                    {user.username ?
+                    <>
+                    <p className='fs-5'>Welcome, {user.username}!<br/>
+                    Score: {user.score}
+                    </p> 
+                    </> 
+                    : <></>}
                 </div>
             </div>
         </div>

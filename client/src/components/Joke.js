@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Modal, Button } from 'react-bootstrap';
 import Timer from './Timer';
 
 
@@ -11,17 +12,21 @@ function Joke({ user, setUser }) {
     const [inputAns, setInputAns] = useState('');
     const [ansMsg, setAnsMsg] = useState(null);
     const [togglePL, setTogglePL] = useState(false);
+    const [level, setLevel] = useState(20);
     const [count, setCount] = useState(20);
     const [toggleFetch, setToggleFetch] = useState(false);
     const [toggleMathProb, setToggleMathProb] = useState(false);
+    const [toggleLikeFav, setToggleLikeFav] = useState(false);
+    const [showPointSys, setShowPointSys] = useState(false);
     const history = useHistory();
 
     //create logic to adjust timer for problem difficulty
-    //Easy - 45s, Medium = 30s, Hard = 15s
+    //Easy - 20s, Medium = 15s, Hard = 10s
     function diffLevel() {
-        const difficulty= [10,15,20]
-        let i = Math.floor(Math.random()*3)
-        setCount(difficulty[i])
+        const difficulty= [10,15,20];
+        let i = Math.floor(Math.random()*3);
+        setLevel(difficulty[i]);
+        setCount(difficulty[i]);
     }
 
     //Generate numbers for math problem
@@ -97,7 +102,10 @@ function Joke({ user, setUser }) {
             body: JSON.stringify({ score: score })
         })
         .then((r) => r.json())
-        .then((update) => setUser(update));
+        .then((update) => {
+            console.log(update);
+            setUser(update);
+        });
     }
 
     
@@ -107,15 +115,29 @@ function Joke({ user, setUser }) {
         if (inputAns == answer) {
             setTogglePL(true)
             if (user && user.username) {
-                handleUpdateScore(user.score+1);
+                if (level == 20) {
+                    handleUpdateScore(user.score+1);
+                } else if (level == 15) {
+                    handleUpdateScore(user.score+2);
+                } else {
+                    handleUpdateScore(user.score+3);
+                }
             }
         } else {
-            setTogglePL(false)
+            setTogglePL(false);
+            if (level == 20) {
+                handleUpdateScore(user.score-1);
+            } else if (level == 15) {
+                handleUpdateScore(user.score-2);
+            } else {
+                handleUpdateScore(user.score-2);
+            }
         }
     }
 
 
     function handleLikeAndFavorite() {
+        setToggleLikeFav(true)
         setLikesCount(likesCount + 1)
         fetch(`/api/jokes/${joke.id}`, {
             method: "PATCH",
@@ -137,15 +159,12 @@ function Joke({ user, setUser }) {
                 joke_id: joke.id 
             }),
         })
-        .then(r => r.json())
-        .then((fav) => {
-            console.log(fav)
-        });
     }
-
+    
     function handleNextClick() {
         if (user.username) {
             setInputAns("");
+            setToggleLikeFav(false);
             setToggleFetch(!toggleFetch);
             setToggleMathProb(!toggleMathProb);
             setAnsMsg(null);
@@ -155,9 +174,6 @@ function Joke({ user, setUser }) {
         }
     }
 
-    // function handleCreateJoke() {
-    //     history.push("/createjoke")
-    // }
 
     return (
         <div className='align-self-center mt-5'>
@@ -171,7 +187,54 @@ function Joke({ user, setUser }) {
                     { !toggleMathProb ? 
                         <div>
                             <h1>{joke.setup}</h1><br/><br/>
-                            <button type='button' className='border rounded-pill btn btn-lg btn-warning' onClick={() => setToggleMathProb(!toggleMathProb)}> Get Answer!</button>
+                            <button type='button' className='border rounded-pill btn btn-lg btn-warning' onClick={() => setToggleMathProb(!toggleMathProb)}> Get Answer!</button><br/><br/>
+                            <button type='button' className='border border-dark rounded btn btn-sm' onClick={() => setShowPointSys(true)}>How To Play</button>
+
+                            <Modal show={showPointSys} onHide={() => setShowPointSys(false)} centered>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>How To Play</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <p>A random setup for a joke will appear. Solve a math problem to increase your score and get the punchline. After every 5 correct answers, you will be able to create your own joke!</p>
+                                    <p>Create a Joke: +5</p>
+                                    <table className='table fs-5'>
+                                        <thead>
+                                            <tr>
+                                                <th>Difficulty</th>
+                                                <th>Time</th>
+                                                <th>Correct</th>
+                                                <th>Incorrect</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Easy</td>
+                                                <td>20 s</td>
+                                                <td>+1</td>
+                                                <td>-1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Medium</td>
+                                                <td>15 s</td>
+                                                <td>+2</td>
+                                                <td>-2</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hard</td>
+                                                <td>10 s</td>
+                                                <td>+3</td>
+                                                <td>-2</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={() => setShowPointSys(false)}>
+                                    Close
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
+
                         </div> :  
                     
                     <>
@@ -184,13 +247,19 @@ function Joke({ user, setUser }) {
                                 <p style={{fontSize: "45px"}}>{problem} = {answer}</p>
                                 <h4 style={{color: 'green'}}>Correct!</h4>
                                     <br/>
-                                <button type='button' className='border border-2 rounded-pill btn btn-info fs-3' onClick={() => handleLikeAndFavorite()}>Funny 😂</button>
+                                { !toggleLikeFav ? <button type='button' className='border border-2 rounded-pill btn btn-info fs-3' onClick={() => handleLikeAndFavorite()}>Funny 😂</button> 
+                                : 
+                                <button type='button' className='border border-2 rounded-pill btn btn-info fs-3 disabled' aria-disabled="true">Funny 😂</button> 
+                                }
                                     &nbsp;&nbsp;
-                                <button type='button' className='border border-2 rounded-pill btn btn-info fs-3' onClick={() => console.log('not funny')}>Not Funny 😒</button>
+                                { !toggleLikeFav ? <button type='button' className='border border-2 rounded-pill btn btn-info fs-3' onClick={() => setToggleLikeFav(!toggleLikeFav)}>Not Funny 😒</button> 
+                                :
+                                <button type='button' className='border border-2 rounded-pill btn btn-info fs-3 disabled' aria-disabled="true">Not Funny 😒</button>
+                                }
                                     <br/><br/>
                                 {user.username && user.score % 5 == 0 ? 
                                     <>
-                                        <p className='text-primary'>Create a joke for +3 pts!</p>
+                                        <p className='text-primary'>Create a joke for +5 pts!</p>
                                         <button className='btn fs-5 bg-primary text-light' onClick={() => history.push("/createjoke")}>Create Joke</button>
                                     </>
                                 : <></>} 
