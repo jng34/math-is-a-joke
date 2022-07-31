@@ -12,6 +12,7 @@ import Joke from './components/Joke.js';
 import CreateJoke from './components/CreateJoke.js';
 import MyJokes from './components/MyJokes.js';
 import LeaderBoard from './components/LeaderBoard.js';
+import PointSystem from './components/PointSystem.js';
 // import mathvid from '../mathvid.mp4'
 
 
@@ -65,6 +66,9 @@ function App() {
         </Route>
         <Route exact path="/leaderboard">
           <LeaderBoard user={user} />
+        </Route>
+        <Route exact path="/pointsystem">
+          <PointSystem user={user} />
         </Route>
       </Switch>
     </div>

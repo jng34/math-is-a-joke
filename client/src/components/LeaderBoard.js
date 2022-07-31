@@ -85,7 +85,7 @@ function LeaderBoard({ user }) {
     if (!user) { history.push("/") }
 
     return (
-        <div className='text-center mx-auto'>
+        <div className='text-center mx-auto mt-4'>
             <p className='fs-1'>LeaderBoard</p>
             <table id="lbtable" className='table table-bordered table-hover border border-2 border-dark mt-4'>
                 <tbody>
