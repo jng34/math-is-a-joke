@@ -6,6 +6,7 @@ import NotFriendCard from './NotFriendCard';
 
 
 
+
 function Friends({ user }) {
     const [friendsList, setFriendsList] = useState([]);
     const [friendReqList, setFriendReqList] = useState([]);
@@ -71,7 +72,7 @@ function Friends({ user }) {
 
 
     const renderFriends = user && user.username ? friendsList.map((friend) => (
-        <FriendCard key={uuid()} friendID={friend.id} username={friend.username} email={friend.email} profileImg={friend.profile_img} score={friend.score} handleDeleteFriend={handleDeleteFriend}/>
+        <FriendCard key={uuid()} user={user} friendID={friend.id} username={friend.username} email={friend.email} profileImg={friend.profile_img} score={friend.score} jokes={friend.jokes} handleDeleteFriend={handleDeleteFriend}/>
     )) : <></>
 
 
@@ -83,22 +84,26 @@ function Friends({ user }) {
     if (!user) { history.push("/") }
 
     return (
-        <div className='mx-auto'>
-            <p className='fs-1 text-center'>Friends</p>
-            {!toggle ? 
-            <button type='button' className='btn btn-large btn-success fs-5 fw-light border border-2 disabled' aria-disabled="true">Friends</button> 
-            : 
-            <button type='button' className='btn btn-large btn-success fs-5 fw-light border border-2' onClick={() => setToggle(!toggle)}>Friends</button>}
-
-            &nbsp;&nbsp;
-
-            {!toggle ? 
-            <button type='button' className='btn btn-large btn-info fs-5 fw-light border border-2 text-light' onClick={() => setToggle(!toggle)}>Friend Requests</button>
-            : 
-            <button type='button' className='btn btn-large btn-info fs-5 fw-light  border border-2 text-light disabled' aria-disabled="true">Friend Requests</button>}
-            
-            <br/>
-            {!toggle ? <div className='col'>{renderFriends}</div> : <div className='col'>{renderRequests}</div> }
+        <div className='text-center mt-4'>
+            <p className='fs-1'>Friends</p>
+            <div className='container'>
+                <div className='col text-start'>
+                    {!toggle ? 
+                    <button type='button' className='btn btn-large btn-success fs-5 fw-light border border-2 disabled' aria-disabled="true">Friends</button> 
+                    : 
+                    <button type='button' className='btn btn-large btn-success fs-5 fw-light border border-2' onClick={() => setToggle(!toggle)}>Friends</button>}
+                    &nbsp;&nbsp;
+                    {!toggle ? 
+                    <button type='button' className='btn btn-large btn-info fs-5 fw-light border border-2 text-light' onClick={() => setToggle(!toggle)}>Friend Requests</button>
+                    : 
+                    <button type='button' className='btn btn-large btn-info fs-5 fw-light  border border-2 text-light disabled' aria-disabled="true">Friend Requests</button>}
+                </div>
+                <br/>
+                <div className='col'>
+                    {!toggle ? renderFriends : renderRequests}
+                </div>
+                {/* {!toggle ? <div className='col'>{renderFriends}</div> : <div className='col'>{renderRequests}</div> } */}
+            </div>
         </div>
     )
 }

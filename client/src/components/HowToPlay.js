@@ -4,7 +4,7 @@ function HowToPlay({ user }) {
     return (
         <div className="text-center mx-auto mt-4" style={{width: '700px'}}>
             <p className='fs-1'>How To Play</p><br/>
-            <p className='fs-4 text-success'>Get a joke. Solve a math problem. Bump up your score. Laugh!</p>
+            <p className='fs-4 text-success'>Get a joke.<br/> Solve a math problem.<br/>Bump up your score.<br/> Try not to laugh! 😂</p>
             <table className='table fs-4 border border-2'>
                 <thead>
                     <tr>
@@ -35,8 +35,11 @@ function HowToPlay({ user }) {
                     </tr>
                 </tbody>
             </table>
-            <div style={{fontSize: "18px", fontWeight: 'bold'}}>A <button className='btn btn-sm bg-primary text-light'>Create Joke</button> will appear after every 5 problems you answer correctly.</div>
-            <p style={{fontStyle: 'italic', fontSize: "25px", color: 'blue'}}>Create a Joke: +5 !</p>
+            <br/>
+            {/* <p style={{fontSize: "25px"}}>Create a Joke: +5</p> */}
+            <div className="text-start" style={{fontSize: "20px"}}>
+                *** A <button className='btn btn-sm bg-primary text-light'>Create Joke</button> will appear after every five (5) problems you answer correctly. Create your own joke and get <b>+5</b> points!
+                </div>
         </div>
     )
 }

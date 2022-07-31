@@ -29,12 +29,12 @@ function App() {
 
   if (!user) return <div></div>;
 
+  /* <video autoPlay muted loop id="myVideo">
+      <source src={mathvid} type="video/mp4" />
+  </video>  */
   
   return (
     <div style={{fontFamily: 'Love Ya Like A Sister'}}>
-      {/* <video autoPlay muted loop id="myVideo">
-          <source src={mathvid} type="video/mp4" />
-      </video>  */}
       <Header user={user} setUser={setUser}/>
       <Switch>
         <Route exact path="/">

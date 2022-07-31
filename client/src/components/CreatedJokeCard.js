@@ -25,7 +25,7 @@ function CreatedJokeCard({ index, joke, onDeleteMyJoke, setIsLoading, isLoading 
     
 
     return (
-        <div className="card border border-dark mt-3 mb-3 ms-5 me-5">
+        <div className="card border border-dark mt-3 mb-3 text-start">
             <div className="card-header fs-5 fw-bold" style={{backgroundColor: 'lightblue'}}>
                 # {index+1}
             </div>
