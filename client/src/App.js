@@ -12,8 +12,8 @@ import Joke from './components/Joke.js';
 import CreateJoke from './components/CreateJoke.js';
 import MyJokes from './components/MyJokes.js';
 import LeaderBoard from './components/LeaderBoard.js';
-import PointSystem from './components/PointSystem.js';
-// import mathvid from '../mathvid.mp4'
+import HowToPlay from './components/HowToPlay.js';
+import mathvid from './mathvid.mp4'
 
 
 function App() {
@@ -29,12 +29,12 @@ function App() {
 
   if (!user) return <div></div>;
 
-  /* <video autoPlay muted loop id="myVideo">
-      <source src={mathvid} type="video/mp4" />
-  </video> */
   
   return (
     <div style={{fontFamily: 'Love Ya Like A Sister'}}>
+      {/* <video autoPlay muted loop id="myVideo">
+          <source src={mathvid} type="video/mp4" />
+      </video>  */}
       <Header user={user} setUser={setUser}/>
       <Switch>
         <Route exact path="/">
@@ -67,8 +67,8 @@ function App() {
         <Route exact path="/leaderboard">
           <LeaderBoard user={user} />
         </Route>
-        <Route exact path="/pointsystem">
-          <PointSystem user={user} />
+        <Route exact path="/howtoplay">
+          <HowToPlay user={user} />
         </Route>
       </Switch>
     </div>

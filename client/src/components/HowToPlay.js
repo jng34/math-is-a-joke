@@ -1,10 +1,9 @@
 import React from 'react';
-// import { Table } from 'react-bootstrap';
 
-function PointSystem({ user }) {
+function HowToPlay({ user }) {
     return (
         <div className="text-center mx-auto mt-4" style={{width: '700px'}}>
-            <p className='fs-1'>Points</p><br/>
+            <p className='fs-1'>How To Play</p><br/>
             <p className='fs-4 text-success'>Get a joke. Solve a math problem. Bump up your score. Laugh!</p>
             <table className='table fs-4 border border-2'>
                 <thead>
@@ -42,4 +41,4 @@ function PointSystem({ user }) {
     )
 }
 
-export default PointSystem;
+export default HowToPlay;

@@ -45,12 +45,11 @@ function SignUpForm({ onSignUp }) {
             }
             
         });
-        history.push('/profile')
     }
 
   return (
-    <div>
-        <div className="card text-start border border-dark border-2 mt-4" style={{width: "25rem", margin: "auto"}}>
+    <div style={{marginTop: '80px'}}>
+        <div id="signup" className="card text-start border border-dark border-2 mt-4">
             <form className="px-4 py-3" onSubmit={handleSubmitSignUp}>
                 <div className="mb-2">
                   <label htmlFor="username" className="form-label fw-bold">UserName</label>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PointSystem from './PointSystem';
+import PointSystem from './HowToPlay';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useHistory, Link } from 'react-router-dom';
 
@@ -97,7 +97,7 @@ function UserProfile({ user, setUser }) {
                         </Modal>
                     </div>
                     <div className="col">
-                        <Link to="/pointsystem"><p className='fs-5'>How To Play</p></Link>
+                        <Link to="/howtoplay"><p className='fs-5'>How To Play</p></Link>
                         <button type="button" className='btn btn-large btn-success fs-3 fw-bold border border-2 border-dark mt-4 mx-auto' style={{width: '200px', height: '100px'}} onClick={() => history.push("/joke")}>Play Now!</button>
                     </div>
                 </div>

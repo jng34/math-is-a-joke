@@ -34,10 +34,39 @@ code {
   /* background-color: rgba(0, 0, 0, 0.5) */
 }
 
-#lbtable8{
+#chalkboard {
+  background-image: url('chalkboard2.png');
+  background-repeat: no-repeat;
+  background-size: auto;
+  margin: auto;
+}
+
+.headerLeft {
+  float: left;
+  font-size: 65px;
+  margin: 50px 0px 0px 50px;  
+  cursor: pointer;
+}
+
+.headerRight {
+  float: right;
+}
+
+#lbtable{
   width: 800px;
-  /* display: flex; */
   justify-content: center;
   margin-left: 200px;
   margin-right: 200px;
+}
+
+#login {
+  font-size: 20px;
+  width: 25rem; 
+  margin: auto;
+}
+
+#signup {
+  font-size: 20px;
+  width: 25rem; 
+  margin: auto;
 }
