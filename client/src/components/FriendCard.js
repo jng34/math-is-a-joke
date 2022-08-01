@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import JokeList from './JokeList';
-import uuid from 'react-uuid';
 import { Modal, Button } from 'react-bootstrap';
+import uuid from 'react-uuid';
 
 
 function FriendCard({ friendID, username, profileImg, email, score, handleDeleteFriend }) {
@@ -15,20 +14,24 @@ function FriendCard({ friendID, username, profileImg, email, score, handleDelete
     }, [])
 
     const renderJokeList = jokeList.map((joke) => (
-        <div key={uuid()}>
-            <p>{joke.setup}</p>
-            <p>{joke.punchline}</p>
+        <li key={uuid()}>
+            {joke.setup}<br/>
+            <b>{joke.punchline}</b>
             <br/>
-        </div>
+        </li>
     ))
 
+    console.log(renderJokeList)
+
     const showFriendJokes = (             
-        <Modal show={showJokes} onHide={() => setShowJokes(false)} centered>
+        <Modal show={showJokes} onHide={() => setShowJokes(false)} centered scrollable={true}>
             <Modal.Header closeButton>
                 <Modal.Title>{username}'s Jokes</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {renderJokeList}
+                <ol>
+                    {renderJokeList}
+                </ol>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={() => setShowJokes(false)}>
@@ -48,27 +51,13 @@ function FriendCard({ friendID, username, profileImg, email, score, handleDelete
                     </div>
                     <div className='col align-self-center text-start ms-5'>
                         <h3>{username}</h3><br/>
-                        <h4>Email: {email}</h4>
                         <h4>Score: {score}</h4>
-                        <button type="button" onClick={() => console.log("need custom serializer for friend's jokes")}>{username}'s Joke List</button>
-                        <br/>
-                        <button type='button' className='btn btn-secondary fs-5' onClick={(id) => handleDeleteFriend(friendID)}>Remove Friend</button>
+                        <h4>Email: {email}</h4>
+                        <button type="button" className='btn btn-success' onClick={() => setShowJokes(true)}>{username}'s Joke List</button>
+                        &nbsp;&nbsp;
+                        <button type='button' className='btn btn-secondary' onClick={(id) => handleDeleteFriend(friendID)}>Remove Friend</button>
                     </div>
                     {showFriendJokes}
-                    {/* {renderJokeList} */}
-                    {/* <Modal show={showJokes} onHide={() => setShowJokes(false)} centered>
-                        <Modal.Header>
-                            <Modal.Title>{username}'s Jokes</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            {renderJokeList}
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={() => setShowJokes(false)}>
-                            Close
-                            </Button>
-                        </Modal.Footer>
-                    </Modal> */}
                 </div>
             </div>
         </div>
