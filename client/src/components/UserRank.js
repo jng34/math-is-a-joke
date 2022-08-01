@@ -1,61 +1,65 @@
 import React, { useState, useEffect } from 'react';
+// import { Modal, Button } from 'react-bootstrap';
+import FriendReqModal from './FriendReqModal';
 import uuid from 'react-uuid';
 
 
-function UserRank({ user, person, index, onSendRequest, friendReqs }) {
-    const { id, username, score, jokes, made_friends, pending_friends } = person;
-    // const [alreadyFriends, setAlreadyFriends] = useState([]);
-    // const [alreadyRequested, setAlreadyRequested] = useState([]);
-    const [toggleButton, setToggleButton] = useState(false);
-    // console.log(not_friends)
+function UserRank({ user, person, index, onSendRequest }) {
+    const { id, username, score, profile_img, jokes, problems_solved } = person;
+    const [reqsSent, setReqsSent] = useState([]);
+    const [toggleModal, setToggleModal] = useState(false);
 
-    const renderButtons = pending_friends.find((friend) => friend.id === user.id)
-    // console.log(renderButtons)
+    useEffect(() => {
+        fetch(`/api/friends/sent_requests/${user.id}`)
+        .then(r => r.json())
+        .then((reqs) => setReqsSent(reqs))
+    }, [])
 
-
-    // const renderButtons = user.username ? friendReqs.map((friendship) => {
-    //     if (friendship.sent_by_id === user.id && friendship.status === true) {
-    //         return (
-    //             <td key={uuid()}>
-    //                 <button type='button' className='btn btn-secondary disabled' aria-disabled="true">Already Friends</button>
-    //             </td>
-    //         )
-    //     } else if (friendship.sent_by_id === user.id && friendship.status === false) {
-    //         return (
-    //             <td key={uuid()}>
-    //                 <button type='button' className='btn btn-secondary disabled' aria-disabled="true">Request Sent</button>
-    //             </td>    
-    //         )
-    //     } else {
-    //         return (
-    //             <td key={uuid()}>
-    //                 <button type='button' className='btn btn-primary' onClick={handleClick}>Send Friend Request</button>  
-    //             </td>    
-    //         )
-    //     }
-    // }) : <></>
-
-
-    function handleClick() {
-        setToggleButton(true);
-        onSendRequest(id);
-    }
+    // const requestModal = (
+    //         <Modal show={toggleModal} onHide={() => setToggleModal(false)} centered>
+    //             <Modal.Header closeButton>
+    //                 <Modal.Title>Friend Request</Modal.Title>
+    //             </Modal.Header>
+    //             <Modal.Body className="text-center">
+    //                 <img src={profile_img} alt="profile-img" style={{width: '10rem', borderRadius: "50%"}}/>
+    //                 <p className='fs-4'>{username}</p>
+    //             </Modal.Body>
+    //             <Modal.Footer>
+    //                 <Button variant="secondary" onClick={() => setToggleModal(false)}>
+    //                 Close
+    //                 </Button>
+    //                 <Button>Sent!</Button>
+    //                 <Button onClick={(userID) => onSendRequest(id)}>Send Friend Request</Button>
+    //             </Modal.Footer>
+    //         </Modal>
+    // );
+    const renderButtons = reqsSent.map((req) => { 
+        req.sent_to.id === id ? 
+        <FriendReqModal key={uuid()} id={id} username={username} profileImg={profile_img} onSendRequest={onSendRequest} setToggleModal={setToggleModal} toggleModal={toggleModal}/>
+        : <></> }
+    )
     
     return (
-        <tr className={username !== user.username ? 'fs-5' : 'fw-bold fs-4'}>
-            <td>{index+1}</td>
-            <td>{username}</td>
-            <td>{score}</td>
-            <td>{jokes.length}</td>
-            <td>
-                { friendReqs[0] && id === friendReqs[0].sent_to_id ? 
-                ( !toggleButton  ? 
-                <button type='button' className='btn btn-primary' onClick={handleClick} >Send Friend Request</button>    
-                : <button type='button' className='btn btn-secondary disabled' aria-disabled="true">Sent!</button> ) 
-                : <button type='button' className='btn btn-primary' onClick={handleClick} >Send Friend Request</button> }              
-            </td>
-            {/* {renderButtons} */}
-        </tr>
+        <>
+            <tr className={username !== user.username ? 'fs-5' : 'fw-bold fs-4'} style={{cursor: 'pointer'}} onClick={() => setToggleModal(true)}>
+                <td>{index+1}</td>
+                <td>{score}</td>
+                <td>{problems_solved}</td>
+                <td>{jokes.length}</td>
+                <td>{username}</td>
+                
+                {/* <td>
+                    { friendReqs[0] && id === friendReqs[0].sent_to_id ? 
+                    ( !toggleButton  ? 
+                    <button type='button' className='btn btn-primary' onClick={handleClick} >Send Friend Request</button>    
+                    : <button type='button' className='btn btn-secondary disabled' aria-disabled="true">Sent!</button> ) 
+                    : <button type='button' className='btn btn-primary' onClick={handleClick} >Send Friend Request</button> }              
+                </td> */}
+                {/* {renderButtons} */}
+            </tr>
+            {/* <FriendReqModal id={id} user={user} username={username} profileImg={profile_img} onSendRequest={onSendRequest} setToggleModal={setToggleModal} toggleModal={toggleModal}/> */}
+            {renderButtons}
+        </>
     )
 }
 

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Modal, Button } from 'react-bootstrap';
 // import Main from './Main';
 
 
 function CreateJoke({ user, setUser }) {
     const [newSetUp, setNewSetUp] = useState("");
     const [newPunchLine, setNewPunchLine] = useState("");
+    const [show, setShow] = useState(false);
     const history = useHistory();
 
     function handleCreateJoke(e) {
@@ -33,15 +35,32 @@ function CreateJoke({ user, setUser }) {
             console.log(update);
             setUser(update);
         });
-        alert('Created joke!')
-        history.push("/joke")
+        setShow(true);
+    }
+
+    function onClose() {
+        setShow(false);
+        history.push("/joke");
     }
     
     //redirect for unauthorized user
-    if (!user.username) {
-        history.push("/")
-    }
-    //configure error handling
+    if (!user.username) { history.push("/")}
+    
+    const renderSuccessMsg = (             
+        <Modal show={show} onHide={() => onClose()} centered>
+            <Modal.Header closeButton>
+                <Modal.Title>Create A Joke</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                You have successfully created a joke!
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={() => onClose()}>
+                Close
+                </Button>
+            </Modal.Footer>
+        </Modal> 
+    )
 
     return (
         <div className='align-self-center mt-4'>
@@ -57,6 +76,7 @@ function CreateJoke({ user, setUser }) {
                         <input type="text" className="form-control border border-2 border-dark" value={newPunchLine}placeholder='Type your answer to joke...' onChange={(e) => setNewPunchLine(e.target.value)}/><br/>
                         <button type='submit' className='btn btn-warning border border-2 border-dark fs-4'>Create Joke</button>
                     </form>
+                    {renderSuccessMsg}
                 </div>
             </div>
         </div>

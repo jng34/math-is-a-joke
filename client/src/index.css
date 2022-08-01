@@ -52,11 +52,12 @@ code {
   float: right;
 }
 
-#lbtable{
-  width: 800px;
-  justify-content: center;
-  margin-left: 200px;
-  margin-right: 200px;
+#lbtable {
+  width: 130vh;
+  text-align: end;
+  margin: auto;
+  /* margin-left: 200px;
+  margin-right: 200px; */
 }
 
 #login {

@@ -23,18 +23,6 @@ Rails.application.routes.draw do
 
       post '/login', to: 'sessions#create'
       delete '/logout', to: 'sessions#destroy'
-      # resources :users, only: [:index, :update, :destroy] do
-      #   resources :friends, only: [:create] do
-      #     collection do
-      #       get 'accept_friend'
-      #       get 'decline_friend'
-      #     end
-      #   end
-      # end
-
-      # resources :jokes, only: [:new, :index, :show, :create, :update, :destroy] do
-      #   resources :favorites, only: [:create]
-      # end
       
   end
   

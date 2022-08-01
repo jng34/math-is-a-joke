@@ -6,7 +6,37 @@ import { Modal, Button } from 'react-bootstrap';
 
 function FriendCard({ friendID, username, profileImg, email, score, handleDeleteFriend }) {
     const [showJokes, setShowJokes] = useState(false);
+    const [jokeList, setJokeList] = useState([]);
 
+    useEffect(() => {
+        fetch(`/api/users/${friendID}`)
+        .then(r => r.json())
+        .then(userObj => setJokeList(userObj.jokes))
+    }, [])
+
+    const renderJokeList = jokeList.map((joke) => (
+        <div key={uuid()}>
+            <p>{joke.setup}</p>
+            <p>{joke.punchline}</p>
+            <br/>
+        </div>
+    ))
+
+    const showFriendJokes = (             
+        <Modal show={showJokes} onHide={() => setShowJokes(false)} centered>
+            <Modal.Header closeButton>
+                <Modal.Title>{username}'s Jokes</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {renderJokeList}
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={() => setShowJokes(false)}>
+                Close
+                </Button>
+            </Modal.Footer>
+        </Modal> 
+    )
 
 
     return (
@@ -24,6 +54,7 @@ function FriendCard({ friendID, username, profileImg, email, score, handleDelete
                         <br/>
                         <button type='button' className='btn btn-secondary fs-5' onClick={(id) => handleDeleteFriend(friendID)}>Remove Friend</button>
                     </div>
+                    {showFriendJokes}
                     {/* {renderJokeList} */}
                     {/* <Modal show={showJokes} onHide={() => setShowJokes(false)} centered>
                         <Modal.Header>

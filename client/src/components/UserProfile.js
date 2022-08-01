@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PointSystem from './HowToPlay';
+import HowToPlay from './HowToPlay';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useHistory, Link } from 'react-router-dom';
 
@@ -32,7 +32,7 @@ function UserProfile({ user, setUser }) {
         .then((r) => {
             if (r.ok) {
                 setUser({});
-                history.push("/")
+                history.push("/signup")
             }
         });
     };

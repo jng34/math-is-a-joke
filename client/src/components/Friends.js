@@ -19,7 +19,6 @@ function Friends({ user }) {
         if (r.ok) {
             r.json().then((data) => {
                 setFriendsList(data.made_friends);
-                // setFriendReqList(data.pending_friends);
             })
         }});
 
@@ -131,10 +130,7 @@ function Friends({ user }) {
                     : 
                     <button type='button' className='btn btn-large btn-info fs-5 fw-light  border border-2 text-light disabled' aria-disabled="true">Friend Requests</button>}
                 </div>
-                <br/>
-                {/* <div className='col'>
-                    {!toggle ? renderFriends : renderRecReqs}
-                </div> */}
+            <br/>
                 {!toggle ? <div className='col'>{renderFriends}</div> :
                 <div className='row'>
                     <div className='col'>

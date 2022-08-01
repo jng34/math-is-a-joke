@@ -13,7 +13,7 @@ import CreateJoke from './components/CreateJoke.js';
 import MyJokes from './components/MyJokes.js';
 import LeaderBoard from './components/LeaderBoard.js';
 import HowToPlay from './components/HowToPlay.js';
-import mathvid from './mathvid.mp4'
+// import mathvid from './mathvid.mp4'
 
 
 function App() {
