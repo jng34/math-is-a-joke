@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import HowToPlay from './HowToPlay';
+import ProfileModals from './ProfileModals';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useHistory, Link } from 'react-router-dom';
 
@@ -27,7 +28,7 @@ function UserProfile({ user, setUser }) {
     };
 
     function handleDeleteUser() {
-        fetch(`/api/users/${id}`, { method: "DELETE" });
+        fetch(`/api/users/${id}`, { method: "DELETE" }).then(r => console.log(r));
         fetch("/api/logout", { method: "DELETE" })
         .then((r) => {
             if (r.ok) {
@@ -58,8 +59,9 @@ function UserProfile({ user, setUser }) {
                         <p className='fs-4'>Email: {email}</p>
                         <p className='fs-4'>Notifications</p>
 
-  
-
+                        <ProfileModals profileImg={profile_img} showPicURL={showPicURL} setShowPicURL={setShowPicURL} setNewPic={setNewPic}
+                        show={show} setShow={setShow} handleUpdatePic={handleUpdatePic} handleDeleteUser={handleDeleteUser} />
+{/* 
                         <Modal show={showPicURL} onHide={() => setShowPicURL(false)} centered>
                             <Modal.Header closeButton>
                                 <Modal.Title>Profile Picture</Modal.Title>
@@ -75,12 +77,12 @@ function UserProfile({ user, setUser }) {
                                 Update
                                 </Button>
                             </Modal.Footer>
-                        </Modal>
+                        </Modal> */}
                         &nbsp;
                         <Button variant="danger" onClick={() => setShow(true)} className="rounded-pill" size='sm'>
                             Delete Account
                         </Button>
-
+{/* 
                         <Modal show={show} onHide={() => setShow(false)} centered>
                             <Modal.Header closeButton>
                                 <Modal.Title>Confirmation</Modal.Title>
@@ -94,16 +96,13 @@ function UserProfile({ user, setUser }) {
                                 Delete
                                 </Button>
                             </Modal.Footer>
-                        </Modal>
+                        </Modal> */}
                     </div>
                     <div className="col">
                         <Link to="/howtoplay"><p className='fs-5'>How To Play</p></Link>
                         <button type="button" className='btn btn-large btn-success fs-3 fw-bold border border-2 border-dark mt-4 mx-auto' style={{width: '200px', height: '100px'}} onClick={() => history.push("/joke")}>Play Now!</button>
                     </div>
                 </div>
-                {/* <div className='row'>
-                    <button type="button" className='btn btn-large btn-warning fw-bold border border-2 border-dark mt-4 mx-auto' style={{width: '30rem'}} onClick={() => history.push("/joke")}>Play Now!</button>
-                </div> */}
             </div>
         </div>
     )
