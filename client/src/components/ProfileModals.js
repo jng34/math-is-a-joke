@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, Button, Form } from 'react-bootstrap';
 
-function ProfileModals({ profileImg, show, setShow, showPicURL, setShowPicURL, setNewPic, handleUpdatePic, handleDeleteUser }) {
+function ProfileModals({ profileImg, show, setShow, showPicURL, setShowPicURL, setNewPic, handleUpdatePic, handleDeleteUser, showEmail, setShowEmail, email, setNewEmail, handleUpdateEmail }) {
     
 
     const editPicModal = (
@@ -17,6 +17,25 @@ function ProfileModals({ profileImg, show, setShow, showPicURL, setShowPicURL, s
                 Close
                 </Button>
                 <Button variant="primary" onClick={handleUpdatePic}>
+                Update
+                </Button>
+            </Modal.Footer>
+        </Modal>
+    )
+
+    const editEmail = (
+        <Modal show={showEmail} onHide={() => setShowEmail(false)} centered>
+            <Modal.Header closeButton>
+                <Modal.Title>Email</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form.Control type="text" placeholder={email} onChange={(e) => setNewEmail(e.target.value)}/>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={() => setShowEmail(false)}>
+                Close
+                </Button>
+                <Button variant="primary" onClick={handleUpdateEmail}>
                 Update
                 </Button>
             </Modal.Footer>
@@ -43,6 +62,7 @@ function ProfileModals({ profileImg, show, setShow, showPicURL, setShowPicURL, s
     return (
         <>
             {editPicModal}
+            {editEmail}
             {deleteAcctModal}
         </>
     )
