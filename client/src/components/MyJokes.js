@@ -9,7 +9,6 @@ function MyJokes({ user }) {
     const [createdJokes, setCreatedJokes] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     
-    // solution?
     useEffect(() => {
         fetch("/api/me").then((r) => {
         if (r.ok) {

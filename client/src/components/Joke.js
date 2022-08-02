@@ -173,7 +173,9 @@ function Joke({ user, setUser }) {
         } else {
             history.push("/login")
         }
-    }
+    } 
+
+    if (!user) { history.push("/")}
 
     if (!user) { history.push("/")}
 

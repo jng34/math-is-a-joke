@@ -16,7 +16,7 @@ import HowToPlay from './components/HowToPlay.js';
 
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     fetch("/api/me").then((r) => {

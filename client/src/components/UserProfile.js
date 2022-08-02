@@ -5,7 +5,7 @@ import { useHistory, Link } from 'react-router-dom';
 
 
 function UserProfile({ user, setUser }) {
-    const { id, username, email, profile_img, score } = user;
+    const { id, username, email, profile_img, score, problems_solved } = user;
     const [newPic, setNewPic] = useState(profile_img);
     const [newEmail, setNewEmail] = useState(email);
     const [show, setShow] = useState(false);
@@ -70,7 +70,8 @@ function UserProfile({ user, setUser }) {
                         </Button>
                     </div>
                     <div className='col text-start ms-5'>
-                        <p className='fs-4'>Score: {score}</p>
+                        <p className='fs-4'>Score: <b>{score}</b></p>
+                        <p className='fs-4'>Problems solved: <b>{problems_solved}</b></p>
                         <p className='fs-4'><Link to='/myjokes'>My Jokes</Link></p>
                         <p className='fs-4'><Link to='/friends'>My Friends</Link></p>
                         <p className='fs-4'>Email: {email}</p>
