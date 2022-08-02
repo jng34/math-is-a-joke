@@ -175,6 +175,8 @@ function Joke({ user, setUser }) {
         }
     }
 
+    if (!user) { history.push("/")}
+
 
     return (
         <div className='align-self-center mt-5'>

@@ -6,7 +6,6 @@ import LoginForm from './components/LoginForm.js';
 import SignUpForm from './components/SignUpForm.js';
 import UserProfile from './components/UserProfile.js';
 import Header from './components/Header.js';
-import JokeList from './components/JokeList.js';
 import Friends from './components/Friends.js';
 import Joke from './components/Joke.js';
 import CreateJoke from './components/CreateJoke.js';
@@ -50,9 +49,6 @@ function App() {
           </Route>
           <Route exact path="/profile">
             <UserProfile user={user} setUser={setUser} />
-          </Route>
-          <Route exact path="/jokelist">
-            <JokeList user={user} />
           </Route>
           <Route exact path="/friends">
             <Friends user={user} />
