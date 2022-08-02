@@ -37,7 +37,7 @@ function CreatedJokeCard({ index, joke, onDeleteMyJoke, setIsLoading, isLoading 
             <div className="card-footer text-end">
                 <span className="badge rounded-pill text-bg-info fs-5">😂 {likes}</span>
                 &nbsp;&nbsp;
-                <button type='button' className='btn border border-2 rounded btn-warning' onClick={() => setShow(true)}>Edit</button>
+                <button type='button' className='btn border border-2 rounded btn-secondary' onClick={() => setShow(true)}>Edit</button>
                 &nbsp;&nbsp;
                 <button type='button' className='btn border border-2 rounded btn-danger' onClick={(jokeId) => onDeleteMyJoke(id)}>Delete</button>
             </div>
