@@ -17,7 +17,7 @@ import HowToPlay from './components/HowToPlay.js';
 
 
 function App() {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     fetch("/api/me").then((r) => {
@@ -27,51 +27,54 @@ function App() {
     });
   }, [])
 
-  if (!user) return <div></div>;
+  if (!user) return <div id="loader"></div>;
+
 
   /* <video autoPlay muted loop id="myVideo">
       <source src={mathvid} type="video/mp4" />
   </video>  */
   
   return (
-    <div style={{fontFamily: 'Love Ya Like A Sister'}}>
-      <Header user={user} setUser={setUser}/>
-      <Switch>
-        <Route exact path="/">
-          <Main user={user} setUser={setUser}/>
-        </Route>
-        <Route exact path="/login">
-          <LoginForm user={user} onLogin={setUser} /> 
-        </Route>
-        <Route exact path="/signup">
-          <SignUpForm onSignUp={setUser} />
-        </Route>
-        <Route exact path="/profile">
-          <UserProfile user={user} setUser={setUser} />
-        </Route>
-        <Route exact path="/jokelist">
-          <JokeList user={user} />
-        </Route>
-        <Route exact path="/friends">
-          <Friends user={user} />
-        </Route>
-        <Route exact path="/joke">
-          <Joke user={user} setUser={setUser} />
-        </Route>
-        <Route exact path="/createjoke">
-          <CreateJoke user={user} setUser={setUser} />
-        </Route>
-        <Route exact path="/myjokes">
-          <MyJokes user={user} />
-        </Route>
-        <Route exact path="/leaderboard">
-          <LeaderBoard user={user} />
-        </Route>
-        <Route exact path="/howtoplay">
-          <HowToPlay user={user} />
-        </Route>
-      </Switch>
-    </div>
+    <>
+      <div style={{fontFamily: 'Love Ya Like A Sister' }}>
+        <Header user={user} setUser={setUser}/>
+        <Switch>
+          <Route exact path="/">
+            <Main user={user} setUser={setUser}/>
+          </Route>
+          <Route exact path="/login">
+            <LoginForm user={user} onLogin={setUser} /> 
+          </Route>
+          <Route exact path="/signup">
+            <SignUpForm onSignUp={setUser} />
+          </Route>
+          <Route exact path="/profile">
+            <UserProfile user={user} setUser={setUser} />
+          </Route>
+          <Route exact path="/jokelist">
+            <JokeList user={user} />
+          </Route>
+          <Route exact path="/friends">
+            <Friends user={user} />
+          </Route>
+          <Route exact path="/joke">
+            <Joke user={user} setUser={setUser} />
+          </Route>
+          <Route exact path="/createjoke">
+            <CreateJoke user={user} setUser={setUser} />
+          </Route>
+          <Route exact path="/myjokes">
+            <MyJokes user={user} />
+          </Route>
+          <Route exact path="/leaderboard">
+            <LeaderBoard user={user} />
+          </Route>
+          <Route exact path="/howtoplay">
+            <HowToPlay user={user} />
+          </Route>
+        </Switch>
+      </div>
+    </>
   );
 }
 

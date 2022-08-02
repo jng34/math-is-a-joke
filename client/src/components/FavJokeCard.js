@@ -13,7 +13,7 @@ function FavJokeCard({ index, fav, onRemoveFavJoke }) {
                 
             </div>
             <div className="card-footer text-end">
-                <span className="badge rounded-pill text-bg-info fs-6">😂 {joke.likes}</span>
+                <span className="badge rounded-pill fs-6 text-dark" style={{backgroundColor: 'lightgreen'}}>😂 {joke.likes}</span>
                 &nbsp;&nbsp;
                 <button type='button' className='btn border border-2 rounded btn-secondary'
                 onClick={(favId) => onRemoveFavJoke(id)}>Remove</button>

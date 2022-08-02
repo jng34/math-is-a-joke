@@ -42,8 +42,7 @@ function SignUpForm({ onSignUp }) {
                 setPasswordConfirmation("")
             } else {
                 res.json().then((err) => setErrors(err.errors));
-            }
-            
+            }  
         });
     }
 

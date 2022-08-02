@@ -21,8 +21,6 @@ function FriendCard({ friendID, username, profileImg, email, score, handleDelete
         </li>
     ))
 
-    console.log(renderJokeList)
-
     const showFriendJokes = (             
         <Modal show={showJokes} onHide={() => setShowJokes(false)} centered scrollable={true}>
             <Modal.Header closeButton>

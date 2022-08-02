@@ -58,11 +58,13 @@ function UserProfile({ user, setUser }) {
         <div className='align-self-center text-center mt-4'>
             <div className='container mx-auto px-5'>
                 <div className='row'>
-                    <p className='fs-1'>{username}</p>
+                    {/* <p className='fs-1'>{username}</p> */}
+                    <p className='fs-1'>My Profile</p>
                 </div>
                 <div className='row align-items-center mt-3'>
                     <div className='col me-5'>
-                        <img src={profile_img} alt="profile-img" style={{width: '250px', borderRadius: '50%'}}/><br/><br/>
+                        <p className='fs-1'>{username}</p>
+                        <img src={profile_img} alt="profile-img" style={{width: '200px', borderRadius: '50%'}}/><br/><br/>
                         <Button variant="secondary" onClick={() => setShowPicURL(true)} className="rounded" size='sm'>
                             Edit
                         </Button>
