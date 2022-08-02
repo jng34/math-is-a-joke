@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 function ReceivedReqCard({ username, reqID, profileImg, handleAcceptRequest, handleDeleteRequest }) {
 
     return (

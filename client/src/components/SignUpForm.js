@@ -9,7 +9,6 @@ function SignUpForm({ onSignUp }) {
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errors, setErrors] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-
     const history = useHistory();
 
     function handleSubmitSignUp(e) {

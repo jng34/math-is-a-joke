@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button } from 'react-bootstrap';
 import addFriendPic from '../add-friend.png';
 import sentReqPic from '../sentReq.png';
 import friendsPic from '../friends.png';
 
 
 function UserRank({ user, person, index, madeFriends,  pendingFriends,  onSendRequest }) {
-    const { id, username, profile_pic, score, jokes, problems_solved } = person;
-    // const [toggleButton, setToggleButton] = useState(false);
-    // const [showProfile, setShowProfile] = useState(false);
+    const { id, username, score, jokes, problems_solved } = person;
     const [isFriend, setIsFriend] = useState(false);
     const [isPending, setIsPending] = useState(false);
 
@@ -18,18 +15,12 @@ function UserRank({ user, person, index, madeFriends,  pendingFriends,  onSendRe
                 setIsFriend(true)
             }
         }
-
         for (let friend of pendingFriends){
             if (friend.id === id){
                 setIsPending(true)
             }
         }
     }, [])
-
-    // function handleAddFriend() {
-    //     setToggleButton(true);
-    //     onSendRequest(id);
-    // }
 
 
     return (

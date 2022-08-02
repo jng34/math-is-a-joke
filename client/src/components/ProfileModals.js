@@ -3,7 +3,6 @@ import { Modal, Button, Form } from 'react-bootstrap';
 
 function ProfileModals({ profileImg, show, setShow, showPicURL, setShowPicURL, setNewPic, handleUpdatePic, handleDeleteUser, showEmail, setShowEmail, email, setNewEmail, handleUpdateEmail }) {
     
-
     const editPicModal = (
         <Modal show={showPicURL} onHide={() => setShowPicURL(false)} centered>
             <Modal.Header closeButton>
