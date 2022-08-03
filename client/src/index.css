@@ -34,12 +34,36 @@ code {
   /* background-color: rgba(0, 0, 0, 0.5) */
 }
 
+/* #board {
+  width: 800px; 
+  height: 500px;
+  border: 10px saddlebrown solid;
+  margin: auto;
+  background-color: green;
+  border-radius: 5%;
+} */
+
 #chalkboard {
-  background-image: url('chalkboard2.png');
+  background-image: url('./media/chalkboard2.png');
+  width: 1000px;
+  height: 700px;
+  /* text-align: center; */
+  display: flex;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: 900px 500px;
+  /* margin-left: auto;
+  margin-right: auto; */
   margin: auto;
 }
+
+#joke-board {
+  width: 750px;
+  height: 550px;
+  margin: auto;
+  /* display: flex; */
+}
+
 
 .headerLeft {
   float: left;
@@ -56,8 +80,6 @@ code {
   width: 130vh;
   text-align: end;
   margin: auto;
-  /* margin-left: 200px;
-  margin-right: 200px; */
 }
 
 #login {
@@ -106,4 +128,30 @@ code {
   100% {
     transform: rotate(360deg);
   }
+}
+
+#emoji {
+  font-size: 50px;
+  position: absolute;
+  animation: emoji-spin 3s linear infinite;
+  animation-fill-mode: both;
+}
+
+@keyframes emoji-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.transparent-button{
+  background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
 }

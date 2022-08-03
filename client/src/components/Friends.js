@@ -41,12 +41,7 @@ function Friends({ user }) {
             console.log(receivedReqs);
             setReceivedReqs(receivedReqs);
         })
-    }, [isLoading])
-
-    // console.log(friendReqList)
-    console.log(sentReqs)
-    console.log(receivedReqs)
-    
+    }, [isLoading])    
 
     function handleDeleteFriend(id) {
         fetch("/api/friends/delete_friend", {
@@ -60,7 +55,6 @@ function Friends({ user }) {
         })
         .then(() => setIsLoading(!isLoading));    
     }
-
 
     function handleAcceptRequest(id) {
         fetch("/api/friends/accept_friend", {

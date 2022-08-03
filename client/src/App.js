@@ -12,30 +12,32 @@ import CreateJoke from './components/CreateJoke.js';
 import MyJokes from './components/MyJokes.js';
 import LeaderBoard from './components/LeaderBoard.js';
 import HowToPlay from './components/HowToPlay.js';
-// import mathvid from './mathvid.mp4'
+import mathvid from './media/mathvid.mp4'
 
 
 function App() {
-  const [user, setUser] = useState({})
+  // const [userLoading, setUserLoading] = useState(true)
+  const [user, setUser]  = useState({})
 
   useEffect(() => {
     fetch("/api/me").then((r) => {
       if (r.ok) {
-        r.json().then(data => setUser(data))
+        r.json().then(data =>{
+          // setUserLoading(true)
+          setUser(data)})
+          // setUserLoading(false)
       }
     });
   }, [])
 
-  if (!user) return <div id="loader"></div>;
-
-
-  /* <video autoPlay muted loop id="myVideo">
-      <source src={mathvid} type="video/mp4" />
-  </video>  */
+  // if (!user.username) return <div id="loader"></div>;
   
   return (
     <>
-      <div style={{fontFamily: 'Love Ya Like A Sister' }}>
+      <video autoPlay muted loop id="myVideo">
+          <source src={mathvid} type="video/mp4" />
+      </video> 
+      <div className="App-logo" style={{fontFamily: 'Love Ya Like A Sister' }}>
         <Header user={user} setUser={setUser}/>
         <Switch>
           <Route exact path="/">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import usersPic from '../users.png';
+import usersPic from '../media/users2.png';
 
 function Header({ user, setUser }) {
     const history = useHistory();
@@ -20,12 +20,14 @@ function Header({ user, setUser }) {
     }
 
     return (
-        <div className="container" style={{paddingTop:"20px"}}>
+        <div className="container" style={{paddingTop:"5px"}}>
             <div className="row align-items-center">
                 <div className="col">
-                    <p style={{fontSize: '55px', cursor: 'pointer'}} onClick={() => history.push("/")}>Math is a J😂ke!</p>
+                    {/* <h2 style={{fontSize: '55px', cursor: 'pointer'}} onClick={() => history.push("/")}>Math is a J😂ke!</h2> */}
+                    <span className="badge rounded-pill border border-4 border-dark bg-info text-dark"style={{fontSize: '55px', cursor: 'pointer'}} onClick={() => history.push("/")}>Math is a J😂ke!</span>
                 </div>
                 <div className="col">
+                    <p id="emoji">😂</p>
                 </div>
                 <div className="col text-end">
                     {user.username ? <></> 

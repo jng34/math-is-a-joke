@@ -4,6 +4,8 @@ class Api::UsersController < ApplicationController
   def rankings_index
     render json: User.order(score: :desc)
   end
+
+
   
   def index
     render json: User.all

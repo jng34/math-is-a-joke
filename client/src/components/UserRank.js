@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import addFriendPic from '../add-friend.png';
-import sentReqPic from '../sentReq.png';
-import friendsPic from '../friends.png';
+import addFriendPic from '../media/add-friend.png';
+import sentReqPic from '../media/sentReq.png';
+import friendsPic from '../media/friends.png';
 
 
 function UserRank({ user, person, index, madeFriends,  pendingFriends,  onSendRequest }) {
