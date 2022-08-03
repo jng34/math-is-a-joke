@@ -34,9 +34,9 @@ function App() {
   
   return (
     <>
-      <video autoPlay muted loop id="myVideo">
+      {/* <video autoPlay muted loop id="myVideo">
           <source src={mathvid} type="video/mp4" />
-      </video> 
+      </video>  */}
       <div className="App-logo" style={{fontFamily: 'Love Ya Like A Sister' }}>
         <Header user={user} setUser={setUser}/>
         <Switch>

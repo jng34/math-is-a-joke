@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Modal, Button } from 'react-bootstrap';
+import { Link, useHistory } from 'react-router-dom';
 import Timer from './Timer';
 import HowToPlayModal from './HowToPlayModal';
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
@@ -170,7 +169,7 @@ function Joke({ user, setUser }) {
             setToggleFetch(!toggleFetch);
             setToggleMathProb(!toggleMathProb);
             setAnsMsg(null);
-            diffLevel()
+            diffLevel();
         } else {
             history.push("/login")
         }
@@ -186,11 +185,12 @@ function Joke({ user, setUser }) {
             <br />
             <br />
           </div>
-          {/* make this div a chalkboard */}
           <div className="row mt-2 mb-2 align-items-center text-light">
             {!toggleMathProb ? (
               <div>
+                <br />
                 <h1>{joke.setup}</h1>
+                <br />
                 <br />
                 <br />
                 <button
@@ -205,7 +205,7 @@ function Joke({ user, setUser }) {
                 <br />
                 <button
                   type="button"
-                  className="border border-dark rounded btn btn-sm bg-info fs-5"
+                  className="border border-dark rounded-pill btn btn-sm bg-light text-dark fs-5"
                   onClick={() => setShowPointSys(true)}
                 >
                   How To Play
@@ -221,13 +221,15 @@ function Joke({ user, setUser }) {
                 {ansMsg ? (
                   togglePL ? (
                     <div className="col">
-                      <h1>
-                        <b>{joke.setup}</b>
-                      </h1>
-                      <h2>{joke.punchline}</h2>
+                      <h4 style={{ color: "orange", fontWeight: "bold" }}>
+                        Correct!
+                      </h4>
                       <br />
-                      <h4 style={{ color: "orange" }}>Correct!</h4>
-                     
+                      <h1>{joke.setup}</h1>
+                      <h2>
+                        <em> --> {joke.punchline}</em>
+                      </h2>
+                      <br />
                       {!toggleLikeFav ? (
                         <button
                           type="button"
@@ -238,7 +240,7 @@ function Joke({ user, setUser }) {
                           <Player
                             hover
                             src="https://assets10.lottiefiles.com/packages/lf20_RfD6Lb.json"
-                            style={{ height: "150px", width: "150px" }}
+                            style={{ height: "80px", width: "80px" }}
                           ></Player>
                         </button>
                       ) : (
@@ -254,7 +256,7 @@ function Joke({ user, setUser }) {
                             autoplay={false}
                             hover={false}
                             src="https://assets10.lottiefiles.com/packages/lf20_RfD6Lb.json"
-                            style={{ height: "125px", width: "125px" }}
+                            style={{ height: "80px", width: "80px" }}
                           ></Player>
                         </button>
                       )}
@@ -262,7 +264,7 @@ function Joke({ user, setUser }) {
                       {!toggleLikeFav ? (
                         <button
                           type="button"
-                          className="border border-2 rounded-pill btn btn-info fs-3"
+                          className="border border-2 rounded-pill btn btn-info text-light fs-4"
                           onClick={() => setToggleLikeFav(!toggleLikeFav)}
                         >
                           Not Funny 😒
@@ -270,21 +272,21 @@ function Joke({ user, setUser }) {
                       ) : (
                         <button
                           type="button"
-                          className="border border-2 rounded-pill btn btn-info fs-3 disabled"
+                          className="border border-2 rounded-pill btn btn-info fs-4 text-light disabled"
                           aria-disabled="true"
                         >
                           Not Funny 😒
                         </button>
                       )}
                       {user.username &&
-                      user.problems_solved % 5 == 0 &&
+                      // user.problems_solved % 5 == 0 &&
                       user.problems_solved != 0 ? (
                         <>
-                          <p className="text-primary">
+                          <p className="text-light">
                             Create a joke for +5 pts!
                           </p>
                           <button
-                            className="btn fs-5 bg-primary text-light"
+                            className="btn fs-5 border border-2 border-light bg-primary text-light"
                             onClick={() => history.push("/createjoke")}
                           >
                             Create Joke
@@ -304,7 +306,9 @@ function Joke({ user, setUser }) {
                   ) : (
                     <div>
                       <p style={{ fontSize: "75px" }}>{problem}</p>
-                      <h4 style={{ color: "red" }}>Incorrect.</h4>
+                      <h4 style={{ color: "red", fontWeight: "bold" }}>
+                        Incorrect.
+                      </h4>
                       <br />
                       <h4>Your Answer: {inputAns}</h4>
                       <h4>Correct Answer: {answer}</h4>

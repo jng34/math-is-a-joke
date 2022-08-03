@@ -23,8 +23,8 @@ function Header({ user, setUser }) {
         <div className="container" style={{paddingTop:"5px"}}>
             <div className="row align-items-center">
                 <div className="col">
-                    {/* <h2 style={{fontSize: '55px', cursor: 'pointer'}} onClick={() => history.push("/")}>Math is a J😂ke!</h2> */}
-                    <span className="badge rounded-pill border border-4 border-dark bg-info text-dark"style={{fontSize: '55px', cursor: 'pointer'}} onClick={() => history.push("/")}>Math is a J😂ke!</span>
+                    <h2 style={{fontSize: '55px', cursor: 'pointer'}} onClick={() => history.push("/")}>Math is a J😂ke!</h2>
+                    {/* <span className="badge rounded-pill border border-4 border-dark bg-info text-dark"style={{fontSize: '55px', cursor: 'pointer'}} onClick={() => history.push("/")}>Math is a J😂ke!</span> */}
                 </div>
                 <div className="col">
                     <p id="emoji">😂</p>

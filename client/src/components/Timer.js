@@ -15,11 +15,11 @@ function Timer({ setTogglePL, setAnsMsg, count, setCount }) {
 
     return (
         <div className='text-center'>
-            <p className='fs-2'><em>Time remaining:</em></p>
+            <p className='fs-3'><em>Time remaining:</em></p>
             { count <= 5 ? 
-            <p className='fs-1 fw-bold text-danger'><b>{count} s</b></p> 
+            <p className='fs-2 fw-bold text-danger'><b>{count} s</b></p> 
             :
-            <p className='fs-1 fw-bold'><b>{count} s</b></p> }
+            <p className='fs-2 fw-bold'><b>{count} s</b></p> }
         </div>
     )
 }

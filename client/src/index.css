@@ -14,11 +14,11 @@ code {
     monospace;
 }
 
-#screen {
+/* #screen {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 #myVideo {
   position: fixed;
@@ -28,11 +28,10 @@ code {
   z-index: -1;
 }
 
-#fs-overlay {
+/* #fs-overlay {
   height: 100vh;
   width: 100%;
-  /* background-color: rgba(0, 0, 0, 0.5) */
-}
+} */
 
 /* #board {
   width: 800px; 
@@ -44,21 +43,21 @@ code {
 } */
 
 #chalkboard {
-  background-image: url('./media/chalkboard2.png');
-  width: 1000px;
+  background-image: url('./media/einstein.png'), url('./media/chalkboard2.png');
+  background-position: 50px 500px, 180px 10px ;
+  background-repeat: no-repeat, no-repeat;
+  /* background-size: 900px 525px; */
+  background-size: 175px, 950px 600px;
+  width: 100%;
   height: 700px;
-  /* text-align: center; */
-  display: flex;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 900px 500px;
+  /* display: flex; */
   /* margin-left: auto;
   margin-right: auto; */
   margin: auto;
 }
 
 #joke-board {
-  width: 750px;
+  width: 775px;
   height: 550px;
   margin: auto;
   /* display: flex; */
@@ -132,18 +131,35 @@ code {
 
 #emoji {
   font-size: 50px;
-  position: absolute;
-  animation: emoji-spin 3s linear infinite;
+  position: fixed;
+  animation: emoji-spin 5s linear infinite;
   animation-fill-mode: both;
 }
 
 @keyframes emoji-spin {
-  from {
+  0% {
     transform: rotate(0deg);
   }
 
-  to {
+  100% {
     transform: rotate(360deg);
+  }
+}
+
+#emoji-bottom {
+  font-size: 50px;
+  position: fixed;
+  animation: emoji-bottom 2s linear infinite;
+  animation-fill-mode: both;
+}
+
+@keyframes emoji-bottom {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
   }
 }
 

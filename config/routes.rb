@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       delete '/friends/decline_friend_req', to: 'friends#decline_friend_req'
 
       resources :jokes
-      resources :comments, only: [:new, :create, :destroy]
+      resources :notifications, only: [:index, :show, :create, :destroy]
       resources :favorites, only: [:show, :create, :destroy]
       
       resources :users, only: [:index, :update, :destroy]
