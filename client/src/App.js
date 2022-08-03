@@ -12,23 +12,23 @@ import CreateJoke from './components/CreateJoke.js';
 import MyJokes from './components/MyJokes.js';
 import LeaderBoard from './components/LeaderBoard.js';
 import HowToPlay from './components/HowToPlay.js';
+import Notifications from './components/Notifications.js';
 import mathvid from './media/mathvid.mp4'
 
 
 function App() {
-  // const [userLoading, setUserLoading] = useState(true)
-  const [user, setUser]  = useState({})
+  const [user, setUser]  = useState({});
+  const [noticeReRender, setNoticeReRender] = useState(false);
 
   useEffect(() => {
     fetch("/api/me").then((r) => {
       if (r.ok) {
-        r.json().then(data =>{
-          // setUserLoading(true)
-          setUser(data)})
-          // setUserLoading(false)
+        r.json().then((data) => {
+          setUser(data);
+        });
       }
     });
-  }, [])
+  }, [noticeReRender]);
 
   // if (!user.username) return <div id="loader"></div>;
   
@@ -37,14 +37,14 @@ function App() {
       {/* <video autoPlay muted loop id="myVideo">
           <source src={mathvid} type="video/mp4" />
       </video>  */}
-      <div className="App-logo" style={{fontFamily: 'Love Ya Like A Sister' }}>
-        <Header user={user} setUser={setUser}/>
+      <div className="App-logo" style={{ fontFamily: "Love Ya Like A Sister" }}>
+        <Header user={user} setUser={setUser} />
         <Switch>
           <Route exact path="/">
-            <Main user={user} setUser={setUser}/>
+            <Main user={user} setUser={setUser} />
           </Route>
           <Route exact path="/login">
-            <LoginForm user={user} onLogin={setUser} /> 
+            <LoginForm user={user} onLogin={setUser} />
           </Route>
           <Route exact path="/signup">
             <SignUpForm onSignUp={setUser} />
@@ -69,6 +69,13 @@ function App() {
           </Route>
           <Route exact path="/howtoplay">
             <HowToPlay user={user} />
+          </Route>
+          <Route exact path="/notifications">
+            <Notifications
+              user={user}
+              noticeReRender={noticeReRender}
+              setNoticeReRender={setNoticeReRender}
+            />
           </Route>
         </Switch>
       </div>

@@ -12,7 +12,8 @@ Rails.application.routes.draw do
       delete '/friends/decline_friend_req', to: 'friends#decline_friend_req'
 
       resources :jokes
-      resources :notifications, only: [:index, :show, :create, :destroy]
+      resources :notifications, only: [:index, :create, :destroy]
+      get '/my_notifications/:id', to: 'notifications#show_user_notifications'
       resources :favorites, only: [:show, :create, :destroy]
       
       resources :users, only: [:index, :update, :destroy]

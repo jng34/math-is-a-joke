@@ -7,7 +7,7 @@ class User < ApplicationRecord
     has_many :jokes, dependent: :destroy
     has_many :favorites, dependent: :destroy
     # has_many :comments, dependent: :destroy
-    # has_many :notifications, dependent: :destroy
+    has_many :notifications, dependent: :destroy
 
     has_many :friendee_friends, foreign_key: 'sent_by_id', class_name: 'Friend', dependent: :destroy
     has_many :made_friends, -> { merge(Friend.made_friends) }, through: :friendee_friends, source: :sent_to

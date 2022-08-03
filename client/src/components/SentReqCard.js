@@ -11,7 +11,6 @@ function SentReqCard({ username, profileImg }) {
                     <div className='col align-self-center text-start ms-5'>
                         <h3>{username}</h3><br/>
                         <span className="badge rounded-pill fs-5 bg-secondary">Request Sent!</span>
-        
                     </div>
                 </div>
             </div>

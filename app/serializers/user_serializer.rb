@@ -6,6 +6,7 @@ class UserSerializer < ActiveModel::Serializer
   has_many :sent_reqs
   has_many :received_reqs
   has_many :jokes
+  has_many :notifications
 
   
   # def accepted_friends

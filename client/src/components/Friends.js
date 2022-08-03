@@ -69,8 +69,25 @@ function Friends({ user }) {
         .then((r) => r.json())
         .then((update) => {
             console.log(update);
-            setIsLoading(!isLoading);
+            // setIsLoading(!isLoading);
         });    
+
+        //create notification to sender
+        fetch("/api/notifications", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                user_id: id,
+                sender_id: id,
+                notice_type: "friend_request",
+                message: `${user.username} accepted your friend request.`
+            })
+        })
+        .then(r => r.json())
+        .then((data) => {
+            console.log(data);
+            setIsLoading(!isLoading);
+        })
     }
     
     function handleDeleteRequest(id) {
@@ -107,7 +124,7 @@ function Friends({ user }) {
     : <></>
 
 
-    if (!user) { history.push("/") }
+    if (!user.username) { history.push("/") }
 
     return (
         <div className='text-center mt-4'>

@@ -111,6 +111,22 @@ function Joke({ user, setUser }) {
         });
     }
 
+    function handleCreateScoreNotif(score, numSolved) {
+        fetch(`/api/users/${user.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ 
+                score: score,
+                problems_solved: numSolved
+            })
+        })
+        .then((r) => r.json())
+        .then((update) => {
+            console.log(update);
+            setUser(update);
+        });
+    }
+
     
     function handleSubmitAns(e) {
         e.preventDefault();
@@ -160,6 +176,20 @@ function Joke({ user, setUser }) {
                 joke_id: joke.id 
             }),
         })
+        //create notification for like
+        fetch("/api/notifications", {
+            method: "POST",
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify({ 
+                sender_id: user.id,
+                user_id: joke.user_id,
+                notice_type: "favorite",
+                message: `${user.username} liked your joke: \n "${joke.setup}" \n "${joke.punchline}"`
+            })
+        })
+        .then(r => r.json())
+        .then(data => console.log(data))
+
     }
     
     function handleNextClick() {
@@ -227,7 +257,7 @@ function Joke({ user, setUser }) {
                       <br />
                       <h1>{joke.setup}</h1>
                       <h2>
-                        <em> --> {joke.punchline}</em>
+                        <em> --- {joke.punchline}</em>
                       </h2>
                       <br />
                       {!toggleLikeFav ? (

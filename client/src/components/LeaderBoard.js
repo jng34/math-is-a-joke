@@ -37,7 +37,26 @@ function LeaderBoard({ user }) {
         })
         .then((r) => {
             console.log(r)
-            setReRender(!reRender)})
+            // setReRender(!reRender)
+        }
+        );
+
+        //create notification for user
+        fetch("/api/notifications", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                sender_id: user.id,
+                user_id: reqFriendId,
+                notice_type: "friend_request",
+                message: `You have a friend request from ${user.username}.`
+            })
+        })
+        .then(r => r.json())
+        .then((data) => {
+            console.log(data)
+            setReRender(!reRender)
+        })
     }
    
     const renderAllUsers = allUsers.map((person, index) => { 
