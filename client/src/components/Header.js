@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import usersPic from '../media/users2.png';
+import { FiMail } from 'react-icons/fi';
 
 function Header({ user, setUser }) {
     const history = useHistory();
@@ -20,7 +21,7 @@ function Header({ user, setUser }) {
     }
 
     return (
-      <div className="container" style={{ paddingTop: "5px" }}>
+      <div className="container" style={{ paddingTop: "20px" }}>
         <div className="row align-items-center">
           <div className="col">
             <h2
@@ -28,12 +29,11 @@ function Header({ user, setUser }) {
               onClick={() => history.push("/")}
             >
               Math is a J😂ke!
+              {/* <span id="emoji-bottom">😂</span> */}
             </h2>
             {/* <span className="badge rounded-pill border border-4 border-dark bg-info text-dark"style={{fontSize: '55px', cursor: 'pointer'}} onClick={() => history.push("/")}>Math is a J😂ke!</span> */}
           </div>
-          <div className="col">
-            <p id="emoji">😂</p>
-          </div>
+          <div className="col">{/* <p id="emoji">😂</p> */}</div>
           <div className="col text-end">
             {user.username ? (
               <></>
@@ -60,13 +60,14 @@ function Header({ user, setUser }) {
                 &nbsp;&nbsp;
                 <button
                   type="button"
-                  className="btn btn-primary position-relative"
+                  className="btn btn-sm position-relative"
                   onClick={() => history.push("/notifications")}
                 >
-                  Inbox
+                  <FiMail style={{ fontSize: "60px" }}></FiMail>
                   {/* if notification count > 0, then render notification span. if not, render nothing */}
-                  {user.notifications.length && user.notifications.length > 0 ? (
-                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {user.notifications.length &&
+                  user.notifications.length > 0 ? (
+                    <span className="position-absolute top-0 start-90 fs-6 translate-middle badge rounded-pill bg-danger">
                       {user.notifications.length}
                     </span>
                   ) : (

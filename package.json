@@ -13,6 +13,7 @@
   },
   "author": "JamesNg",
   "dependencies": {
-    "@lottiefiles/react-lottie-player": "^3.4.7"
+    "@lottiefiles/react-lottie-player": "^3.4.7",
+    "react-icons": "^4.4.0"
   }
 }

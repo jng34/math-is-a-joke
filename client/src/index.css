@@ -14,6 +14,36 @@ code {
     monospace;
 }
 
+#center-header {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+}
+
+.wallpaper {
+  background-image: url("./media/mathwp.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#button-header {
+    /* display: flex; */
+    position: absolute;
+    top: 55%;
+    left: 47%;
+    margin: 0;
+    -ms-transform: translateY(-50%, -50%);
+    transform: translateY(-50%, -50%);
+    /* align-items: center;
+    justify-content: center; */
+}
+
 /* #screen {
   display: flex;
   justify-content: center;
@@ -31,15 +61,6 @@ code {
 /* #fs-overlay {
   height: 100vh;
   width: 100%;
-} */
-
-/* #board {
-  width: 800px; 
-  height: 500px;
-  border: 10px saddlebrown solid;
-  margin: auto;
-  background-color: green;
-  border-radius: 5%;
 } */
 
 #chalkboard {
@@ -148,6 +169,8 @@ code {
 
 #emoji-bottom {
   font-size: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
   position: fixed;
   animation: emoji-bottom 2s linear infinite;
   animation-fill-mode: both;
@@ -165,9 +188,10 @@ code {
 
 .transparent-button{
   background-color: transparent;
-    background-repeat: no-repeat;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    outline: none;
+  background-repeat: no-repeat;
+  border: 2px solid white;
+  border-radius: 25px;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
 }

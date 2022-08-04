@@ -13,12 +13,14 @@ import MyJokes from './components/MyJokes.js';
 import LeaderBoard from './components/LeaderBoard.js';
 import HowToPlay from './components/HowToPlay.js';
 import Notifications from './components/Notifications.js';
+import mathwp from './media/mathwp.jpg';
 import mathvid from './media/mathvid.mp4'
 
 
 function App() {
   const [user, setUser]  = useState({});
   const [noticeReRender, setNoticeReRender] = useState(false);
+  const [toggleHeader, setToggleHeader] = useState(false);
 
   useEffect(() => {
     fetch("/api/me").then((r) => {
@@ -33,15 +35,21 @@ function App() {
   // if (!user.username) return <div id="loader"></div>;
   
   return (
-    <>
+    <div>
       {/* <video autoPlay muted loop id="myVideo">
           <source src={mathvid} type="video/mp4" />
       </video>  */}
-      <div className="App-logo" style={{ fontFamily: "Love Ya Like A Sister" }}>
-        <Header user={user} setUser={setUser} />
+      <div className='wallpaper' style={{ fontFamily: "Love Ya Like A Sister" }}>
+        { user.username ? <Header user={user} setUser={setUser} /> 
+        : <></>}
         <Switch>
           <Route exact path="/">
-            <Main user={user} setUser={setUser} />
+            <Main
+              user={user}
+              setUser={setUser}
+              toggleHeader={toggleHeader}
+              setToggleHeader={setToggleHeader}
+            />
           </Route>
           <Route exact path="/login">
             <LoginForm user={user} onLogin={setUser} />
@@ -79,7 +87,7 @@ function App() {
           </Route>
         </Switch>
       </div>
-    </>
+    </div>
   );
 }
 
