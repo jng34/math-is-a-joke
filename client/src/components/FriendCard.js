@@ -45,7 +45,7 @@ function FriendCard({ friendID, username, profileImg, email, score, handleDelete
             <div className='card-body'>
                 <div className='row'>
                     <div className='col-5 text-center'>
-                        <img src={profileImg} alt="profile-img" style={{width:- '20rem', borderRadius: "50%"}}/>
+                        <img src={profileImg} alt="profile-img" style={{width: '20rem', borderRadius: "50%"}}/>
                     </div>
                     <div className='col align-self-center text-start ms-5'>
                         <h3>{username}</h3><br/>

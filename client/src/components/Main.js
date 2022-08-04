@@ -10,9 +10,7 @@ function Main({ user, setUser, toggleHeader, setToggleHeader }) {
        setToggleHeader(true);
     }
 
-    return (
-      <div>
-        {!toggleMain ? (
+    return !user.username && !toggleMain ?
           <div>
             <video autoPlay muted loop id="myVideo">
               <source src={mathvid} type="video/mp4" />
@@ -32,11 +30,8 @@ function Main({ user, setUser, toggleHeader, setToggleHeader }) {
               </button>
             </div>
           </div>
-        ) : (
-          <Joke user={user} setUser={setUser}/>
-        )}
-      </div>
-    );
+        :
+        <Joke user={user} setUser={setUser}/>
 }
 
 

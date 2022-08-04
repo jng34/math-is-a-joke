@@ -32,7 +32,7 @@ function Notifications({ user, noticeReRender, setNoticeReRender }) {
         <div className="card-body">
           <div className="row align-items-center">
             <div className="col-12 col-md-11">
-              <p className="row fs-3 text-start">👀 --- {notice.message}</p>
+              <p className="row fs-3 text-start">👀 ⇾ {notice.message}</p>
             </div>
             <div className="col-6 col-md-1 text-end">
               <button

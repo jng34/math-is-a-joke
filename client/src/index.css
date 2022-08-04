@@ -23,6 +23,7 @@ code {
     justify-content: center;
 }
 
+
 .wallpaper {
   background-image: url("./media/mathwp.jpg");
   background-position: center;
@@ -33,22 +34,13 @@ code {
 }
 
 #button-header {
-    /* display: flex; */
     position: absolute;
     top: 55%;
     left: 47%;
     margin: 0;
     -ms-transform: translateY(-50%, -50%);
     transform: translateY(-50%, -50%);
-    /* align-items: center;
-    justify-content: center; */
 }
-
-/* #screen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 
 #myVideo {
   position: fixed;
@@ -58,10 +50,6 @@ code {
   z-index: -1;
 }
 
-/* #fs-overlay {
-  height: 100vh;
-  width: 100%;
-} */
 
 #chalkboard {
   background-image: url('./media/einstein.png'), url('./media/chalkboard2.png');
@@ -74,14 +62,13 @@ code {
   /* display: flex; */
   /* margin-left: auto;
   margin-right: auto; */
-  margin: auto;
+  margin-top: auto;
 }
 
 #joke-board {
   width: 775px;
   height: 550px;
   margin: auto;
-  /* display: flex; */
 }
 
 
@@ -100,6 +87,15 @@ code {
   width: 130vh;
   text-align: end;
   margin: auto;
+}
+
+.forms {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
 }
 
 #login {
@@ -195,3 +191,4 @@ code {
   overflow: hidden;
   outline: none;
 }
+
