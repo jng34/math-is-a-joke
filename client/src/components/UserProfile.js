@@ -60,7 +60,7 @@ function UserProfile({ user, setUser }) {
           <div className="row">
             <p className="fs-1">My Profile</p>
           </div>
-          <div className="row align-items-center mt-3 border border-2 border-dark rounded mx-auto pt-5 pb-5">
+          <div className="row align-items-center mt-3 border border-2 border-dark bg-light rounded mx-auto pt-5 pb-5">
             <div className="col me-5">
               <p className="fs-1">{username}</p>
               <img

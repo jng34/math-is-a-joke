@@ -79,7 +79,7 @@ function LoginForm({ onLogin }) {
               </button>
             </div>
             <p style={{ color: "red" }}>{error}</p>
-            <p className="text-center">
+            <p className="text-center fs-5">
               Don't have an account? &nbsp;
               <Link to="/signup">Sign Up</Link>
             </p>

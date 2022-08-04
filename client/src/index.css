@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Gloria+Hallelujah&family=Love+Ya+Like+A+Sister&family=Permanent+Marker&family=Rock+Salt&display=swap');
 
+html {
+  height: 100%;
+}
+
 body {
+  background-image: url("./media/mathwp.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -14,7 +23,8 @@ code {
     monospace;
 }
 
-#center-header {
+
+.center-header {
     height: 100%;
     width: 100%;
     display: flex;
@@ -31,6 +41,11 @@ code {
   background-size: cover;
   width: 100%;
   height: 100%;
+  /* height: 78vh; */
+  object-fit: initial;
+  -webkit-background-size: cover;
+  /* background-attachment: fixed; */
+  
 }
 
 #button-header {
@@ -55,20 +70,18 @@ code {
   background-image: url('./media/einstein.png'), url('./media/chalkboard2.png');
   background-position: 50px 500px, 180px 10px ;
   background-repeat: no-repeat, no-repeat;
-  /* background-size: 900px 525px; */
+    /* background-size: 900px 525px; */
   background-size: 175px, 950px 600px;
   width: 100%;
   height: 700px;
-  /* display: flex; */
-  /* margin-left: auto;
-  margin-right: auto; */
-  margin-top: auto;
+  margin-top: auto  ;
 }
 
 #joke-board {
   width: 775px;
   height: 550px;
   margin: auto;
+  margin-top: 50px;
 }
 
 
@@ -149,7 +162,7 @@ code {
 #emoji {
   font-size: 50px;
   position: fixed;
-  animation: emoji-spin 5s linear infinite;
+  animation: emoji-spin 3s linear infinite;
   animation-fill-mode: both;
 }
 

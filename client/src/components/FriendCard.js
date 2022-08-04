@@ -41,24 +41,27 @@ function FriendCard({ friendID, username, profileImg, email, score, handleDelete
 
 
     return (
-        <div className='card border border-dark'>
-            <div className='card-body'>
-                <div className='row'>
-                    <div className='col-5 text-center'>
-                        <img src={profileImg} alt="profile-img" style={{width: '20rem', borderRadius: "50%"}}/>
+        <>
+            <div className='card border border-dark border-2 bg-light'>
+                <div className='card-body'>
+                    <div className='row'>
+                        <div className='col-5 text-center'>
+                            <img src={profileImg} alt="profile-img" style={{width: '20rem', borderRadius: "50%"}}/>
+                        </div>
+                        <div className='col align-self-center text-start ms-5'>
+                            <h3>{username}</h3><br/>
+                            <h4>Score: {score}</h4>
+                            <h4>Email: {email}</h4>
+                            <button type="button" className='btn btn-success' onClick={() => setShowJokes(true)}>{username}'s Joke List</button>
+                            &nbsp;&nbsp;
+                            <button type='button' className='btn btn-secondary' onClick={(id) => handleDeleteFriend(friendID)}>Remove Friend</button>
+                        </div>
+                        {showFriendJokes}
                     </div>
-                    <div className='col align-self-center text-start ms-5'>
-                        <h3>{username}</h3><br/>
-                        <h4>Score: {score}</h4>
-                        <h4>Email: {email}</h4>
-                        <button type="button" className='btn btn-success' onClick={() => setShowJokes(true)}>{username}'s Joke List</button>
-                        &nbsp;&nbsp;
-                        <button type='button' className='btn btn-secondary' onClick={(id) => handleDeleteFriend(friendID)}>Remove Friend</button>
-                    </div>
-                    {showFriendJokes}
                 </div>
             </div>
-        </div>
+            <br/>
+        </>
     )
 }
 

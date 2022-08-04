@@ -21,7 +21,7 @@ function Header({ user, setUser }) {
     }
 
     return (
-      <div className="container" style={{ paddingTop: "20px" }}>
+      <div className="container" style={{ position: 'sticky', paddingTop: "20px" }}>
         <div className="row align-items-center">
           <div className="col">
             <h2
@@ -60,7 +60,7 @@ function Header({ user, setUser }) {
                 &nbsp;&nbsp;
                 <button
                   type="button"
-                  className="btn btn-sm position-relative"
+                  className="btn btn-sm position-relative "
                   onClick={() => history.push("/notifications")}
                 >
                   <FiMail style={{ fontSize: "60px" }}></FiMail>
@@ -70,6 +70,9 @@ function Header({ user, setUser }) {
                     <span className="position-absolute top-0 start-90 fs-6 translate-middle badge rounded-pill bg-danger">
                       {user.notifications.length}
                     </span>
+                    // <span className="position-absolute top-0 start-100 translate-middle fs-6 badge rounded-pill bg-danger">
+                    //   {user.notifications.length}
+                    // </span>
                   ) : (
                     <></>
                   )}

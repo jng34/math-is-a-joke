@@ -93,32 +93,16 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
       });
     setTogglePL(false);
   }, [toggleFetch]);
-
-  function handleUpdateScore(score, numSolved) {
-    fetch(`/api/users/${user.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        score: score,
-        problems_solved: numSolved,
-      }),
-    })
-      .then((r) => r.json())
-      .then((update) => {
-        console.log(update);
-        setUser(update);
-      });
-  }
   //send notification after reaching every 50pt milestone
   function handleCreateScoreNotif(score) {
-      fetch(`/api/notifications`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          sender_id: user.id,
-          user_id: user.id,
-          notice_type: "score",
-          message: `Congratulations! You reached a score of ${score}.`,
+    fetch(`/api/notifications`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sender_id: user.id,
+        user_id: user.id,
+        notice_type: "score",
+        message: `Congratulations! You reached a score of ${score}.`,
         }),
       })
         .then((r) => r.json())
@@ -126,11 +110,31 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
           console.log(update);
           setNoticeReRender(!setNoticeReRender);
         });
-  }
-
-  if (user.score % 50 === 0 && user.score !== 0) {
-    handleCreateScoreNotif(user.score);
-  }
+      }
+      
+      // if (user.score % 50 === 0 && user.score !== 0) {
+  //   handleCreateScoreNotif(user.score);
+  // }
+  
+    function handleUpdateScore(score, numSolved) {
+      fetch(`/api/users/${user.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          score: score,
+          problems_solved: numSolved,
+        }),
+      })
+        .then((r) => r.json())
+        .then((update) => {
+          console.log(update);
+          setUser(update);
+        });
+  
+      if (score % 50 === 0 && score !== 0) {
+        handleCreateScoreNotif(score);
+      }
+    }
 
   function handleSubmitAns(e) {
     e.preventDefault();
@@ -222,12 +226,12 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
   return (
     <div
       id="chalkboard"
-      className="container mt-2 border border-2 borders-danger mt-5"
+      className="container mt-5"
     >
-      <div id="joke-board" className="col border border-2 border-primary">
+      <div id="joke-board" className="col">
         <div className="align-self-center mt-5">
           <div className="container text-center align-items-center">
-            <div className="row text-center">
+            <div className="row text-center mt-5 mb-5">
               <br />
               <br />
             </div>
@@ -284,6 +288,8 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
                           >
                             <Player
                               hover
+                              loop
+                              speed={"1.5"}
                               src="https://assets10.lottiefiles.com/packages/lf20_RfD6Lb.json"
                               style={{ height: "80px", width: "80px" }}
                             ></Player>
@@ -302,6 +308,8 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
                           >
                             <Player
                               hover
+                              loop
+                              speed={"7"}
                               src="https://assets9.lottiefiles.com/private_files/lf30_kbu3mkpv.json"
                               style={{ height: "80px", width: "80px" }}
                             ></Player>
@@ -399,6 +407,7 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
           </div>
         </div>
       </div>
+      {/* <p id="emoji" className="position bottom right">😂</p> */}
     </div>
   );
 }
