@@ -11,9 +11,5 @@
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
   },
-  "author": "JamesNg",
-  "dependencies": {
-    "@lottiefiles/react-lottie-player": "^3.4.7",
-    "react-icons": "^4.4.0"
-  }
+  "author": "JamesNg"
 }
