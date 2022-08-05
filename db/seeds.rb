@@ -1,5 +1,5 @@
 require 'json'
-jokes = JSON.parse(File.read('/home/jamesng/phase-5-project/db/jokes.json'))
+jokes = JSON.parse(File.read('/home/jamesng/phase-5-project/jokes.json'))
 
 
 User.destroy_all
