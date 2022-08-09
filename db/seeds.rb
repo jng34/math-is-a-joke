@@ -1,9 +1,9 @@
 require 'json'
 #file to run seed data locally
-jokes = JSON.parse(File.read('/phase-5-project/jokes.json'))
+# jokes = JSON.parse(File.read('/phase-5-project/jokes.json'))
 
 #file for heroku run rails db:seed
-# jokes = JSON.parse(File.read('/app/jokes.json'))
+jokes = JSON.parse(File.read('/app/jokes.json'))
 
 User.destroy_all
 Joke.destroy_all
