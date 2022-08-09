@@ -8,9 +8,11 @@ function UserProfile({ user, setUser }) {
     const { id, username, email, profile_img, score, problems_solved } = user;
     const [newPic, setNewPic] = useState(profile_img);
     const [newEmail, setNewEmail] = useState(email);
+    const [newPW, setNewPW] = useState("");
     const [show, setShow] = useState(false);
     const [showPicURL, setShowPicURL] = useState(false);
     const [showEmail, setShowEmail] = useState(false);
+    const [showPW, setShowPW] = useState(false);
     const history = useHistory();
 
 
@@ -39,6 +41,20 @@ function UserProfile({ user, setUser }) {
             console.log(update);
             setUser(update);
             setShowEmail(false);
+        });
+    };
+
+    function handleUpdatePW() {
+      fetch(`/api/users/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: newPW }),
+      })
+        .then((r) => r.json())
+        .then((update) => {
+          console.log(update);
+          setUser(update);
+          setShowPW(false);
         });
     };
 
@@ -81,9 +97,8 @@ function UserProfile({ user, setUser }) {
             </div>
             <div className="col text-start ms-5">
               <p className="fs-4">
-                Score: <b>{score}</b> <br/>
-                Problems solved:{" "}
-                <b>{problems_solved}</b>
+                Score: <b>{score}</b> <br />
+                Problems solved: <b>{problems_solved}</b>
               </p>
               <p className="fs-4">
                 <Link to="/notifications">My Inbox</Link>
@@ -103,7 +118,14 @@ function UserProfile({ user, setUser }) {
               >
                 Change Email
               </Button>
-              &nbsp;&nbsp;
+              <Button
+                variant="secondary"
+                onClick={() => setShowPW(true)}
+                className="rounded-pill"
+                size="sm"
+              >
+                Change Password
+              </Button>
               <Button
                 variant="danger"
                 onClick={() => setShow(true)}
@@ -126,6 +148,10 @@ function UserProfile({ user, setUser }) {
                 email={email}
                 setNewEmail={setNewEmail}
                 handleUpdateEmail={handleUpdateEmail}
+                showPW={showPW}
+                setShowPW={setShowPW}
+                setNewPW={setNewPW}
+                handleUpdatePW={handleUpdatePW}
               />
             </div>
             <div className="col">

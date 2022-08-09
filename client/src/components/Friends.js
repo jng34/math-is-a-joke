@@ -69,7 +69,6 @@ function Friends({ user }) {
         .then((r) => r.json())
         .then((update) => {
             console.log(update);
-            // setIsLoading(!isLoading);
         });    
 
         //create notification to sender
@@ -110,13 +109,12 @@ function Friends({ user }) {
 
     //render sent requests
     const renderSentReqs = user && user.username ? 
-    ( sentReqs[0] ? 
-        sentReqs.map((friend) => (
+    ( sentReqs[0] ? sentReqs.map((friend) => (
         <SentReqCard key={uuid()} username={friend.sent_to.username} profileImg={friend.sent_to.profile_img}/>
     )) : <></> ) 
     : <></>
         
-    
+    //render received requests
     const renderRecReqs = user && user.username ? 
     ( receivedReqs[0] ? receivedReqs.map((friend) => (
         <ReceivedReqCard key={uuid()} reqID={friend.sent_by.id} username={friend.sent_by.username} profileImg={friend.sent_by.profile_img} handleAcceptRequest={handleAcceptRequest} handleDeleteRequest={handleDeleteRequest}/>

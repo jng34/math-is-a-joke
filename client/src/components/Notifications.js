@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 
 function Notifications({ user, noticeReRender, setNoticeReRender }) {
@@ -31,16 +31,25 @@ function Notifications({ user, noticeReRender, setNoticeReRender }) {
       <div key={notice.id} className="card border border-dark mt-3">
         <div className="card-body">
           <div className="row align-items-center">
-            <div className="col-12 col-md-11">
-              <p className="row fs-3 text-start"> ⇾ {notice.message}</p>
+            <div className="col-12 col-md-9">
+              <span className="row mx-auto fs-3 text-start">
+                ⇾ {notice.message}
+              </span>
+              {notice.notice_type === "friend_request" ? (
+                  <Link to="/friends">
+                    <span className="fs-3">Respond</span>
+                  </Link>
+              ) : (
+                <></>
+              )}
             </div>
-            <div className="col-6 col-md-1 text-end">
+            <div className="col-6 col-md-3 mx-auto text-end">
               <button
                 type="button"
                 className="btn btn-sm border border-2 rounded-pill fs-2 border-dark"
                 onClick={(id) => handleDeleteNotice(notice.id)}
               >
-                X
+                x
               </button>
             </div>
           </div>

@@ -11,7 +11,7 @@ function Header({ user, setUser }) {
         .then((r) => {
             if (r.ok) {
                 setUser({});
-                history.push("/")
+                history.push("/login")
             }
         });
     }
@@ -29,9 +29,7 @@ function Header({ user, setUser }) {
               onClick={() => history.push("/")}
             >
               Math is a J😂ke!
-              {/* <span id="emoji-bottom">😂</span> */}
             </h2>
-            {/* <span className="badge rounded-pill border border-4 border-dark bg-info text-dark"style={{fontSize: '55px', cursor: 'pointer'}} onClick={() => history.push("/")}>Math is a J😂ke!</span> */}
           </div>
           <div className="col">{/* <p id="emoji">😂</p> */}</div>
           <div className="col text-end">
@@ -64,15 +62,11 @@ function Header({ user, setUser }) {
                   onClick={() => history.push("/notifications")}
                 >
                   <FiMail style={{ fontSize: "60px" }}></FiMail>
-                  {/* if notification count > 0, then render notification span. if not, render nothing */}
                   {user.notifications.length &&
                   user.notifications.length > 0 ? (
                     <span className="position-absolute top-0 start-90 fs-6 translate-middle badge rounded-pill bg-danger">
                       {user.notifications.length}
                     </span>
-                    // <span className="position-absolute top-0 start-100 translate-middle fs-6 badge rounded-pill bg-danger">
-                    //   {user.notifications.length}
-                    // </span>
                   ) : (
                     <></>
                   )}
