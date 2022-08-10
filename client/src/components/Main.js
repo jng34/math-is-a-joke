@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Joke from './Joke.js';
+import { useHistory } from 'react-router-dom';
 import mathvid from '../media/mathvid.mp4';
 
 function Main({ user, setUser, toggleHeader, setToggleHeader }) {
     const [toggleMain, setToggleMain] = useState(false);
+    const history = useHistory();
 
     function handleTogglePage() {
        setToggleMain(true);
@@ -31,7 +33,29 @@ function Main({ user, setUser, toggleHeader, setToggleHeader }) {
         </div>
       </div>
     ) : (
-      <div >
+      <div
+        className="container"
+        style={{ position: "sticky", paddingTop: "20px" }}
+      >
+        <div className="row align-items-center">
+          <div className="col"></div>
+          <div className="col"></div>
+          <div className="col text-end">
+            <button
+              className="btn btn-secondary rounded-pill border border-2 border-dark fs-5"
+              onClick={() => history.push("/login")}
+            >
+              Log In
+            </button>
+            &nbsp;&nbsp;
+            <button
+              className="btn btn-primary rounded-pill border border-2 border-dark fs-5"
+              onClick={() => history.push("/signup")}
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
         <Joke user={user} setUser={setUser} />
       </div>
     );
