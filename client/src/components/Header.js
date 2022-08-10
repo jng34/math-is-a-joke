@@ -24,14 +24,14 @@ function Header({ user, setUser }) {
       <div className="container" style={{ position: 'sticky', paddingTop: "20px" }}>
         <div className="row align-items-center">
           <div className="col">
-            <h2
-              style={{ fontSize: "55px", cursor: "pointer" }}
-              onClick={() => history.push("/")}
-            >
-              Math is a J😂ke!
-            </h2>
+              <h2
+                style={{ fontSize: "55px", cursor: "pointer" }}
+                onClick={() => history.push("/")}
+              >
+                Math is a J😂ke!
+              </h2>
           </div>
-          <div className="col">{/* <p id="emoji">😂</p> */}</div>
+          <div className="col"></div>
           <div className="col text-end">
             {user.username ? (
               <></>
