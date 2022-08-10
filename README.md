@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Math-Is-A-Joke is a project designed with the goal of creating a fun, interactive, and educational product for students who wish to hone their math skills AND stay engaged.
 
-Things you may want to cover:
+This web app is quite simple. Random setups for jokes are given as prompts and the user will have to answer a randomly generated math problem (basic arithmetic) in a short amount of time in order to get the punchline of the joke. Users will be able to create their own jokes in the process, and contribute to the fun. 
 
-* Ruby version
 
-* System dependencies
+Project Idea, Wireframe, and Minimal Viable Product (MVP)
+![Alt text](Math-is-a-joke.png)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
