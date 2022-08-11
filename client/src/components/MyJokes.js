@@ -44,24 +44,22 @@ function MyJokes({ user }) {
     
 
     return (
-        <div className='text-center mt-4'>
-            <p className='fs-1'>My Jokes</p>
+        <div className='text-center'>
+            <p className='fs-3'>My Jokes</p>
             <div className='container'>
-                {/* <div className='row mb-3'> */}
-                    <div className='col text-start'>
+                    <div className='col text-start ms-5'>
                         {!toggleButtons ? 
-                        <button type='button' className='btn btn-large btn-info fs-5 fw-light border border-2 disabled' aria-disabled="true">Show Created Jokes</button> 
+                        <button type='button' className='btn btn-large btn-info fw-light border border-2 disabled' aria-disabled="true">Show Created Jokes</button> 
                         : 
-                        <button type='button' className='btn btn-large btn-info fs-5 fw-light border border-2' onClick={() => setToggleButtons(!toggleButtons)}>Show Created Jokes</button>}
+                        <button type='button' className='btn btn-large btn-info fw-light border border-2' onClick={() => setToggleButtons(!toggleButtons)}>Show Created Jokes</button>}
 
                         &nbsp;&nbsp;
 
                         {!toggleButtons ? 
-                        <button type='button' className='btn btn-large btn-success fs-5 fw-light border border-2 text-light' onClick={() => setToggleButtons(!toggleButtons)}>Show Favorites</button>
+                        <button type='button' className='btn btn-large btn-success fw-light border border-2 text-light' onClick={() => setToggleButtons(!toggleButtons)}>Show Favorites</button>
                         : 
-                        <button type='button' className='btn btn-large btn-success fs-5 fw-light  border border-2 text-light disabled' aria-disabled="true">Show Favorites</button>}
+                        <button type='button' className='btn btn-large btn-success fw-light  border border-2 text-light disabled' aria-disabled="true">Show Favorites</button>}
                     </div>
-                {/* </div> */}
                 <div className='col'>
                     {!toggleButtons ? userJokes : userFavorites}
                 </div>

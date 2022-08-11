@@ -25,21 +25,21 @@ function CreatedJokeCard({ index, joke, onDeleteMyJoke, setIsLoading, isLoading 
     
 
     return (
-        <div className="card border border-dark mt-3 mb-3 text-start">
-            <div className="card-header fs-5 fw-bold" style={{backgroundColor: 'lightblue'}}>
+        <div className="card border border-dark ms-5 me-5 mt-3 mb-3 text-start">
+            <div className="card-header fw-bold" style={{backgroundColor: 'lightblue'}}>
                 # {index+1}
             </div>
             <div className="card-body">
-                <h4 className="card-title fs-4"><b>Setup:</b> {setup}</h4>
-                <h5 className="card-text fs-4"><b>Punchline:</b> {punchline}</h5>
+                <h6 className="card-title"><b>Setup:</b> {setup}</h6>
+                <h6 className="card-text"><b>Punchline:</b> {punchline}</h6>
                 
             </div>
             <div className="card-footer text-end">
-                <span className="badge rounded-pill text-bg-info fs-5">😂 {likes}</span>
+                <span className="badge rounded-pill text-bg-info fs-6">😂 {likes}</span>
                 &nbsp;&nbsp;
-                <button type='button' className='btn border border-2 rounded btn-secondary' onClick={() => setShow(true)}>Edit</button>
+                <button type='button' className='btn btn-sm border border-2 rounded btn-secondary' onClick={() => setShow(true)}>Edit</button>
                 &nbsp;&nbsp;
-                <button type='button' className='btn border border-2 rounded btn-danger' onClick={(jokeId) => onDeleteMyJoke(id)}>Delete</button>
+                <button type='button' className='btn btn-sm border border-2 rounded btn-danger' onClick={(jokeId) => onDeleteMyJoke(id)}>Delete</button>
             </div>
 
             

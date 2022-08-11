@@ -44,7 +44,7 @@ function LoginForm({ onLogin }) {
         </video>
         <div
           id="login"
-          className="card text-start border border-dark border-2 fs-4"
+          className="card text-start border border-dark border-2"
         >
           <form className="px-4 py-3" onSubmit={handleLoginSubmit}>
             <div className="mb-3">
@@ -79,7 +79,7 @@ function LoginForm({ onLogin }) {
               </button>
             </div>
             <p style={{ color: "red" }}>{error}</p>
-            <p className="text-center fs-5">
+            <p className="text-center">
               Don't have an account? &nbsp;
               <Link to="/signup">Sign Up</Link>
             </p>
