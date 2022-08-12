@@ -18,6 +18,7 @@ function CreatedJokeCard({ index, joke, onDeleteMyJoke, setIsLoading, isLoading 
         })
         .then((r) => r.json())
         .then((update) => {
+            console.log(update);
             setIsLoading(!isLoading);
             setShow(false);
         })

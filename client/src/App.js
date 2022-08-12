@@ -58,7 +58,7 @@ function App() {
           <Route exact path="/joke">
             <Joke
               user={user}
-              se tUser={setUser}
+              setUser={setUser}
               noticeReRender={noticeReRender}
               setNoticeReRender={setNoticeReRender}
             />

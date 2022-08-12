@@ -93,6 +93,7 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
       });
     setTogglePL(false);
   }, [toggleFetch]);
+
   //send notification after reaching every 50pt milestone
   function handleCreateScoreNotif(score) {
     fetch(`/api/notifications`, {
@@ -108,33 +109,30 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
         .then((r) => r.json())
         .then((update) => {
           console.log(update);
-          setNoticeReRender(!setNoticeReRender);
+          setNoticeReRender(!noticeReRender);
         });
-      }
+  }
       
-      // if (user.score % 50 === 0 && user.score !== 0) {
-  //   handleCreateScoreNotif(user.score);
-  // }
   
-    function handleUpdateScore(score, numSolved) {
-      fetch(`/api/users/${user.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          score: score,
-          problems_solved: numSolved,
-        }),
-      })
-        .then((r) => r.json())
-        .then((update) => {
-          console.log(update);
-          setUser(update);
-        });
-  
-      if (score % 50 === 0 && score !== 0) {
-        handleCreateScoreNotif(score);
-      }
+  function handleUpdateScore(score, numSolved) {
+    fetch(`/api/users/${user.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        score: score,
+        problems_solved: numSolved,
+      }),
+    })
+      .then((r) => r.json())
+      .then((update) => {
+        console.log(update);
+        setUser(update);
+      });
+
+    if (score % 50 === 0 && score !== 0) {
+      handleCreateScoreNotif(score);
     }
+  }
 
   function handleSubmitAns(e) {
     e.preventDefault();
