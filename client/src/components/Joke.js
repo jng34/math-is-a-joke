@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Timer from './Timer';
 import HowToPlayModal from './HowToPlayModal';
-import { Player, Controls } from '@lottiefiles/react-lottie-player';
+import { Player } from '@lottiefiles/react-lottie-player';
 
 
 function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
@@ -93,6 +93,7 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
       });
     setTogglePL(false);
   }, [toggleFetch]);
+
   //send notification after reaching every 50pt milestone
   function handleCreateScoreNotif(score) {
     fetch(`/api/notifications`, {
@@ -108,33 +109,30 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
         .then((r) => r.json())
         .then((update) => {
           console.log(update);
-          setNoticeReRender(!setNoticeReRender);
+          setNoticeReRender(!noticeReRender);
         });
-      }
+  }
       
-      // if (user.score % 50 === 0 && user.score !== 0) {
-  //   handleCreateScoreNotif(user.score);
-  // }
   
-    function handleUpdateScore(score, numSolved) {
-      fetch(`/api/users/${user.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          score: score,
-          problems_solved: numSolved,
-        }),
-      })
-        .then((r) => r.json())
-        .then((update) => {
-          console.log(update);
-          setUser(update);
-        });
-  
-      if (score % 50 === 0 && score !== 0) {
-        handleCreateScoreNotif(score);
-      }
+  function handleUpdateScore(score, numSolved) {
+    fetch(`/api/users/${user.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        score: score,
+        problems_solved: numSolved,
+      }),
+    })
+      .then((r) => r.json())
+      .then((update) => {
+        console.log(update);
+        setUser(update);
+      });
+
+    if (score % 50 === 0 && score !== 0) {
+      handleCreateScoreNotif(score);
     }
+  }
 
   function handleSubmitAns(e) {
     e.preventDefault();
@@ -226,12 +224,14 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
   return (
     <div
       id="chalkboard"
-      className="container mt-5"
+      className="container"
     >
       <div id="joke-board" className="col">
-        <div className="align-self-center mt-5">
+        <div className="align-self-center">
           <div className="container text-center align-items-center">
-            <div className="row text-center mt-5 mb-5">
+            <div className="row">
+              <br />
+              <br />
               <br />
               <br />
             </div>
@@ -239,13 +239,12 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
               {!toggleMathProb ? (
                 <div>
                   <br />
-                  <h1>{joke.setup}</h1>
-                  <br />
+                  <h3>{joke.setup}</h3>
                   <br />
                   <br />
                   <button
                     type="button"
-                    className="border border-3 border-dark rounded-pill btn btn-lg btn-warning fs-4"
+                    className="border border-3 border-dark rounded-pill btn btn-warning fs-5"
                     onClick={() => setToggleMathProb(!toggleMathProb)}
                   >
                     {" "}
@@ -255,12 +254,11 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
                   <br />
                   <button
                     type="button"
-                    className="border border-dark rounded-pill btn btn-sm bg-light text-dark fs-5"
+                    className="border border-dark rounded-pill btn btn-sm bg-light text-dark"
                     onClick={() => setShowPointSys(true)}
                   >
                     How To Play
                   </button>
-
                   <HowToPlayModal
                     showPointSys={showPointSys}
                     setShowPointSys={setShowPointSys}
@@ -275,10 +273,10 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
                           Correct!
                         </h4>
                         <br />
-                        <h1>{joke.setup}</h1>
-                        <h2>
+                        <h4>{joke.setup}</h4>
+                        <h5>
                           <em> ⇾ {joke.punchline}</em>
-                        </h2>
+                        </h5>
                         <br />
                         {!toggleLikeFav ? (
                           <button
@@ -291,11 +289,11 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
                               loop
                               speed={"1.5"}
                               src="https://assets10.lottiefiles.com/packages/lf20_RfD6Lb.json"
-                              style={{ height: "80px", width: "80px" }}
+                              style={{ height: "60px", width: "60px" }}
                             ></Player>
                           </button>
                         ) : toggleAfterLike ? (
-                          <p className="fs-3">Liked!</p>
+                          <p className="fs-5 fw-bold">Liked!</p>
                         ) : (
                           <></>
                         )}
@@ -311,13 +309,13 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
                               loop
                               speed={"7"}
                               src="https://assets9.lottiefiles.com/private_files/lf30_kbu3mkpv.json"
-                              style={{ height: "80px", width: "80px" }}
+                              style={{ height: "60px", width: "60px" }}
                             ></Player>
                           </button>
                         ) : toggleAfterLike ? (
                           <></>
                         ) : (
-                          <p className="fs-3">Disiked!</p>
+                          <p className="fs-5 fw-bold">Disiked!</p>
                         )}
                         <br />
                         <br />
@@ -329,7 +327,7 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
                               Create a joke for +5 pts!
                             </p>
                             <button
-                              className="btn fs-5 border border-2 border-light bg-primary text-light"
+                              className="btn fs-6 border border-2 border-light bg-primary text-light"
                               onClick={() => history.push("/createjoke")}
                             >
                               Create Joke
@@ -340,7 +338,7 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
                         )}
                         &nbsp;
                         <button
-                          className="btn fs-5 border border-2 bg-secondary text-light"
+                          className="btn fs-6 border border-2 bg-secondary text-light"
                           onClick={handleNextClick}
                         >
                           Next Joke
@@ -348,16 +346,16 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
                       </div>
                     ) : (
                       <div>
-                        <p style={{ fontSize: "75px" }}>{problem}</p>
-                        <h4 style={{ color: "red", fontWeight: "bold" }}>
+                        <p style={{ fontSize: "65px" }}>{problem}</p>
+                        <h5 style={{ color: "red", fontWeight: "bold" }}>
                           Incorrect.
-                        </h4>
+                        </h5>
                         <br />
-                        <h4>Your Answer: {inputAns}</h4>
-                        <h4>Correct Answer: {answer}</h4>
+                        <h5>Your Answer: {inputAns}</h5>
+                        <h5>Correct Answer: {answer}</h5>
                         <br />
                         <button
-                          className="btn fs-5 border border-2 bg-secondary text-light"
+                          className="btn btn-sm fs-5 border border-2 bg-secondary text-light"
                           onClick={handleNextClick}
                         >
                           Next Joke
@@ -381,7 +379,7 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
                         Solve:
                       </label>
                       <br />
-                      <label htmlFor="answer" style={{ fontSize: "75px" }}>
+                      <label htmlFor="answer" style={{ fontSize: "70px" }}>
                         {problem}
                       </label>
                       <br />

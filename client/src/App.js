@@ -40,7 +40,6 @@ function App() {
             <Main
               user={user}
               setUser={setUser}
-              toggleHeader={toggleHeader}
               setToggleHeader={setToggleHeader}
             />
           </Route>

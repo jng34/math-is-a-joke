@@ -125,29 +125,29 @@ function Friends({ user }) {
     if (!user.username) { history.push("/") }
 
     return (
-        <div className='text-center mt-4'>
-            <p className='fs-1'>Friends</p>
+        <div className='text-center'>
+            <p className='fs-3'>Friends</p>
             <div className='container'>
-                <div className='col text-start'>
+                <div className='col text-start ms-5'>
                     {!toggle ? 
-                    <button type='button' className='btn btn-large btn-success fs-5 fw-light border border-2 disabled' aria-disabled="true">Friends</button> 
+                    <button type='button' className='btn btn-large btn-success fw-light border border-2 disabled' aria-disabled="true">Friends</button> 
                     : 
-                    <button type='button' className='btn btn-large btn-success fs-5 fw-light border border-2' onClick={() => setToggle(!toggle)}>Friends</button>}
+                    <button type='button' className='btn btn-large btn-success fw-light border border-2' onClick={() => setToggle(!toggle)}>Friends</button>}
                     &nbsp;&nbsp;
                     {!toggle ? 
-                    <button type='button' className='btn btn-large btn-info fs-5 fw-light border border-2 text-light' onClick={() => setToggle(!toggle)}>Friend Requests</button>
+                    <button type='button' className='btn btn-large btn-info fw-light border border-2 text-light' onClick={() => setToggle(!toggle)}>Friend Requests</button>
                     : 
-                    <button type='button' className='btn btn-large btn-info fs-5 fw-light  border border-2 text-light disabled' aria-disabled="true">Friend Requests</button>}
+                    <button type='button' className='btn btn-large btn-info fw-light  border border-2 text-light disabled' aria-disabled="true">Friend Requests</button>}
                 </div>
             <br/>
                 {!toggle ? <div className='col'>{renderFriends}</div> :
                 <div className='row'>
                     <div className='col'>
-                        <h3>Sent Requests</h3>               
+                        <h5>Sent Requests</h5>               
                         {renderSentReqs}
                     </div>
                     <div className='col'>
-                        <h3>Pending Requests</h3>               
+                        <h5>Pending Requests</h5>               
                         {renderRecReqs}
                     </div>
                 </div>}

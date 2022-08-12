@@ -66,17 +66,17 @@ function LeaderBoard({ user }) {
     if (!user) { history.push("/") }
 
     return (
-        <div id="lbtable" className='mx-auto mt-4'>
-            <p className='text-center fs-1'>LeaderBoard</p>
+        <div id="lbtable" className='mx-auto'>
+            <p className='text-center fs-3'>LeaderBoard</p>
             <table className='table table-bordered table-hover bg-light border border-3 border-dark mt-4'>
                 <thead>
                     <tr>
-                        <th className='fs-3 fw-light'># Rank</th>
-                        <th className='fs-3 fw-light'>Score</th>
-                        <th className='fs-3 fw-light'># Problems Solved</th>
-                        <th className='fs-3 fw-light'>Created Jokes</th>
-                        <th className='fs-3 fw-light'>UserName</th>
-                        <th className='fs-3 fw-light'>Friend Requests</th>
+                        <th className='fs-5 fw-light'># Rank</th>
+                        <th className='fs-5 fw-light'>Score</th>
+                        <th className='fs-5 fw-light'># Problems Solved</th>
+                        <th className='fs-5 fw-light'>Created Jokes</th>
+                        <th className='fs-5 fw-light'>UserName</th>
+                        <th className='fs-5 fw-light'>Friend Requests</th>
                     </tr>
                 </thead>
                 <tbody>

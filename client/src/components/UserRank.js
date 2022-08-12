@@ -25,7 +25,7 @@ function UserRank({ user, person, index, madeFriends,  pendingFriends,  onSendRe
 
     return (
         <>
-            <tr className={username !== user.username ? 'fs-5' : 'fw-bold fs-4'} style={{cursor: 'pointer'}}>
+            <tr className={username !== user.username ? '' : 'fw-bold'} style={{cursor: 'pointer'}}>
                 <td>{index+1}</td>
                 <td>{score}</td>
                 <td>{problems_solved}</td>
@@ -46,7 +46,7 @@ function UserRank({ user, person, index, madeFriends,  pendingFriends,  onSendRe
                         )
                         : 
                         ( <>
-                        <button type='button' className='btn btn-sm border border-2 border-info text-info fs-5' onClick={(friendID) => onSendRequest(id)}>
+                        <button type='button' className='btn btn-sm border border-2 border-info' onClick={(friendID) => onSendRequest(id)}>
                             Add Friend &nbsp;
                             <img src={addFriendPic} alt="add-friend" style={{width: '2rem'}}/> 
                         </button>

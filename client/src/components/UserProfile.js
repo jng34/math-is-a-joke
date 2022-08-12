@@ -71,18 +71,18 @@ function UserProfile({ user, setUser }) {
 
 
     return (
-      <div className="align-self-center text-center mt-4">
+      <div className="align-self-center text-center">
         <div className="container mx-auto px-5">
           <div className="row">
-            <p className="fs-1">My Profile</p>
+            <p className="fs-3">My Profile</p>
           </div>
-          <div className="row align-items-center mt-3 border border-2 border-dark bg-light rounded mx-auto pt-5 pb-5">
-            <div className="col me-5">
-              <p className="fs-1">{username}</p>
+          <div className="row align-items-center border border-2 border-dark bg-light rounded mx-auto pt-5 pb-5">
+            <div className="col">
+              <p className="fs-4">{username}</p>
               <img
                 src={profile_img}
                 alt="profile-img"
-                style={{ width: "200px", borderRadius: "50%" }}
+                style={{ width: "175px", borderRadius: "50%" }}
               />
               <br />
               <br />
@@ -95,45 +95,67 @@ function UserProfile({ user, setUser }) {
                 Edit
               </Button>
             </div>
-            <div className="col text-start ms-5">
-              <p className="fs-4">
-                Score: <b>{score}</b> <br />
-                Problems solved: <b>{problems_solved}</b>
-              </p>
-              <p className="fs-4">
+            <div className="col text-start">
+              <div className="row">
+                <div className="col">
+                  <p>
+                    Score: <b>{score}</b>
+                    <br/>
+                    Problems solved: <b>{problems_solved}</b>
+                  </p>
+                  <p>
+                    <Link to="/notifications">My Inbox</Link>
+                  </p>
+                  <p>
+                    <Link to="/myjokes">My Jokes</Link>
+                  </p>
+                  <p>
+                    <Link to="/friends">My Friends</Link>
+                  </p>
+                </div>
+                <div className="col">
+                  Email: {email}
+                  <Button
+                    variant="secondary"
+                    onClick={() => setShowEmail(true)}
+                    className="rounded-pill"
+                    size="sm"
+                  >
+                    Change Email
+                  </Button>
+                  <br />
+                  <br />
+                  <Button
+                    variant="secondary"
+                    onClick={() => setShowPW(true)}
+                    className="rounded-pill"
+                    size="sm"
+                  >
+                    Change Password
+                  </Button>
+                  <br />
+                  <br />
+                  <Button
+                    variant="danger"
+                    onClick={() => setShow(true)}
+                    className="rounded-pill"
+                    size="sm"
+                  >
+                    Delete Account
+                  </Button>
+                </div>
+              </div>
+
+              {/* <p>
                 <Link to="/notifications">My Inbox</Link>
               </p>
-              <p className="fs-4">
+              <p>
                 <Link to="/myjokes">My Jokes</Link>
               </p>
-              <p className="fs-4">
+              <p>
                 <Link to="/friends">My Friends</Link>
-              </p>
-              <p className="fs-4">Email: {email}</p>
-              <Button
-                variant="secondary"
-                onClick={() => setShowEmail(true)}
-                className="rounded-pill"
-                size="sm"
-              >
-                Change Email
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={() => setShowPW(true)}
-                className="rounded-pill"
-                size="sm"
-              >
-                Change Password
-              </Button>
-              <Button
-                variant="danger"
-                onClick={() => setShow(true)}
-                className="rounded-pill"
-                size="sm"
-              >
-                Delete Account
-              </Button>
+              </p> */}
+
               <ProfileModals
                 profileImg={profile_img}
                 showPicURL={showPicURL}

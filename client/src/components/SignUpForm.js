@@ -133,7 +133,7 @@ function SignUpForm({ onSignUp }) {
             </p>
           ))}
           <br />
-          <p className="text-center fs-5">
+          <p className="text-center">
             Already have an account? &nbsp;
             <Link to="/login">Log In</Link>
           </p>
