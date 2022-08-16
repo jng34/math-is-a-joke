@@ -62,6 +62,26 @@ code {
   z-index: -1;
 }
 
+@media (min-aspect-ratio: 16/9) {
+  #myVideo {
+      position: fixed;
+      height: 100vh;
+      width: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+} 
+
+@media (max-aspect-ratio: 16/9) {
+#myVideo {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+} 
+
 
 #chalkboard {
   background-image: url('./media/einstein.png'), url('./media/chalkboard2.png');

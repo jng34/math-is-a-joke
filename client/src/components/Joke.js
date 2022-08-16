@@ -5,7 +5,7 @@ import HowToPlayModal from './HowToPlayModal';
 import { Player } from '@lottiefiles/react-lottie-player';
 
 
-function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
+function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJokeFetch }) {
   const [joke, setJoke] = useState({});
   const [likesCount, setLikesCount] = useState();
   const [problem, setProblem] = useState("");
@@ -15,7 +15,6 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
   const [togglePL, setTogglePL] = useState(false);
   const [level, setLevel] = useState(20);
   const [count, setCount] = useState(20);
-  const [toggleFetch, setToggleFetch] = useState(false);
   const [toggleMathProb, setToggleMathProb] = useState(false);
   const [toggleLikeFav, setToggleLikeFav] = useState(false);
   const [toggleAfterLike, setToggleAfterLike] = useState(false);
@@ -80,19 +79,32 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
     }
   }
 
+  //state for joke list
+  const [allJokes, setAllJokes] = useState([]);
+
+  //generate new joke in front end w/o API call
+  const setNewJoke = () => {
+    const randomNum = Math.floor(Math.random() * allJokes.length);
+    const randomJokeObj = allJokes[randomNum];
+    setJoke(randomJokeObj);
+    setLikesCount(randomJokeObj.likes);
+  };
+
   useEffect(() => {
     generateMathProb();
     fetch("/api/jokes")
       .then((res) => res.json())
       .then((allJokes) => {
-        //sets random joke
+        //sets entire joke list
+        setAllJokes(allJokes);
+        //sets initial random joke
         const randomNum = Math.floor(Math.random() * allJokes.length);
         const randomJokeObj = allJokes[randomNum];
         setJoke(randomJokeObj);
         setLikesCount(randomJokeObj.likes);
       });
     setTogglePL(false);
-  }, [toggleFetch]);
+  }, [toggleJokeFetch]);
 
   //send notification after reaching every 50pt milestone
   function handleCreateScoreNotif(score) {
@@ -104,13 +116,12 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
         user_id: user.id,
         notice_type: "score",
         message: `Congratulations! You reached a score of ${score}.`,
-        }),
-      })
-        .then((r) => r.json())
-        .then((update) => setNoticeReRender(!noticeReRender))
+      }),
+    })
+      .then((r) => r.json())
+      .then((update) => setNoticeReRender(!noticeReRender));
   }
-      
-  
+
   function handleUpdateScore(score, numSolved) {
     fetch(`/api/users/${user.id}`, {
       method: "PATCH",
@@ -163,7 +174,7 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ likes: likesCount + 1 }),
-      })
+      });
 
       //create favorite
       fetch("/api/favorites", {
@@ -172,7 +183,7 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
         body: JSON.stringify({
           user_id: user.id,
           joke_id: joke.id,
-        })
+        }),
       });
       //create notification for like
       fetch("/api/notifications", {
@@ -183,8 +194,8 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
           user_id: joke.user_id,
           notice_type: "favorite",
           message: `${user.username} liked your joke: \n "${joke.setup}" \n "${joke.punchline}"`,
-        })
-      })
+        }),
+      });
     }
   }
 
@@ -195,9 +206,10 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
 
   function handleNextClick() {
     if (user.username) {
+      generateMathProb();
+      setNewJoke();
       setInputAns("");
       setToggleLikeFav(false);
-      setToggleFetch(!toggleFetch);
       setToggleMathProb(!toggleMathProb);
       setAnsMsg(null);
       diffLevel();
@@ -211,10 +223,7 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
   }
 
   return (
-    <div
-      id="chalkboard"
-      className="container"
-    >
+    <div id="chalkboard" className="container">
       <div id="joke-board" className="col">
         <div className="align-self-center">
           <div className="container text-center align-items-center">

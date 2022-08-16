@@ -19,6 +19,7 @@ function App() {
   const [user, setUser] = useState({});
   const [noticeReRender, setNoticeReRender] = useState(false);
   const [toggleHeader, setToggleHeader] = useState(false);
+  const [toggleJokeFetch, setToggleJokeFetch] = useState(false);
 
   useEffect(() => {
     fetch("/api/me").then((r) => {
@@ -33,57 +34,63 @@ function App() {
   // if (!user.username) return <div id="loader"></div>;
   
   return user && user.username ? (
-      <div style={{ fontFamily: "Love Ya Like A Sister" }}>
-        {user.username ? <Header user={user} setUser={setUser} /> : null}
-        <Switch>
-          <Route exact path="/">
-            <Main
-              user={user}
-              setUser={setUser}
-              setToggleHeader={setToggleHeader}
-            />
-          </Route>
-          <Route exact path="/login">
-            <LoginForm user={user} onLogin={setUser} />
-          </Route>
-          <Route exact path="/signup">
-            <SignUpForm onSignUp={setUser} />
-          </Route>
-          <Route exact path="/profile">
-            <UserProfile user={user} setUser={setUser} />
-          </Route>
-          <Route exact path="/friends">
-            <Friends user={user} />
-          </Route>
-          <Route exact path="/joke">
-            <Joke
-              user={user}
-              setUser={setUser}
-              noticeReRender={noticeReRender}
-              setNoticeReRender={setNoticeReRender}
-            />
-          </Route>
-          <Route exact path="/createjoke">
-            <CreateJoke user={user} setUser={setUser} />
-          </Route>
-          <Route exact path="/myjokes">
-            <MyJokes user={user} />
-          </Route>
-          <Route exact path="/leaderboard">
-            <LeaderBoard user={user} />
-          </Route>
-          <Route exact path="/howtoplay">
-            <HowToPlay user={user} />
-          </Route>
-          <Route exact path="/notifications">
-            <Notifications
-              user={user}
-              noticeReRender={noticeReRender}
-              setNoticeReRender={setNoticeReRender}
-            />
-          </Route>
-        </Switch>
-      </div>
+    <div style={{ fontFamily: "Love Ya Like A Sister" }}>
+      {user.username ? <Header user={user} setUser={setUser} /> : null}
+      <Switch>
+        <Route exact path="/">
+          <Main
+            user={user}
+            setUser={setUser}
+            setToggleHeader={setToggleHeader}
+          />
+        </Route>
+        <Route exact path="/login">
+          <LoginForm user={user} onLogin={setUser} />
+        </Route>
+        <Route exact path="/signup">
+          <SignUpForm onSignUp={setUser} />
+        </Route>
+        <Route exact path="/profile">
+          <UserProfile user={user} setUser={setUser} />
+        </Route>
+        <Route exact path="/friends">
+          <Friends user={user} />
+        </Route>
+        <Route exact path="/joke">
+          <Joke
+            user={user}
+            setUser={setUser}
+            noticeReRender={noticeReRender}
+            setNoticeReRender={setNoticeReRender}
+            toggleJokeFetch={toggleJokeFetch}
+          />
+        </Route>
+        <Route exact path="/createjoke">
+          <CreateJoke
+            user={user}
+            setUser={setUser}
+            toggleJokeFetch={toggleJokeFetch}
+            setToggleJokeFetch={setToggleJokeFetch}
+          />
+        </Route>
+        <Route exact path="/myjokes">
+          <MyJokes user={user} />
+        </Route>
+        <Route exact path="/leaderboard">
+          <LeaderBoard user={user} />
+        </Route>
+        <Route exact path="/howtoplay">
+          <HowToPlay user={user} />
+        </Route>
+        <Route exact path="/notifications">
+          <Notifications
+            user={user}
+            noticeReRender={noticeReRender}
+            setNoticeReRender={setNoticeReRender}
+          />
+        </Route>
+      </Switch>
+    </div>
   ) : (
     <div style={{ fontFamily: "Love Ya Like A Sister" }}>
       <Switch>
@@ -100,7 +107,8 @@ function App() {
         </Route>
         <Route exact path="/signup">
           <SignUpForm onSignUp={setUser} />
-        </Route>x``x``x
+        </Route>
+        x``x``x
       </Switch>
     </div>
   );
