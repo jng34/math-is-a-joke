@@ -21,18 +21,17 @@ function Header({ user, setUser }) {
     }
 
     return (
-      <div className="container" style={{ position: "sticky" }}>
-        <div className="row align-items-center mx-auto">
-          <div className="col text-center">
-            <h3
-              style={{ fontSize: "44px", cursor: "pointer" }}
-              onClick={() => history.push("/")}
-            >
-              Math is a J😂ke!
-            </h3>
-          </div>
-          <div className="col"></div>
-          <div className="col text-end me-4">
+      <div className="d-flex justify-content-around align-items-center">
+        <div>
+          <h3
+            style={{ fontSize: "44px", cursor: "pointer" }}
+            onClick={() => history.push("/")}
+          >
+            Math is a J😂ke!
+          </h3>
+        </div>
+
+        <div className='text-end'>
             {user.username ? (
               <></>
             ) : (
@@ -62,8 +61,7 @@ function Header({ user, setUser }) {
                   onClick={() => history.push("/notifications")}
                 >
                   <FiMail style={{ fontSize: "45px" }}></FiMail>
-                  {user.notifications.length &&
-                  user.notifications.length > 0 ? (
+                  {user.notifications.length && user.notifications.length > 0 ? (
                     <span className="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-danger">
                       {user.notifications.length}
                     </span>
@@ -71,14 +69,14 @@ function Header({ user, setUser }) {
                     <></>
                   )}
                 </button>
-                &nbsp;
+                {/* &nbsp; */}
                 <button
                   className="btn btn-warning rounded-pill btn-small border border-2 border-dark"
                   onClick={() => history.push("/profile")}
                 >
                   My Profile
                 </button>
-                &nbsp;&nbsp;
+                {/* &nbsp;&nbsp; */}
                 <button
                   className="btn btn-secondary rounded-pill border border-2 border-dark"
                   onClick={handleLogout}
@@ -106,8 +104,7 @@ function Header({ user, setUser }) {
             )}
           </div>
         </div>
-      </div>
-    );
+    )
     }
     
     export default Header;

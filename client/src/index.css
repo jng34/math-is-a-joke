@@ -79,7 +79,7 @@ code {
   position: relative;
   align-items: center;
   justify-content: center;
-  width: 650px;
+  max-width: 650px;
   height: 450px;
   margin: auto;
   /* margin-top: 25px; */
@@ -98,9 +98,12 @@ code {
 }
 
 #lbtable {
-  width: 130vh;
+  max-width: 70%;
   text-align: end;
+  flex: auto;
   margin: auto;
+  /* margin-left: 300px; */
+  /* margin-right: 300px;  */
 }
 
 .forms {
@@ -140,62 +143,6 @@ code {
   animation: spin 2s linear infinite;
 }
 
-/* Safari */
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-#emoji {
-  font-size: 50px;
-  position: fixed;
-  animation: emoji-spin 3s linear infinite;
-  animation-fill-mode: both;
-}
-
-@keyframes emoji-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-#emoji-bottom {
-  font-size: 50px;
-  margin-left: 10px;
-  margin-right: 10px;
-  position: fixed;
-  animation: emoji-bottom 2s linear infinite;
-  animation-fill-mode: both;
-}
-
-@keyframes emoji-bottom {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(-360deg);
-  }
-}
 
 .transparent-button{
   background-color: transparent;
@@ -207,3 +154,17 @@ code {
   outline: none;
 }
 
+/* small tablet styles */
+@media screen and (min-width: 620px) {
+
+}
+
+/* large tablet & laptop styles */
+@media screen and (min-width: 960px) {
+
+}
+
+/* desktop styles */
+@media screen and (min-width: 1200px) {
+
+}
