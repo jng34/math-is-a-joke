@@ -24,7 +24,6 @@ function UserProfile({ user, setUser }) {
         })
         .then(r => r.json())
         .then(update => {
-            console.log(update);
             setUser(update);
             setShowPicURL(false);
         });
@@ -38,7 +37,6 @@ function UserProfile({ user, setUser }) {
         })
         .then(r => r.json())
         .then(update => {
-            console.log(update);
             setUser(update);
             setShowEmail(false);
         });
@@ -52,14 +50,13 @@ function UserProfile({ user, setUser }) {
       })
         .then((r) => r.json())
         .then((update) => {
-          console.log(update);
           setUser(update);
           setShowPW(false);
         });
     };
 
     function handleDeleteUser() {
-        fetch(`/api/users/${id}`, { method: "DELETE" }).then(r => console.log(r));
+        fetch(`/api/users/${id}`, { method: "DELETE" })
         fetch("/api/logout", { method: "DELETE" })
         .then((r) => {
             if (r.ok) {

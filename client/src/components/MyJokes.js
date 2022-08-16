@@ -22,7 +22,6 @@ function MyJokes({ user }) {
     
     function handleDeleteMyJoke(id) {
         fetch(`/api/jokes/${id}`, { method: "DELETE" })
-        .then(r => console.log(r))
         const updatedCreatedJokes = createdJokes.filter((joke) => joke.id !== id);
         setCreatedJokes(updatedCreatedJokes);
     }

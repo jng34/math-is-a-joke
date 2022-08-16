@@ -107,10 +107,7 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
         }),
       })
         .then((r) => r.json())
-        .then((update) => {
-          console.log(update);
-          setNoticeReRender(!noticeReRender);
-        });
+        .then((update) => setNoticeReRender(!noticeReRender))
   }
       
   
@@ -124,10 +121,7 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
       }),
     })
       .then((r) => r.json())
-      .then((update) => {
-        console.log(update);
-        setUser(update);
-      });
+      .then((update) => setUser(update));
 
     if (score % 50 === 0 && score !== 0) {
       handleCreateScoreNotif(score);
@@ -170,10 +164,7 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ likes: likesCount + 1 }),
       })
-        .then((r) => r.json())
-        .then((update) => {
-          console.log(update);
-        });
+
       //create favorite
       fetch("/api/favorites", {
         method: "POST",
@@ -181,7 +172,7 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
         body: JSON.stringify({
           user_id: user.id,
           joke_id: joke.id,
-        }),
+        })
       });
       //create notification for like
       fetch("/api/notifications", {
@@ -192,10 +183,8 @@ function Joke({ user, setUser, noticeReRender, setNoticeReRender }) {
           user_id: joke.user_id,
           notice_type: "favorite",
           message: `${user.username} liked your joke: \n "${joke.setup}" \n "${joke.punchline}"`,
-        }),
+        })
       })
-        .then((r) => r.json())
-        .then((data) => console.log(data));
     }
   }
 

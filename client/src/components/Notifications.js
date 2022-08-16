@@ -11,16 +11,13 @@ function Notifications({ user, noticeReRender, setNoticeReRender }) {
   useEffect(() => {
     fetch("/api/me")
       .then((r) => r.json())
-      .then((data) => {
-        console.log(data.notifications);
-        setNotices(data.notifications);
-      });
+      .then((data) => setNotices(data.notifications));
   }, [isLoading]);
 
 
   function handleDeleteNotice(id) {
-    fetch(`/api/notifications/${id}`, { method: "DELETE" }).then((r) => {
-      console.log(r);
+    fetch(`/api/notifications/${id}`, { method: "DELETE" })
+    .then(() => {
       setIsLoading(!isLoading);
       setNoticeReRender(!noticeReRender);
     });

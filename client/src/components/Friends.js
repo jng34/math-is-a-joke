@@ -28,19 +28,13 @@ function Friends({ user }) {
     useEffect(() => {
         fetch(`/api/friends/sent_requests/${user.id}`)
         .then(r => r.json())
-        .then((receivedReqs) => {
-            console.log(receivedReqs);
-            setSentReqs(receivedReqs);
-        })
+        .then((receivedReqs) => setSentReqs(receivedReqs))
     }, [isLoading])
 
     useEffect(() => {
         fetch(`/api/friends/received_requests/${user.id}`)
         .then(r => r.json())
-        .then((receivedReqs) => {
-            console.log(receivedReqs);
-            setReceivedReqs(receivedReqs);
-        })
+        .then((receivedReqs) => setReceivedReqs(receivedReqs))
     }, [isLoading])    
 
     function handleDeleteFriend(id) {
@@ -66,10 +60,6 @@ function Friends({ user }) {
                 status: true
             }),
         })
-        .then((r) => r.json())
-        .then((update) => {
-            console.log(update);
-        });    
 
         //create notification to sender
         fetch("/api/notifications", {
@@ -83,10 +73,7 @@ function Friends({ user }) {
             })
         })
         .then(r => r.json())
-        .then((data) => {
-            console.log(data);
-            setIsLoading(!isLoading);
-        })
+        .then((data) => setIsLoading(!isLoading))
     }
     
     function handleDeleteRequest(id) {

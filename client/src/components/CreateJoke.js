@@ -21,8 +21,6 @@ function CreateJoke({ user, setUser }) {
                 likes: 0
             })
         })
-        .then(r => r.json())
-        .then(data => console.log(data))  
 
         //Add +3 pts to score for creating a joke
         fetch(`/api/users/${user.id}`, {
@@ -31,10 +29,7 @@ function CreateJoke({ user, setUser }) {
             body: JSON.stringify({ score: user.score + 5 })
         })
         .then((r) => r.json())
-        .then((update) => {
-            console.log(update);
-            setUser(update);
-        });
+        .then((update) => setUser(update));
         setShow(true);
     }
 

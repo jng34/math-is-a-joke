@@ -35,11 +35,6 @@ function LeaderBoard({ user }) {
                 sent_to_id: reqFriendId
             })
         })
-        .then((r) => {
-            console.log(r)
-            // setReRender(!reRender)
-        }
-        );
 
         //create notification for user
         fetch("/api/notifications", {
@@ -53,10 +48,7 @@ function LeaderBoard({ user }) {
             })
         })
         .then(r => r.json())
-        .then((data) => {
-            console.log(data)
-            setReRender(!reRender)
-        })
+        .then((data) => setReRender(!reRender))
     }
    
     const renderAllUsers = allUsers.map((person, index) => { 
