@@ -8,22 +8,4 @@ class UserSerializer < ActiveModel::Serializer
   has_many :jokes
   has_many :notifications
 
-  
-  # def accepted_friends
-  #   object.made_friends
-  # end
-  
-  # def pending_friends
-  #   object.friend_requests
-  # end
-
-  # def sent_reqs_to
-  #   object.sent_reqs
-  # end
-  
-  # def received_reqs_from
-  #   object.received_reqs
-  # end
-
-
 end

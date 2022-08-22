@@ -27,12 +27,14 @@ function LeaderBoard({ user }) {
     }, [reRender])
 
     function handleFriendRequest(reqFriendId) {
+        //create friend request
         fetch("/api/friends", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
                 sent_by_id: user.id,
                 sent_to_id: reqFriendId
+                //default status -> false
             })
         })
 

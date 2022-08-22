@@ -19,6 +19,7 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
   const [toggleLikeFav, setToggleLikeFav] = useState(false);
   const [toggleAfterLike, setToggleAfterLike] = useState(false);
   const [showPointSys, setShowPointSys] = useState(false);
+  const [freeProbsCt, setFreeProbsCt] = useState(0);
   const history = useHistory();
 
   //Easy - 20s, Medium = 15s, Hard = 10s
@@ -204,8 +205,7 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
     setToggleAfterLike(false);
   }
 
-  function handleNextClick() {
-    if (user.username) {
+  function getNewJokeAndProb() {
       generateMathProb();
       setNewJoke();
       setInputAns("");
@@ -213,6 +213,14 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
       setToggleMathProb(!toggleMathProb);
       setAnsMsg(null);
       diffLevel();
+  }
+
+  function handleNextClick() {
+    if (user.username) {
+      getNewJokeAndProb();
+    } else if (freeProbsCt < 2) {
+      setFreeProbsCt(freeProbsCt+1)
+      getNewJokeAndProb();
     } else {
       history.push("/login");
     }
@@ -403,7 +411,6 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
           </div>
         </div>
       </div>
-      {/* <p id="emoji" className="position bottom right">😂</p> */}
     </div>
   );
 }
