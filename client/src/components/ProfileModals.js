@@ -50,7 +50,7 @@ function ProfileModals({
       </Modal.Header>
       <Modal.Body>
         <Form.Control
-          type="text"
+          type="email"
           placeholder={email}
           onChange={(e) => setNewEmail(e.target.value)}
         />

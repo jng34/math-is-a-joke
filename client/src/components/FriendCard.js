@@ -33,7 +33,7 @@ function FriendCard({ friendID, username, profileImg, email, score, handleDelete
                   style={{ width: "12rem", borderRadius: "50%" }}
                 />
               </div>
-              <div className="col align-self-center text-start ms-5">
+              <div className="col align-self-center text-start ms-5 text-wrap">
                 <h4>{username}</h4>
                 <br/>
                 <h5>Score: {score}</h5>

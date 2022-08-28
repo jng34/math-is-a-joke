@@ -219,7 +219,6 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
     if (user.username) {
       getNewJokeAndProb();
     } else if (freeProbsCt < 2) {
-      // 3 free problems before signup prompt
       setFreeProbsCt(freeProbsCt+1)
       getNewJokeAndProb();
     } else {

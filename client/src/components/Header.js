@@ -24,14 +24,14 @@ function Header({ user, setUser }) {
       <div className="d-flex justify-content-around align-items-center">
         <div>
           <h3
-            style={{ fontSize: "44px", cursor: "pointer" }}
+            id="header-title"
             onClick={() => history.push("/")}
           >
             Math is a J😂ke!
           </h3>
         </div>
 
-        <div className='text-end'>
+        <div id="nav-buttons" className='text-end'>
             {user.username ? (
               <></>
             ) : (
