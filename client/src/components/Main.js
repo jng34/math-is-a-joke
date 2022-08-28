@@ -17,8 +17,8 @@ function Main({ user, setUser, setToggleHeader }) {
       <video autoPlay muted loop id="myVideo">
         <source src={mathvid} type="video/mp4" />
       </video>
-      <div className="center-header">
-        <h2 style={{ fontSize: "75px", cursor: "pointer" }}>
+      <div id="center-header">
+        <h2 id="header">
           Math is a J😂ke!
         </h2>
       </div>

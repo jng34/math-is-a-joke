@@ -143,16 +143,6 @@ function UserProfile({ user, setUser }) {
                 </div>
               </div>
 
-              {/* <p>
-                <Link to="/notifications">My Inbox</Link>
-              </p>
-              <p>
-                <Link to="/myjokes">My Jokes</Link>
-              </p>
-              <p>
-                <Link to="/friends">My Friends</Link>
-              </p> */}
-
               <ProfileModals
                 profileImg={profile_img}
                 showPicURL={showPicURL}
