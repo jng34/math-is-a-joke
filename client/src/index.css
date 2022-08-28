@@ -190,7 +190,69 @@ code {
   }
 
   #header {
-    font-size: 60px;
+    font-size: 50px;
+    cursor: pointer;
+  }
+
+  #chalkboard {
+    background-image: url('./media/einstein.png'), url('./media/chalkboard2.png');
+    background-position: -5px 410px, center;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 100px, 375px 420px;
+    width: 100%;
+  }  
+
+  #joke-board {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    max-width: 335px;
+    height: 450px;
+    margin: auto;
+  }
+
+  #header-title {
+    font-size: 50px;
+    cursor: pointer;
+    text-align: center;
+    
+  }
+
+  #lbtable {
+    max-width: 100%;
+    text-align: end;
+    flex: auto;
+    margin: auto;
+  }
+
+  /* .wallpaper {
+    background-image: url("./media/mathwp.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: initial;
+    -webkit-background-size: cover;
+  } */
+
+}
+
+
+@media only screen and (max-width: 400px) and (orientation: portrait) {
+
+  #center-header {
+    font-size: 20px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #header {
+    font-size: 40px;
     cursor: pointer;
   }
 
