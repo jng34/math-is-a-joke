@@ -45,7 +45,7 @@ function Main({ user, setUser, setToggleHeader }) {
             >
               Log In
             </button>
-            &nbsp;&nbsp;
+            {/* &nbsp;&nbsp; */}
             <button
               className="btn btn-sm btn-primary rounded-pill border border-2 border-dark"
               onClick={() => history.push("/signup")}

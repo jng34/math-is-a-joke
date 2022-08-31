@@ -73,14 +73,11 @@ code {
 
 #chalkboard {
   background-image: url('./media/einstein.png'), url('./media/chalkboard2.png');
-  background-position: 125px 400px, center;
-  /* background-position: 150px 400px, 280px 50px ; */
+  background-position: 150px 400px, center;
   background-repeat: no-repeat, no-repeat;
   background-size: 150px, 775px 450px;
-  /* background-size: 150px, 750px 450px; */
   width: 100%;
   height: 35rem;
-  /* margin-top: auto  ; */
 }
 
 #joke-board {
@@ -90,7 +87,6 @@ code {
   max-width: 650px;
   height: 450px;
   margin: auto;
-  /* margin-top: 25px; */
 }
 
 
@@ -130,23 +126,7 @@ code {
 #signup {
   font-size: 15px;
   width: 25rem; 
-  /* height: 25rem; */
   margin: auto;
-}
-
-#loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 1;
-  width: 120px;
-  height: 120px;
-  margin: -76px 0 0 -76px;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
 }
 
 
@@ -159,22 +139,6 @@ code {
   overflow: hidden;
   outline: none;
 }
-
-/* @media (min-aspect-ratio: 16/9) {
-  #myVideo {
-    height: 100%;
-    width: auto;
-    z-index: -1;
-  }
-}
-
-@media (max-aspect-ratio: 16/9) {
-    #myVideo {
-      height: auto;
-      width: 100%;
-      z-index: -1;
-    }
-} */
 
 
 @media only screen and (max-width: 600px) and (orientation: portrait) {
@@ -298,4 +262,33 @@ code {
     -webkit-background-size: cover;
   } */
 
+}
+
+.spinner {
+  font-size: 50px;
+  -webkit-animation: spin 1s linear infinite;
+  /* Safari */
+ 
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(-180deg);
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
 }

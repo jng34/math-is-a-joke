@@ -231,187 +231,199 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
   }
 
   return (
-    <div id="chalkboard" className="container">
-      <div id="joke-board" className="col">
-        <div className="align-self-center">
-          <div className="container text-center align-items-center">
-            <div className="row">
-              <br />
-              <br />
-              <br />
-              <br />
-            </div>
-            <div className="row mt-2 mb-2 align-items-center text-light">
-              {!toggleMathProb ? (
-                <div>
-                  <br />
-                  <h3>{joke.setup}</h3>
-                  <br />
-                  <br />
-                  <button
-                    type="button"
-                    className="border border-3 border-dark rounded-pill btn btn-warning fs-5"
-                    onClick={() => setToggleMathProb(!toggleMathProb)}
-                  >
-                    {" "}
-                    Get Answer!
-                  </button>
+    <>
+      {!joke.setup ? (
+        <div className="fs-1 text-center align-items-center">
+          <br />
+          <br />
+          <br />
+          <span>Loading...</span>
+          <div className="spinner">😞</div>
+        </div>
+      ) : (
+        <div id="chalkboard" className="container">
+          <div id="joke-board" className="col">
+            <div className="align-self-center">
+              <div className="container text-center align-items-center">
+                <div className="row">
                   <br />
                   <br />
-                  <button
-                    type="button"
-                    className="border border-dark rounded-pill btn btn-sm bg-light text-dark"
-                    onClick={() => setShowPointSys(true)}
-                  >
-                    How To Play
-                  </button>
-                  <HowToPlayModal
-                    showPointSys={showPointSys}
-                    setShowPointSys={setShowPointSys}
-                  />
+                  <br />
+                  <br />
                 </div>
-              ) : (
-                <>
-                  {ansMsg ? (
-                    togglePL ? (
-                      <div className="col">
-                        <h4 style={{ color: "orange", fontWeight: "bold" }}>
-                          Correct!
-                        </h4>
-                        <br />
-                        <h4>{joke.setup}</h4>
-                        <h5>
-                          <em> ⇾ {joke.punchline}</em>
-                        </h5>
-                        <br />
-                        {!toggleLikeFav ? (
-                          <button
-                            type="button"
-                            className="transparent-button"
-                            onClick={() => handleLikeAndFavorite()}
-                          >
-                            <Player
-                              hover
-                              loop
-                              speed={"1.5"}
-                              src="https://assets10.lottiefiles.com/packages/lf20_RfD6Lb.json"
-                              style={{ height: "60px", width: "60px" }}
-                            ></Player>
-                          </button>
-                        ) : toggleAfterLike ? (
-                          <p className="fs-5 fw-bold">Liked!</p>
-                        ) : (
-                          <></>
-                        )}
-                        &nbsp;&nbsp;
-                        {!toggleLikeFav ? (
-                          <button
-                            type="button"
-                            className="transparent-button"
-                            onClick={handleDislike}
-                          >
-                            <Player
-                              hover
-                              loop
-                              speed={"7"}
-                              src="https://assets9.lottiefiles.com/private_files/lf30_kbu3mkpv.json"
-                              style={{ height: "60px", width: "60px" }}
-                            ></Player>
-                          </button>
-                        ) : toggleAfterLike ? (
-                          <></>
-                        ) : (
-                          <p className="fs-5 fw-bold">Disiked!</p>
-                        )}
-                        <br />
-                        <br />
-                        {user.username &&
-                        user.problems_solved % 5 == 0 &&
-                        user.problems_solved != 0 ? (
-                          <>
-                            <p className="text-light">
-                              Create a joke for +5 pts!
-                            </p>
-                            <button
-                              className="btn fs-6 border border-2 border-light bg-primary text-light"
-                              onClick={() => history.push("/createjoke")}
-                            >
-                              Create Joke
-                            </button>
-                          </>
-                        ) : (
-                          <></>
-                        )}
-                        &nbsp;
-                        <button
-                          className="btn fs-6 border border-2 bg-secondary text-light"
-                          onClick={handleNextClick}
-                        >
-                          Next Joke
-                        </button>
-                      </div>
-                    ) : (
-                      <div>
-                        <p style={{ fontSize: "65px" }}>{problem}</p>
-                        <h5 style={{ color: "red", fontWeight: "bold" }}>
-                          Incorrect.
-                        </h5>
-                        <br />
-                        <h5>Your Answer: {inputAns}</h5>
-                        <h5>Correct Answer: {answer}</h5>
-                        <br />
-                        <button
-                          className="btn btn-sm fs-5 border border-2 bg-secondary text-light"
-                          onClick={handleNextClick}
-                        >
-                          Next Joke
-                        </button>
-                      </div>
-                    )
-                  ) : (
-                    <form onSubmit={handleSubmitAns}>
-                      {user && user.username ? (
-                        <Timer
-                          count={count}
-                          setCount={setCount}
-                          setTogglePL={setTogglePL}
-                          setAnsMsg={setAnsMsg}
-                        />
-                      ) : (
-                        <></>
-                      )}
+                <div className="row mt-2 mb-2 align-items-center text-light">
+                  {!toggleMathProb ? (
+                    <div>
                       <br />
-                      <label htmlFor="answer" style={{ fontSize: "20px" }}>
-                        Solve:
-                      </label>
+                      <h3>{joke.setup}</h3>
                       <br />
-                      <label htmlFor="answer" style={{ fontSize: "70px" }}>
-                        {problem}
-                      </label>
                       <br />
-                      <input
-                        style={{ width: "100px", height: "35px" }}
-                        type="number"
-                        name="answer"
-                        value={inputAns}
-                        onChange={(e) => setInputAns(e.target.value)}
-                      />
-                      &nbsp;
                       <button
-                        type="submit"
-                        className="btn btn-large border border-dark border-2 bg-warning"
+                        type="button"
+                        className="border border-3 border-dark rounded-pill btn btn-warning fs-5"
+                        onClick={() => setToggleMathProb(!toggleMathProb)}
                       >
-                        Submit
+                        {" "}
+                        Get Answer!
                       </button>
-                    </form>
+                      <br />
+                      <br />
+                      <button
+                        type="button"
+                        className="border border-dark rounded-pill btn btn-sm bg-light text-dark"
+                        onClick={() => setShowPointSys(true)}
+                      >
+                        How To Play
+                      </button>
+                      <HowToPlayModal
+                        showPointSys={showPointSys}
+                        setShowPointSys={setShowPointSys}
+                      />
+                    </div>
+                  ) : (
+                    <>
+                      {ansMsg ? (
+                        togglePL ? (
+                          <div className="col">
+                            <h4 style={{ color: "orange", fontWeight: "bold" }}>
+                              Correct!
+                            </h4>
+                            <br />
+                            <h4>{joke.setup}</h4>
+                            <h5>
+                              <em> ⇾ {joke.punchline}</em>
+                            </h5>
+                            <br />
+                            {!toggleLikeFav ? (
+                              <button
+                                type="button"
+                                className="transparent-button"
+                                onClick={() => handleLikeAndFavorite()}
+                              >
+                                <Player
+                                  hover
+                                  loop
+                                  speed={"1.5"}
+                                  src="https://assets10.lottiefiles.com/packages/lf20_RfD6Lb.json"
+                                  style={{ height: "60px", width: "60px" }}
+                                ></Player>
+                              </button>
+                            ) : toggleAfterLike ? (
+                              <p className="fs-5 fw-bold">Liked!</p>
+                            ) : (
+                              <></>
+                            )}
+                            &nbsp;&nbsp;
+                            {!toggleLikeFav ? (
+                              <button
+                                type="button"
+                                className="transparent-button"
+                                onClick={handleDislike}
+                              >
+                                <Player
+                                  hover
+                                  loop
+                                  speed={"7"}
+                                  src="https://assets9.lottiefiles.com/private_files/lf30_kbu3mkpv.json"
+                                  style={{ height: "60px", width: "60px" }}
+                                ></Player>
+                              </button>
+                            ) : toggleAfterLike ? (
+                              <></>
+                            ) : (
+                              <p className="fs-5 fw-bold">Disiked!</p>
+                            )}
+                            <br />
+                            <br />
+                            {user.username &&
+                            user.problems_solved % 5 == 0 &&
+                            user.problems_solved != 0 ? (
+                              <>
+                                <p className="text-light">
+                                  Create a joke for +5 pts!
+                                </p>
+                                <button
+                                  className="btn fs-6 border border-2 border-light bg-primary text-light"
+                                  onClick={() => history.push("/createjoke")}
+                                >
+                                  Create Joke
+                                </button>
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                            &nbsp;
+                            <button
+                              className="btn fs-6 border border-2 bg-secondary text-light"
+                              onClick={handleNextClick}
+                            >
+                              Next Joke
+                            </button>
+                          </div>
+                        ) : (
+                          <div>
+                            <p style={{ fontSize: "65px" }}>{problem}</p>
+                            <h5 style={{ color: "red", fontWeight: "bold" }}>
+                              Incorrect.
+                            </h5>
+                            <br />
+                            <h5>Your Answer: {inputAns}</h5>
+                            <h5>Correct Answer: {answer}</h5>
+                            <br />
+                            <button
+                              className="btn btn-sm fs-5 border border-2 bg-secondary text-light"
+                              onClick={handleNextClick}
+                            >
+                              Next Joke
+                            </button>
+                          </div>
+                        )
+                      ) : (
+                        <form onSubmit={handleSubmitAns}>
+                          {user && user.username ? (
+                            <Timer
+                              count={count}
+                              setCount={setCount}
+                              setTogglePL={setTogglePL}
+                              setAnsMsg={setAnsMsg}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          <br />
+                          <label htmlFor="answer" style={{ fontSize: "20px" }}>
+                            Solve:
+                          </label>
+                          <br />
+                          <label htmlFor="answer" style={{ fontSize: "70px" }}>
+                            {problem}
+                          </label>
+                          <br />
+                          <input
+                            style={{ width: "100px", height: "35px" }}
+                            type="number"
+                            name="answer"
+                            value={inputAns}
+                            onChange={(e) => setInputAns(e.target.value)}
+                          />
+                          &nbsp;
+                          <button
+                            type="submit"
+                            className="btn btn-large border border-dark border-2 bg-warning"
+                          >
+                            Submit
+                          </button>
+                        </form>
+                      )}
+                    </>
                   )}
-                </>
-              )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 
