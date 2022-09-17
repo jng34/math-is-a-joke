@@ -4,6 +4,7 @@ class User < ApplicationRecord
     validates :email, presence: true
     validates :password, presence: true, on: :create
 
+    has_one_attached :pic_upload
     has_many :jokes, dependent: :destroy
     has_many :favorites, dependent: :destroy
     # has_many :comments, dependent: :destroy
