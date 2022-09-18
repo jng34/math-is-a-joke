@@ -30,8 +30,6 @@ function App() {
       }
     });
   }, [noticeReRender]);
-
-  // if (!user.username) return <div id="loader"></div>;
   
   return user && user.username ? (
     <div style={{ fontFamily: "Love Ya Like A Sister" }}>
