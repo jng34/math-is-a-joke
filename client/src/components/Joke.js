@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Timer from './Timer';
+import ProblemGen from './ProblemGen';
 import HowToPlayModal from './HowToPlayModal';
 import { Player } from '@lottiefiles/react-lottie-player';
 
@@ -251,6 +252,7 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
                   <button
                     type="button"
                     className="border border-3 border-dark rounded-pill btn btn-warning fs-5"
+                    autoFocus
                     onClick={() => setToggleMathProb(!toggleMathProb)}
                   >
                     {" "}
@@ -345,6 +347,7 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
                         &nbsp;
                         <button
                           className="btn fs-6 border border-2 bg-secondary text-light"
+                          autoFocus
                           onClick={handleNextClick}
                         >
                           Next Joke
@@ -362,6 +365,7 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
                         <br />
                         <button
                           className="btn btn-sm fs-5 border border-2 bg-secondary text-light"
+                          autoFocus
                           onClick={handleNextClick}
                         >
                           Next Joke
@@ -394,6 +398,7 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
                         type="number"
                         name="answer"
                         value={inputAns}
+                        autoFocus
                         onChange={(e) => setInputAns(e.target.value)}
                       />
                       &nbsp;
