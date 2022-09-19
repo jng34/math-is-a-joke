@@ -21,6 +21,7 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
   const [toggleAfterLike, setToggleAfterLike] = useState(false);
   const [showPointSys, setShowPointSys] = useState(false);
   const [freeProbsCt, setFreeProbsCt] = useState(0);
+  const [toggleChallenge, setToggleChallenge] = useState(false);
   const history = useHistory();
 
   //Easy - 20s, Medium = 15s, Hard = 10s
@@ -207,13 +208,13 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
   }
 
   function getNewJokeAndProb() {
-      generateMathProb();
-      setNewJoke();
-      setInputAns("");
-      setToggleLikeFav(false);
-      setToggleMathProb(!toggleMathProb);
-      setAnsMsg(null);
-      diffLevel();
+    generateMathProb();
+    setNewJoke();
+    setInputAns("");
+    setToggleLikeFav(false);
+    setToggleMathProb(!toggleMathProb);
+    setAnsMsg(null);
+    diffLevel();
   }
 
   function handleNextClick() {
@@ -267,6 +268,25 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
                   >
                     How To Play
                   </button>
+                  <br />
+                  <br />
+                  {!toggleChallenge ? (
+                    <button
+                      type="button"
+                      className="border border-dark btn btn-sm bg-primary text-white"
+                      onClick={() => setToggleChallenge(true)}
+                    >
+                      Normal Mode
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="border border-dark btn btn-sm bg-danger text-white"
+                      onClick={() => setToggleChallenge(false)}
+                    >
+                      Challenge Mode 🔥
+                    </button>
+                  )}
                   <HowToPlayModal
                     showPointSys={showPointSys}
                     setShowPointSys={setShowPointSys}
