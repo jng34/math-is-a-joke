@@ -21,98 +21,137 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
   const [toggleAfterLike, setToggleAfterLike] = useState(false);
   const [showPointSys, setShowPointSys] = useState(false);
   const [freeProbsCt, setFreeProbsCt] = useState(0);
-  const [toggleChallenge, setToggleChallenge] = useState(false);
+  const [challengeMode, setChallengeMode] = useState(false);
+  //state for joke list
+  const [allJokes, setAllJokes] = useState([]);
   const history = useHistory();
 
   //CHALLENGE MODE - PEMDAS
-      function diffLevel() {
-        const difficulty = [10, 15, 20];
-        let i = Math.floor(Math.random() * 3);
-        setLevel(difficulty[i]);
-        setCount(difficulty[i]);
+  function diffLevel() {
+    const difficulty = [10, 15, 20];
+    let i = Math.floor(Math.random() * 3);
+    setLevel(difficulty[i]);
+    setCount(difficulty[i]);
+  }
+
+  //Generate numbers for math problem
+  const num1 = Math.floor(Math.random() * 100 + 1);
+  const num2 = Math.floor(Math.random() * 25 + 1);
+  const num3 = Math.floor(Math.random() * 25 + 1);
+
+  //Create array of divisors for division with integer quotients
+  function createDivisors(n) {
+    let divisors = [];
+    for (let i = 1; i <= num1; i++) {
+      if (num1 % i === 0) {
+        divisors.push(i);
       }
+    }
+    return divisors;
+  }
 
-      //Generate numbers for math problem
-      const num1 = Math.floor(Math.random() * 50 + 1);
-      const num2 = Math.floor(Math.random() * 25 + 1);
-      const num3 = Math.floor(Math.random() * 25 + 1);
+  const operations = ["+", "-", "×", "÷"];
+  const operationsObj = {
+    "+": "+",
+    "-": "-",
+    "×": "*",
+    "÷": "/",
+  };
 
-      //Create array of divisors for division with integer quotients
-      function createDivisors(n) {
-        let divisors = [];
-        for (let i = 1; i <= num1; i++) {
-          if (num1 % i === 0) {
-            divisors.push(i);
-          }
+  //Generate math problem - basic operations
+  function generateMathProb() {
+    // const operations = ["+", "-", "×", "÷"];
+    let index1 = Math.floor(Math.random() * 4);
+    let index2 = Math.floor(Math.random() * 4);
+    let mathOper1 = operations[index1];
+    let mathOper2 = operations[index2];
+    const divisors = createDivisors(num1);
+    const divIndex = Math.floor(Math.random() * divisors.length);
+
+    if (challengeMode === true) {
+      //generate operations that are not equal to each other
+      if (mathOper1 !== mathOper2) {
+        //e.g.   21 ÷ 7 + 31
+        //structure `${num1}  {mathOper1}  ${num2}  {mathOper2}   ${num3}`
+        // const divisors = createDivisors(num1);
+        // const divIndex = Math.floor(Math.random() * divisors.length);
+
+        if (mathOper1 === "÷") {
+          //Division - whole integer quotients
+          let prob = `${num1} ${mathOper1} ${divisors[divIndex]} ${mathOper2} ${num3}`;
+          setProblem(prob);
+
+          //Function, like eval, evaluates a string and returns a number
+          //safer and faster than eval. DO NOT USE eval!
+          let solution = Function(
+            "return " +
+              `${num1} ${operationsObj[mathOper1]} ${divisors[divIndex]} ${operationsObj[mathOper2]} ${num3}`
+          )();
+          setAnswer(solution);
+        } else if (mathOper2 === "÷") {
+          //e.g.  18 x 32 / 4
+          let prob = `${num3} ${mathOper1} ${num1} ${mathOper2} ${divisors[divIndex]}`;
+          setProblem(prob);
+          let solution = Function(
+            "return " +
+              `${num3} ${operationsObj[mathOper1]} ${num1} ${operationsObj[mathOper2]} ${divisors[divIndex]}`
+          )();
+          setAnswer(solution);
+
+          //Multiplication, addition and subtraction
+        } else if (mathOper1 !== "÷" && mathOper2 !== "÷") {
+          //set non division problem to state
+          let prob = `${num1} ${mathOper1} ${num2} ${mathOper2} ${num3}`;
+          setProblem(prob);
+
+          //set solution
+          let solution = Function(
+            "return " +
+              `${num1} ${operationsObj[mathOper1]} ${num2} ${operationsObj[mathOper2]} ${num3}`
+          )();
+          setAnswer(solution);
         }
-        return divisors;
+      } else {
+        //else run the generator fn again - recursion
+        generateMathProb();
       }
-
-      const operations = ["+", "-", "×", "÷"];
-      const operationsObj = {
-        "+": "+",
-        "-": "-",
-        "×": "*",
-        "÷": "/",
-      };
-      //Generate math problem - basic operations
-      function generateMathProb() {
-        // const operations = ["+", "-", "×", "÷"];
-        let index1 = Math.floor(Math.random() * 4);
-        let index2 = Math.floor(Math.random() * 4);
-        let mathOper1 = operations[index1];
-        let mathOper2 = operations[index2];
-
-        //generate operations that are not equal to each other
-        if (mathOper1 !== mathOper2) {
-          //e.g.   21 ÷ 7 + 31
-          //structure `${num1}  {mathOper1}  ${num2}  {mathOper2}   ${num3}`
-          const divisors = createDivisors(num1);
-          const divIndex = Math.floor(Math.random() * divisors.length);
-
-          if (mathOper1 === "÷") {
-            //Division - whole integer quotients
-            let prob = `${num1} ${mathOper1} ${divisors[divIndex]} ${mathOper2} ${num3}`;
-            setProblem(prob);
-
-            //Function, like eval, evaluates a string and returns a number
-            //safer and faster than eval. DO NOT USE eval!
-            let solution = Function(
-              "return " +
-                `${num1} ${operationsObj[mathOper1]} ${divisors[divIndex]} ${operationsObj[mathOper2]} ${num3}`
-            )();
-            setAnswer(solution);
-          } else if (mathOper2 === "÷") {
-            //e.g.  18 x 32 / 4
-            let prob = `${num3} ${mathOper1} ${num1} ${mathOper2} ${divisors[divIndex]}`;
-            setProblem(prob);
-            let solution = Function(
-              "return " +
-                `${num3} ${operationsObj[mathOper1]} ${num1} ${operationsObj[mathOper2]} ${divisors[divIndex]}`
-            )();
-            setAnswer(solution);
-
-            //Multiplication, addition and subtraction
-          } else if (mathOper1 !== "÷" && mathOper2 !== "÷") {
-            //set non division problem to state
-            let prob = `${num1} ${mathOper1} ${num2} ${mathOper2} ${num3}`;
-            setProblem(prob);
-
-            //set solution
-            let solution = Function(
-              "return " +
-                `${num1} ${operationsObj[mathOper1]} ${num2} ${operationsObj[mathOper2]} ${num3}`
-            )();
-            setAnswer(solution);
-          }
-        } else {
-          //else run the generator fn again - recursion
-          generateMathProb();
+    } else {
+      //Generate Normal mode problem
+      if (mathOper1 === "÷") {
+        //Division - whole integer quotients
+        // const divisors = createDivisors(num1);
+        // let divIndex = Math.floor(Math.random() * divisors.length);
+        let divProb = `${num1} ÷ ${divisors[divIndex]}`;
+        setProblem(divProb);
+        setAnswer(num1 / divisors[divIndex]);
+      } else if (mathOper1 === "×") {
+        let multiplier = Math.floor(Math.random() * (num1 / 2) + 1);
+        let multProb = `${num1} × ${multiplier}`;
+        setProblem(multProb);
+        setAnswer(num1 * multiplier);
+      } else if (mathOper1 === "-") {
+        //Subtraction - no negative answers
+        if (num1 > num2) {
+          let subtraction1 = `${num1} ${mathOper1} ${num2}`;
+          setProblem(subtraction1);
+          setAnswer(num1 - num2);
+        } else if (num2 > num1) {
+          let subtraction2 = `${num2} ${mathOper1} ${num1}`;
+          setProblem(subtraction2);
+          setAnswer(num2 - num1);
         }
+      } else {
+        let randomProb = `${num1} ${mathOper1} ${num2}`;
+        setProblem(randomProb);
+        setAnswer(num1 + num2);
       }
+    }
+  }
 
-
-
+  function handleChallengeChange() {
+    setChallengeMode(!challengeMode);
+    generateMathProb();
+  }
 
   //NORMAL MODE
 
@@ -173,9 +212,6 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
   //     setAnswer(num1 + num2);
   //   }
   // }
-
-  //state for joke list
-  const [allJokes, setAllJokes] = useState([]);
 
   //generate new joke in front end w/o API call
   const setNewJoke = () => {
@@ -313,7 +349,7 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
     if (user.username) {
       getNewJokeAndProb();
     } else if (freeProbsCt < 2) {
-      setFreeProbsCt(freeProbsCt+1)
+      setFreeProbsCt(freeProbsCt + 1);
       getNewJokeAndProb();
     } else {
       history.push("/login");
@@ -362,11 +398,11 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
                   </button>
                   <br />
                   <br />
-                  {!toggleChallenge ? (
+                  {!challengeMode ? (
                     <button
                       type="button"
                       className="border border-dark btn btn-sm bg-primary text-white"
-                      onClick={() => setToggleChallenge(true)}
+                      onClick={handleChallengeChange}
                     >
                       Normal Mode
                     </button>
@@ -374,7 +410,7 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
                     <button
                       type="button"
                       className="border border-dark btn btn-sm bg-danger text-white"
-                      onClick={() => setToggleChallenge(false)}
+                      onClick={handleChallengeChange}
                     >
                       Challenge Mode 🔥
                     </button>
