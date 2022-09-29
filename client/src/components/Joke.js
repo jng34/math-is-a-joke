@@ -277,21 +277,28 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
       setTogglePL(true);
       if (user && user.username) {
         if (level == 20) {
-          handleUpdateScore(user.score + 1, user.problems_solved + 1);
+          challengeMode ? handleUpdateScore(user.score + 2, user.problems_solved + 1) : handleUpdateScore(user.score + 1, user.problems_solved + 1);
         } else if (level == 15) {
-          handleUpdateScore(user.score + 2, user.problems_solved + 1);
+          challengeMode ? handleUpdateScore(user.score + 4, user.problems_solved + 1) : handleUpdateScore(user.score + 2, user.problems_solved + 1);
         } else {
+          challengeMode ? handleUpdateScore(user.score + 6, user.problems_solved + 1) : 
           handleUpdateScore(user.score + 3, user.problems_solved + 1);
         }
       }
     } else {
       setTogglePL(false);
       if (level == 20) {
-        handleUpdateScore(user.score - 1);
+        challengeMode
+          ? handleUpdateScore(user.score - 2)
+          : handleUpdateScore(user.score - 1);
       } else if (level == 15) {
-        handleUpdateScore(user.score - 2);
+        challengeMode
+          ? handleUpdateScore(user.score - 3)
+          : handleUpdateScore(user.score - 2);
       } else {
-        handleUpdateScore(user.score - 2);
+        challengeMode
+          ? handleUpdateScore(user.score - 4)
+          : handleUpdateScore(user.score - 2);
       }
     }
   }
