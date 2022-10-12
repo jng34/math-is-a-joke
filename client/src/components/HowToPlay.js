@@ -39,20 +39,47 @@ function HowToPlay({ user }) {
                     <tr>
                         <td>Easy</td>
                         <td>20 s</td>
-                        <td>+1</td>
-                        <td>-1</td>
+                        { !toggleMode ?
+                        <>
+                            <td>+1</td>
+                            <td>-1</td>
+                        </>
+                        :
+                        <>
+                            <td>+2</td>
+                            <td>-2</td>
+                        </>
+                        }
                     </tr>
                     <tr>
                         <td>Medium</td>
                         <td>15 s</td>
-                        <td>+2</td>
-                        <td>-2</td>
+                        { !toggleMode ?
+                        <>
+                            <td>+2</td>
+                            <td>-2</td>
+                        </>
+                        :
+                        <>
+                            <td>+4</td>
+                            <td>-3</td>
+                        </>
+                        }
                     </tr>
                     <tr>
                         <td>Hard</td>
                         <td>10 s</td>
-                        <td>+3</td>
-                        <td>-2</td>
+                        { !toggleMode ?
+                        <>
+                            <td>+3</td>
+                            <td>-2</td>
+                        </>
+                        :
+                        <>
+                            <td>+6</td>
+                            <td>-4</td>
+                        </>
+                        }
                     </tr>
                 </tbody>
             </table>
