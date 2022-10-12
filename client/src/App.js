@@ -61,6 +61,8 @@ function App() {
             noticeReRender={noticeReRender}
             setNoticeReRender={setNoticeReRender}
             toggleJokeFetch={toggleJokeFetch}
+            // challengeMode={challengeMode}
+            // setChallengeMode={setChallengeMode}
           />
         </Route>
         <Route exact path="/createjoke">
@@ -106,7 +108,6 @@ function App() {
         <Route exact path="/signup">
           <SignUpForm onSignUp={setUser} />
         </Route>
-        x``x``x
       </Switch>
     </div>
   );

@@ -8,8 +8,8 @@ function Timer({ setTogglePL, setAnsMsg, count, setCount }) {
         if( count > 0 ) {
             timer = setTimeout(() => setCount(count-1), 1000)
         } else {
-            setAnsMsg('fire')
-            setTogglePL(false)
+            setAnsMsg('start');
+            setTogglePL(false);
         }
     }, [count])
 

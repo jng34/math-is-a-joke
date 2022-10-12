@@ -1,12 +1,30 @@
-import React from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function HowToPlay({ user }) {
+    const [toggleMode, setToggleMode] = useState(false);
     const history = useHistory();
 
     return (
         <div className="text-center mx-auto mt-4" style={{width: '700px'}}>
-            <p className='fs-1'>How To Play</p><br/>
+            <p className='fs-1'>How To Play</p>
+
+            { !toggleMode ? 
+                <button type='button' className='border border-dark btn bg-primary text-white disabled' aria-disabled="true">Normal Mode</button> 
+                : 
+                <button type="button" className='border border-dark btn bg-primary text-white' onClick={() => setToggleMode(!toggleMode)}>Normal Mode</button>
+            }
+
+            &nbsp;&nbsp;
+
+            { !toggleMode ? 
+                <button type="button" className='border border-dark btn bg-danger text-white' onClick={() => setToggleMode(!toggleMode)}>Challenge Mode 🔥</button>
+                :
+                <button type='button' className='border border-dark btn bg-danger text-white disabled' aria-disabled="true">Challenge Mode 🔥</button>             
+            }
+
+            <br/><br/>
+
             <p className='fs-4 text-success'>Get a joke. Solve a math problem.<br/>Bump up your score. Try not to laugh! 😂</p>
             <table className='table fs-4 border border-2'>
                 <thead>

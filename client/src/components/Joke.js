@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Timer from './Timer';
-import ProblemGen from './ProblemGen';
+import JokeTimer from './JokeTimer';
 import HowToPlayModal from './HowToPlayModal';
 import { Player } from '@lottiefiles/react-lottie-player';
 
@@ -16,6 +16,7 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
   const [togglePL, setTogglePL] = useState(false);
   const [level, setLevel] = useState(20);
   const [count, setCount] = useState(20);
+  // const [jokeTime, setJokeTime] = useState(5);
   const [toggleMathProb, setToggleMathProb] = useState(false);
   const [toggleLikeFav, setToggleLikeFav] = useState(false);
   const [toggleAfterLike, setToggleAfterLike] = useState(false);
@@ -60,7 +61,7 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
 
   //Generate math problem - basic operations
   function generateMathProb() {
-    // const operations = ["+", "-", "×", "÷"];
+
     let index1 = Math.floor(Math.random() * 4);
     let index2 = Math.floor(Math.random() * 4);
     let mathOper1 = operations[index1];
@@ -72,15 +73,10 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
       //generate operations that are not equal to each other
       if (mathOper1 !== mathOper2) {
         //e.g.   21 ÷ 7 + 31
-        //structure `${num1}  {mathOper1}  ${num2}  {mathOper2}   ${num3}`
-        // const divisors = createDivisors(num1);
-        // const divIndex = Math.floor(Math.random() * divisors.length);
-
         if (mathOper1 === "÷") {
           //Division - whole integer quotients
           let prob = `${num1} ${mathOper1} ${divisors[divIndex]} ${mathOper2} ${num3}`;
           setProblem(prob);
-
           //Function, like eval, evaluates a string and returns a number
           //safer and faster than eval. DO NOT USE eval!
           let solution = Function(
@@ -118,9 +114,6 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
     } else {
       //Generate Normal mode problem
       if (mathOper1 === "÷") {
-        //Division - whole integer quotients
-        // const divisors = createDivisors(num1);
-        // let divIndex = Math.floor(Math.random() * divisors.length);
         let divProb = `${num1} ÷ ${divisors[divIndex]}`;
         setProblem(divProb);
         setAnswer(num1 / divisors[divIndex]);
@@ -148,70 +141,14 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
     }
   }
 
+  // function refreshPage() {
+  //   window.parent.location = window.parent.location.href;
+  // }
+
   function handleChallengeChange() {
     setChallengeMode(!challengeMode);
     generateMathProb();
   }
-
-  //NORMAL MODE
-
-  // //Easy - 20s, Medium = 15s, Hard = 10s
-  // function diffLevel() {
-  //   const difficulty = [10, 15, 20];
-  //   let i = Math.floor(Math.random() * 3);
-  //   setLevel(difficulty[i]);
-  //   setCount(difficulty[i]);
-  // }
-
-  // //Generate numbers for math problem
-  // const num1 = Math.floor(Math.random() * 100 + 1);
-  // const num2 = Math.floor(Math.random() * 50 + 1);
-
-  // //Create array of divisors for division with integer quotients
-  // function createDivisors(n) {
-  //   let divisors = [];
-  //   for (let i = 1; i <= num1; i++) {
-  //     if (num1 % i === 0) {
-  //       divisors.push(i);
-  //     }
-  //   }
-  //   return divisors;
-  // }
-
-  // //Generate math problem - basic operations
-  // function generateMathProb() {
-  //   const operations = ["+", "-", "*", "/"];
-  //   let index = Math.floor(Math.random() * 4);
-  //   let mathOper = operations[index];
-  //   if (mathOper === "/") {
-  //     //Division - whole integer quotients
-  //     const divisors = createDivisors(num1);
-  //     let divIndex = Math.floor(Math.random() * divisors.length);
-  //     let divProb = `${num1} ÷ ${divisors[divIndex]}`;
-  //     setProblem(divProb);
-  //     setAnswer(num1 / divisors[divIndex]);
-  //   } else if (mathOper === "*") {
-  //     let multiplier = Math.floor(Math.random() * (num1 / 2) + 1);
-  //     let multProb = `${num1} × ${multiplier}`;
-  //     setProblem(multProb);
-  //     setAnswer(num1 * multiplier);
-  //   } else if (mathOper === "-") {
-  //     //Subtraction - no negative answers
-  //     if (num1 > num2) {
-  //       let subtraction1 = `${num1} ${mathOper} ${num2}`;
-  //       setProblem(subtraction1);
-  //       setAnswer(num1 - num2);
-  //     } else if (num2 > num1) {
-  //       let subtraction2 = `${num2} ${mathOper} ${num1}`;
-  //       setProblem(subtraction2);
-  //       setAnswer(num2 - num1);
-  //     }
-  //   } else {
-  //     let randomProb = `${num1} ${mathOper} ${num2}`;
-  //     setProblem(randomProb);
-  //     setAnswer(num1 + num2);
-  //   }
-  // }
 
   //generate new joke in front end w/o API call
   const setNewJoke = () => {
@@ -235,7 +172,7 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
         setLikesCount(randomJokeObj.likes);
       });
     setTogglePL(false);
-  }, [toggleJokeFetch]);
+  }, [toggleJokeFetch, challengeMode]);
 
   //send notification after reaching every 50pt milestone
   function handleCreateScoreNotif(score) {
