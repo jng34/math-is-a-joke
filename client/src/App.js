@@ -20,6 +20,7 @@ function App() {
   const [noticeReRender, setNoticeReRender] = useState(false);
   const [toggleHeader, setToggleHeader] = useState(false);
   const [toggleJokeFetch, setToggleJokeFetch] = useState(false);
+  // const [challengeMode, setChallengeMode] = useState(false);
 
   useEffect(() => {
     fetch("/api/me").then((r) => {

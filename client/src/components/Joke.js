@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Timer from './Timer';
-import JokeTimer from './JokeTimer';
 import HowToPlayModal from './HowToPlayModal';
 import { Player } from '@lottiefiles/react-lottie-player';
 
@@ -328,24 +327,30 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
                     autoFocus
                     onClick={() => setToggleMathProb(!toggleMathProb)}
                   >
-                    {" "}
                     Get Answer!
                   </button>
                   <br />
-                  <br />
-                  <button
+                  <span
+                    style={{ color: "white", cursor: "pointer" }}
+                    onClick={() => setShowPointSys(true)}
+                  >
+                    <u>How To Play</u>
+                  </span>
+                  {/* <br />
+                  <br /> */}
+                  {/* <button
                     type="button"
                     className="border border-dark rounded-pill btn btn-sm bg-light text-dark"
                     onClick={() => setShowPointSys(true)}
                   >
                     How To Play
-                  </button>
+                  </button> */}
                   <br />
                   <br />
                   {!challengeMode ? (
                     <button
                       type="button"
-                      className="border border-dark btn btn-sm bg-primary text-white"
+                      className="border border-2 border-dark btn bg-primary text-white"
                       onClick={handleChallengeChange}
                     >
                       Normal Mode
@@ -353,13 +358,14 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
                   ) : (
                     <button
                       type="button"
-                      className="border border-dark btn btn-sm bg-danger text-white"
+                      className="border border-2 border-dark btn bg-danger text-white"
                       onClick={handleChallengeChange}
                     >
                       Challenge Mode 🔥
                     </button>
                   )}
                   <HowToPlayModal
+                    challengeMode={challengeMode}
                     showPointSys={showPointSys}
                     setShowPointSys={setShowPointSys}
                   />
