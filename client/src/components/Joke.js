@@ -140,10 +140,6 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
     }
   }
 
-  // function refreshPage() {
-  //   window.parent.location = window.parent.location.href;
-  // }
-
   function handleChallengeChange() {
     setChallengeMode(!challengeMode);
     generateMathProb();
@@ -351,14 +347,16 @@ function Joke({  user,  setUser,  noticeReRender,  setNoticeReRender,  toggleJok
                     <button
                       type="button"
                       className="border border-2 border-dark btn bg-primary text-white"
+                      title='Click for Challenge mode'
                       onClick={handleChallengeChange}
-                    >
+                      >
                       Normal Mode
                     </button>
                   ) : (
                     <button
                       type="button"
                       className="border border-2 border-dark btn bg-danger text-white"
+                      title='Click for Normal mode'
                       onClick={handleChallengeChange}
                     >
                       Challenge Mode 🔥
