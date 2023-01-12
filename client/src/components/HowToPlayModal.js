@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-function HowToPlayModal({ showPointSys, setShowPointSys }) {
+function HowToPlayModal({ challengeMode, showPointSys, setShowPointSys }) {
   const modal = (
     <Modal show={showPointSys} onHide={() => setShowPointSys(false)} centered>
       <Modal.Header closeButton>
@@ -27,20 +27,47 @@ function HowToPlayModal({ showPointSys, setShowPointSys }) {
             <tr>
               <td>Easy</td>
               <td>20 s</td>
-              <td>+1</td>
-              <td>-1</td>
+              {!challengeMode ? (
+                <>
+                  <td>+1</td>
+                  <td>-1</td>
+                </>
+              ) : (
+                <>
+                  <td>+2</td>
+                  <td>-2</td>
+                </>
+              )}
             </tr>
             <tr>
               <td>Medium</td>
               <td>15 s</td>
-              <td>+2</td>
-              <td>-2</td>
+              {!challengeMode ? (
+                <>
+                  <td>+2</td>
+                  <td>-2</td>
+                </>
+              ) : (
+                <>
+                  <td>+4</td>
+                  <td>-3</td>
+                </>
+              )}
             </tr>
             <tr>
               <td>Hard</td>
               <td>10 s</td>
-              <td>+3</td>
-              <td>-2</td>
+              {!challengeMode ? (
+                <>
+                  <td>+3</td>
+                  <td>-2</td>
+                </>
+              ) : (
+                <>
+                  <td>+6</td>
+                  <td>-4</td>
+                </>
+              )}
             </tr>
           </tbody>
         </table>

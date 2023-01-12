@@ -20,6 +20,7 @@ function App() {
   const [noticeReRender, setNoticeReRender] = useState(false);
   const [toggleHeader, setToggleHeader] = useState(false);
   const [toggleJokeFetch, setToggleJokeFetch] = useState(false);
+  // const [challengeMode, setChallengeMode] = useState(false);
 
   useEffect(() => {
     fetch("/api/me").then((r) => {
@@ -29,7 +30,7 @@ function App() {
         });
       }
     });
-  }, [noticeReRender]);
+  }, [noticeReRender]);   
   
   return user && user.username ? (
     <div style={{ fontFamily: "Love Ya Like A Sister" }}>
@@ -61,6 +62,8 @@ function App() {
             noticeReRender={noticeReRender}
             setNoticeReRender={setNoticeReRender}
             toggleJokeFetch={toggleJokeFetch}
+            // challengeMode={challengeMode}
+            // setChallengeMode={setChallengeMode}
           />
         </Route>
         <Route exact path="/createjoke">
@@ -106,7 +109,6 @@ function App() {
         <Route exact path="/signup">
           <SignUpForm onSignUp={setUser} />
         </Route>
-        x``x``x
       </Switch>
     </div>
   );
