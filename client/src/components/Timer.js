@@ -4,9 +4,8 @@ import React, { useEffect } from 'react';
 function Timer({ setTogglePL, setAnsMsg, count, setCount }) {
 
     useEffect(() => {
-        let timer;
         if( count > 0 ) {
-            timer = setTimeout(() => setCount(count-1), 1000)
+            setTimeout(() => setCount(count-1), 1000)
         } else {
             setAnsMsg('start');
             setTogglePL(false);
